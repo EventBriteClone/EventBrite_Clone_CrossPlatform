@@ -1,7 +1,8 @@
 import 'package:event_brite_app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'custom_settings_container.dart';
-
+import 'package:event_brite_app/services/geolocator.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
@@ -20,8 +21,10 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: primaryColor,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {
+          onPressed: () async {
             Navigator.pop(context);
+          Position position = await  determinePosition();
+          print(position);
           },
           icon: const Icon(
             Icons.arrow_back,
