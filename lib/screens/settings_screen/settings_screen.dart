@@ -1,8 +1,9 @@
 import 'package:event_brite_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:event_brite_app/services/geolocation.dart';
 import 'custom_settings_container.dart';
-import 'package:event_brite_app/services/geolocator.dart';
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
@@ -23,8 +24,9 @@ class SettingsScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () async {
             Navigator.pop(context);
-          Position position = await  determinePosition();
-          print(position);
+            List<Placemark> position =
+                await determineLocation(); // temp variable for geolocator service
+            print(position.elementAt(2).administrativeArea);
           },
           icon: const Icon(
             Icons.arrow_back,

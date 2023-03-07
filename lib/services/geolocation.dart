@@ -1,10 +1,11 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 /// Determine the current position of the device.
 ///
 /// When the location services are not enabled or permissions
 /// are denied the `Future` will return an error.
-Future<Position> determinePosition() async {
+Future<List<Placemark>> determineLocation() async {
   bool serviceEnabled;
   LocationPermission permission;
 
@@ -26,6 +27,7 @@ Future<Position> determinePosition() async {
       // Android's shouldShowRequestPermissionRationale
       // returned true. According to Android guidelines
       // your App should show an explanatory UI now.
+
       return Future.error('Location permissions are denied');
     }
   }
@@ -38,5 +40,8 @@ Future<Position> determinePosition() async {
 
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
-  return await Geolocator.getCurrentPosition();
+  Position position = await Geolocator.getCurrentPosition();
+  List<Placemark> placemarks =
+      await placemarkFromCoordinates(position.latitude, position.latitude);
+  return placemarks;
 }
