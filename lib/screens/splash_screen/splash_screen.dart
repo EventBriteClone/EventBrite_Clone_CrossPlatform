@@ -1,6 +1,6 @@
+import 'package:event_brite_app/screens/choose_your_fav_categories/choose_your_fav_categories.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
-import '../home_page/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
+            builder: (context) => const ChooseYourFavCategories(),
           ),
         );
       },

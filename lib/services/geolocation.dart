@@ -42,6 +42,6 @@ Future<List<Placemark>> determineLocation() async {
   // continue accessing the position of the device.
   Position position = await Geolocator.getCurrentPosition();
   List<Placemark> placemarks =
-      await placemarkFromCoordinates(position.latitude, position.latitude);
+      await placemarkFromCoordinates(position.latitude, position.longitude);
   return placemarks;
 }
