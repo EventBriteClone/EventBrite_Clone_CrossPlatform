@@ -14,22 +14,39 @@ class _ChooseYourFavCategoriesState extends State<ChooseYourFavCategories> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: const [
-           SafeArea(
-            child: Text(
-              "You're Interested in:",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+          const SafeArea(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12),
+              child: Text(
+                "You're interested in: ",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
-           SizedBox(
-            height: 50,
+          Expanded(
+            flex: 5,
+            child: GridView.count(
+              padding: EdgeInsets.zero,
+              mainAxisSpacing: MediaQuery.of(context).size.height * 0.03,
+              crossAxisCount: 3,
+              crossAxisSpacing: MediaQuery.of(context).size.width * 0.08,
+              children: const [
+                InterestsContainer(text: 'Food & Drink'),
+                InterestsContainer(text: 'Music'),
+                InterestsContainer(text: 'Charity & Causes'),
+                InterestsContainer(text: 'Party'),
+              ],
+            ),
           ),
-          InterestsContainer(
-            text: 'Food',
-          ),
+          
         ],
       ),
     );
