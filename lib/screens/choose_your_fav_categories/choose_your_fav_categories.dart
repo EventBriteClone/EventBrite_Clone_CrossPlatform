@@ -1,3 +1,4 @@
+import 'package:event_brite_app/screens/choose_your_fav_categories/button_for_categories_screen.dart';
 import 'package:event_brite_app/screens/choose_your_fav_categories/category_container.dart';
 import 'package:flutter/material.dart';
 
@@ -39,14 +40,45 @@ class _ChooseYourFavCategoriesState extends State<ChooseYourFavCategories> {
               crossAxisCount: 3,
               crossAxisSpacing: MediaQuery.of(context).size.width * 0.08,
               children: const [
-                InterestsContainer(text: 'Food & Drink'),
-                InterestsContainer(text: 'Music'),
-                InterestsContainer(text: 'Charity & Causes'),
-                InterestsContainer(text: 'Party'),
+                InterestsContainer(
+                  text: 'Food & Drink',
+                ),
+                InterestsContainer(
+                  text: 'Music',
+                ),
+                InterestsContainer(
+                  text: 'Charity & Causes',
+                ),
+                InterestsContainer(
+                  text: 'Party',
+                ),
+                InterestsContainer(
+                  text: 'Sports',
+                ),
               ],
             ),
           ),
-          
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 25,
+            ),
+            child: Column(
+              children: [
+                const ButtonForCategoriesScreen(
+                  text: 'Next',
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                const ButtonForCategoriesScreen(
+                  text: 'Skip',
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
