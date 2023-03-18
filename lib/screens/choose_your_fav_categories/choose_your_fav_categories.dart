@@ -3,7 +3,14 @@ import 'package:event_brite_app/screens/choose_your_fav_categories/category_cont
 import 'package:flutter/material.dart';
 
 class ChooseYourFavCategories extends StatefulWidget {
-  const ChooseYourFavCategories({super.key});
+  ChooseYourFavCategories({super.key});
+
+  final List<String> categories = [
+    'Music',
+    'Food & Drink',
+    'Sports',
+    'Charity & Causes',
+  ];
 
   @override
   State<ChooseYourFavCategories> createState() =>
@@ -11,6 +18,8 @@ class ChooseYourFavCategories extends StatefulWidget {
 }
 
 class _ChooseYourFavCategoriesState extends State<ChooseYourFavCategories> {
+  Color color = Colors.grey;
+  Color bColor = const Color.fromARGB(255, 59, 56, 221);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,31 +41,11 @@ class _ChooseYourFavCategoriesState extends State<ChooseYourFavCategories> {
               ),
             ),
           ),
-          Expanded(
-            flex: 5,
-            child: GridView.count(
-              padding: EdgeInsets.zero,
-              mainAxisSpacing: MediaQuery.of(context).size.height * 0.03,
-              crossAxisCount: 3,
-              crossAxisSpacing: MediaQuery.of(context).size.width * 0.08,
-              children: const [
-                InterestsContainer(
-                  text: 'Food & Drink',
-                ),
-                InterestsContainer(
-                  text: 'Music',
-                ),
-                InterestsContainer(
-                  text: 'Charity & Causes',
-                ),
-                InterestsContainer(
-                  text: 'Party',
-                ),
-                InterestsContainer(
-                  text: 'Sports',
-                ),
-              ],
-            ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.03,
+          ),
+          const Expanded(
+            child: Categories(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -64,8 +53,26 @@ class _ChooseYourFavCategoriesState extends State<ChooseYourFavCategories> {
             ),
             child: Column(
               children: [
-                const ButtonForCategoriesScreen(
-                  text: 'Next',
+                AnimatedContainer(
+                  duration: const Duration(seconds: 2),
+                  curve: Curves.easeIn,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    border: Border.all(),
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: const Center(
+                      child: Text(
+                        'Next',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
