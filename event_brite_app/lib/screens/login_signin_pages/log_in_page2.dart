@@ -65,12 +65,12 @@ class  LogInPage2 extends StatelessWidget {
                 text: 'Continue with email address'),
               SizedBox(height: 15,),
                // ignore: prefer_const_constructors
-               ElevatedButton(
-                onPressed: signIn,
-                 child:Text('Continue with google'),
-                 style: ButtonStyle(
+              //  ElevatedButton(
+              //   onPressed: signIn,
+              //    child:Text('Continue with google'),
+              //    style: ButtonStyle(
                   
-                 ),),
+              //    ),),
                LogOutButton(
                 onTap: ()
                         {
@@ -85,6 +85,7 @@ class  LogInPage2 extends StatelessWidget {
               ),
                SizedBox(height: 15,),         
                          LogOutButton(
+                          onTap: signIn,
                 containerColor: primaryColor,
                 text: 'Continue with Google',
                 icon:FontAwesomeIcons.google,

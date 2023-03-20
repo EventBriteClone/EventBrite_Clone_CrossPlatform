@@ -23,8 +23,8 @@ GlobalKey<FormState> formKey=GlobalKey();
       shadowColor: Colors.grey,
       iconTheme: IconThemeData(color: Colors.black,size: 27),
         title: Text('Log in or sign in',style: TextStyle(
-              fontSize: 32,fontFamily: 'Albertus Extra Bold',
-              color: Colors.black,fontWeight: FontWeight.w900,
+              fontSize: 27,fontFamily: 'Neue Plak',
+              color: Colors.black,//fontWeight: FontWeight.w900,
             )),),
       body: Form(
         key: formKey,

@@ -23,12 +23,15 @@ class LogOutButton extends StatelessWidget {
       
       child: Container(
 
-        height: MediaQuery.of(context).size.height * 0.05,
+        height: MediaQuery.of(context).size.height * 0.07,
         decoration: BoxDecoration(
           color: containerColor,
           border: Border.all(
             color: const Color.fromARGB(255, 120, 118, 118),
+            width: 1.5,
           ),
+          borderRadius :BorderRadius.circular(6),
+        
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

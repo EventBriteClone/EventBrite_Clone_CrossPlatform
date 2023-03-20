@@ -36,7 +36,12 @@ class LogInPage1 extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12),
             child: Text(
               'Log in to see your favourites',
-              style: TextStyle(),
+              style: TextStyle(
+                //fontFamily: 'Neue Plak',
+                
+                  color: Colors.black,
+                  //fontWeight: FontWeight.w200
+              ),
             ),
           ),
           SizedBox(
