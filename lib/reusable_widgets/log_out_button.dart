@@ -1,8 +1,10 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class LogOutButton extends StatelessWidget {
   const LogOutButton(
-      {super.key,
+      {key,
       this.containerColor,
       required this.text,
       @required this.icon,

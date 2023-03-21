@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 // class InterestsContainer extends StatefulWidget {
@@ -58,7 +60,7 @@ import 'package:flutter/material.dart';
 //   }
 // }
 class Categories extends StatefulWidget {
-  const Categories({super.key});
+  const Categories({key});
 
   @override
   State<Categories> createState() => _CategoriesState();

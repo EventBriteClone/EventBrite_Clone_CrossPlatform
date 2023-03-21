@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,7 +9,7 @@ import 'profile_page_body.dart';
 import 'search_screen_body.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({key});
   static const List<Widget> pages = <Widget>[
     HomeScreenBody(),
     SearchScreen(),

@@ -1,9 +1,11 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:event_brite_app/screens/choose_your_fav_categories/choose_your_fav_categories.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

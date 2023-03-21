@@ -1,9 +1,11 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:event_brite_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'custom_settings_container.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({key});
 
   @override
   Widget build(BuildContext context) {

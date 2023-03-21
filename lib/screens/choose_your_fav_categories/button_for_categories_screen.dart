@@ -1,7 +1,9 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class ButtonForCategoriesScreen extends StatefulWidget {
-  const ButtonForCategoriesScreen({super.key, required this.text});
+  const ButtonForCategoriesScreen({key, required this.text});
   final String? text;
 
   @override

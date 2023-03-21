@@ -29,7 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
-  dartdoc: ^6.1.5
+  dartdoc: ^4.1.0
   flutter:
     sdk: flutter
   font_awesome_flutter: ^10.4.0
