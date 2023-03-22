@@ -6,13 +6,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants.dart';
 import 'home_screen_body.dart';
 import 'profile_page_body.dart';
-import 'search_screen_body.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({key});
   static const List<Widget> pages = <Widget>[
     HomeScreenBody(),
-    SearchScreen(),
+    HomeScreenBody(),
     HomeScreenBody(),
     HomeScreenBody(),
     ProfilePageBody(),

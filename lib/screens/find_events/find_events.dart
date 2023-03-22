@@ -2,11 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
+import '../search_screen.dart/search_screen.dart';
 import 'container_find_events.dart';
+import 'package:event_brite_app/services/geolocation.dart';
 
-class FindEvents extends StatelessWidget {
+class FindEvents extends StatefulWidget {
   const FindEvents({key});
 
+  @override
+  State<FindEvents> createState() => _FindEventsState();
+}
+
+class _FindEventsState extends State<FindEvents> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,7 +50,19 @@ class FindEvents extends StatelessWidget {
             ),
             Row(
               children: [
-                const ContainerFindEvents(
+                ContainerFindEvents(
+                  method: () async {
+                    List<Placemark> position = await determineLocation();
+                    // print(position.elementAt(2).administrativeArea);
+                    setState(() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(position1: position,),
+                        ),
+                      );
+                    });
+                  },
                   text: 'Nearby',
                   subText: 'Current location',
                   icon: FontAwesomeIcons.locationCrosshairs,
@@ -50,7 +70,8 @@ class FindEvents extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.09,
                 ),
-                const ContainerFindEvents(
+                ContainerFindEvents(
+                  method: () {},
                   text: 'Online events',
                   subText: 'Virtual attendance',
                   icon: Icons.ondemand_video_rounded,

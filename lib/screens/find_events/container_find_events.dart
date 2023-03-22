@@ -7,15 +7,17 @@ class ContainerFindEvents extends StatelessWidget {
       {key,
       required this.text,
       required this.subText,
-      required this.icon});
+      required this.icon,
+      required this.method});
   final String? text;
   final String? subText;
   final IconData? icon;
+  final Function()? method;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: method!,
       child: Row(
         children: [
           Container(
