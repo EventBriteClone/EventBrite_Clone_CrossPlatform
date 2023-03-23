@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({key});
   static const List<Widget> pages = <Widget>[
     HomeScreenBody(),
-    HomeScreenBody(),
+    SearchScreen(),
     HomeScreenBody(),
     HomeScreenBody(),
     ProfilePageBody(),

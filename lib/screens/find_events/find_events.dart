@@ -18,68 +18,70 @@ class FindEvents extends StatefulWidget {
 class _FindEventsState extends State<FindEvents> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 28,
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      size: 28,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.005,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                hintText: 'Find events in...',
-                hintStyle: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey),
+                ],
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.038,
-            ),
-            Row(
-              children: [
-                ContainerFindEvents(
-                  method: () async {
-                    var position = await determineLocation();
-                    // print(position.elementAt(2).administrativeArea);
-                    setState(() {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SearchScreen(),
-                        ),
-                      );
-                    });
-                  },
-                  text: 'Nearby',
-                  subText: 'Current location',
-                  icon: FontAwesomeIcons.locationCrosshairs,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.005,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'Find events in...',
+                  hintStyle: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.09,
-                ),
-                ContainerFindEvents(
-                  method: () {},
-                  text: 'Online events',
-                  subText: 'Virtual attendance',
-                  icon: Icons.ondemand_video_rounded,
-                ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.038,
+              ),
+              Row(
+                children: [
+                  ContainerFindEvents(
+                    method: () async {
+                      //var position = await determineLocation();
+                      // print(position.elementAt(2).administrativeArea);
+                      setState(() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchScreen(),
+                          ),
+                        );
+                      });
+                    },
+                    text: 'Nearby',
+                    subText: 'Current location',
+                    icon: FontAwesomeIcons.locationCrosshairs,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.09,
+                  ),
+                  ContainerFindEvents(
+                    method: () {},
+                    text: 'Online events',
+                    subText: 'Virtual attendance',
+                    icon: Icons.ondemand_video_rounded,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
