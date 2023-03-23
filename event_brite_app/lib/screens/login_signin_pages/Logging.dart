@@ -1,8 +1,6 @@
 import 'package:event_brite_app/screens/login_signin_pages/GoogleSignIn.dart';
 import 'package:event_brite_app/screens/login_signin_pages/log_in_page2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class  LoggedInPage extends StatelessWidget {
