@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../search_screen.dart/search_screen.dart';
 import 'container_find_events.dart';
-import 'package:event_brite_app/services/geolocation.dart';
-
 class FindEvents extends StatefulWidget {
   const FindEvents({key});
 
@@ -60,7 +58,7 @@ class _FindEventsState extends State<FindEvents> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SearchScreen(),
+                            builder: (context) => const SearchScreen(),
                           ),
                         );
                       });
