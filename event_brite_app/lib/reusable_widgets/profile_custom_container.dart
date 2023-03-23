@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/settings_screen/settings_screen.dart';
+import '../../screens/settings_screen/settings_screen.dart';
 
 class ProfileSettingsContainer extends StatelessWidget {
   const ProfileSettingsContainer(
