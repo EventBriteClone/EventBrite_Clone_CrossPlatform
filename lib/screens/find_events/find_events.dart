@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geocoding/geocoding.dart';
 import '../search_screen.dart/search_screen.dart';
 import 'container_find_events.dart';
 import 'package:event_brite_app/services/geolocation.dart';
@@ -13,6 +12,8 @@ class FindEvents extends StatefulWidget {
   @override
   State<FindEvents> createState() => _FindEventsState();
 }
+
+
 
 class _FindEventsState extends State<FindEvents> {
   @override
@@ -52,13 +53,13 @@ class _FindEventsState extends State<FindEvents> {
               children: [
                 ContainerFindEvents(
                   method: () async {
-                    List<Placemark> position = await determineLocation();
+                    var position = await determineLocation();
                     // print(position.elementAt(2).administrativeArea);
                     setState(() {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SearchScreen(position1: position,),
+                          builder: (context) => SearchScreen(),
                         ),
                       );
                     });

@@ -5,7 +5,7 @@ import 'package:geocoding/geocoding.dart';
 ///
 /// When the location services are not enabled or permissions
 /// are denied the `Future` will return an error.
-Future<List<Placemark>> determineLocation() async {
+Future<String> determineLocation() async {
   bool serviceEnabled;
   LocationPermission permission;
 
@@ -43,5 +43,6 @@ Future<List<Placemark>> determineLocation() async {
   Position position = await Geolocator.getCurrentPosition();
   List<Placemark> placemarks =
       await placemarkFromCoordinates(position.latitude, position.longitude);
-  return placemarks;
+      String city = placemarks.elementAt(2).administrativeArea.toString();
+  return city;
 }
