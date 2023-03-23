@@ -39,6 +39,7 @@ class EnteringEmail extends StatelessWidget {
            ),
            SizedBox(height: 50,),
            LogOutButton(
+            //imgFlag: false,
             text: 'button if the user is going to log in \n (will be changed later)',
             onTap: ()
                         {
@@ -75,7 +76,10 @@ class EnteringEmail extends StatelessWidget {
                              child: Padding(
                                padding: const EdgeInsets.all(8.0),
                                child: LogOutButton(
-                                     
+                                     icon: null,
+                                     sizedBoxWidth: null,
+                                     //image: null,
+                                     //imgFlag: false,
                                      onTap: ()
                         {
                           if (EmailformKey.currentState!.validate()) {

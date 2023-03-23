@@ -37,6 +37,7 @@ dependencies:
   flutter_facebook_auth: ^5.0.8
   font_awesome_flutter: ^10.4.0
   google_sign_in: ^6.0.2
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_lints: ^2.0.0

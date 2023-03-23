@@ -136,6 +136,7 @@ class ProfilePageBody extends StatelessWidget {
             ),
           ),
            LogOutButton(
+            //imgFlag: false,
             containerColor: primaryColor,
             text: 'Log out',
             icon: null,

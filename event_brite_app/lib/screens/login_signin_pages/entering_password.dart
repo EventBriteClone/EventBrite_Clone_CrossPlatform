@@ -119,6 +119,7 @@ GlobalKey<FormState> formKey=GlobalKey();
                                                   Padding(
                                                     padding: const EdgeInsets.only(top:8),
                                                     child: LogOutButton(
+                                                      //imgFlag: false,
                                                                             text: 'Email Me a login link',
                                                                              //icon: icon,
                                                                               sizedBoxWidth: null),

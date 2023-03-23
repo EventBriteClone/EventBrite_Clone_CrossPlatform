@@ -1,4 +1,6 @@
 import 'package:event_brite_app/reusable_widgets/log_in_button.dart';
+import 'package:event_brite_app/screens/login_signin_pages/email2.dart';
+import 'package:event_brite_app/screens/login_signin_pages/emailval.dart';
 import 'package:event_brite_app/screens/login_signin_pages/entering_email_page.dart';
 import 'package:event_brite_app/screens/login_signin_pages/face.dart';
 import 'package:event_brite_app/screens/home_page/home_screen.dart';
@@ -59,7 +61,7 @@ class  LogInPage2 extends StatelessWidget {
                 onTap: ()
                       {
                         Navigator.push(context,MaterialPageRoute(builder:(context){
-                          return EnteringEmail();
+                          return EmailValidationScreen();
                         }));
                       },
                 text: 'Continue with email address'),
@@ -82,6 +84,7 @@ class  LogInPage2 extends StatelessWidget {
                 text: 'Continue with Facebook',
                 icon: Icons.facebook_outlined,
                 sizedBoxWidth: 5,
+                size: 25,
               ),
                SizedBox(height: 15,),         
                          LogOutButton(
@@ -90,6 +93,7 @@ class  LogInPage2 extends StatelessWidget {
                 text: 'Continue with Google',
                 icon:FontAwesomeIcons.google,
                 sizedBoxWidth: 5,
+                size: 23,
               ),
               SizedBox(
                 height: 10,

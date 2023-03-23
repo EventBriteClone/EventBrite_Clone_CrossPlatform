@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 
 class LogOutButton extends StatelessWidget {
    LogOutButton(
-      {this.onTap,
+      {super.key, this.onTap,
       this.onPressed,
       this.containerColor,
       required this.text,
       @required this.icon,
       @required this.sizedBoxWidth,
+      @required this.size=0,
+      
+      
+      
+
       });
   VoidCallback? onTap;
   final Color? containerColor;
   final String? text;
   final IconData? icon;
   final double? sizedBoxWidth;
+  final double? size;
+  //bool _isButtonEnabled ;
+  //final Image? image;
+  //bool imgFlag;
   //VoidCallback? onTap;  
   VoidCallback? onPressed;
   @override
@@ -22,9 +31,11 @@ class LogOutButton extends StatelessWidget {
       onTap: onTap,
       
       child: Container(
+        
 
         height: MediaQuery.of(context).size.height * 0.07,
         decoration: BoxDecoration(
+          
           color: containerColor,
           border: Border.all(
             color: const Color.fromARGB(255, 120, 118, 118),
@@ -36,9 +47,11 @@ class LogOutButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //image,            
             Icon(
               icon,
               color: const Color.fromARGB(255, 42, 81, 239),
+              size: size,
             ),
             SizedBox(
               width: sizedBoxWidth,
