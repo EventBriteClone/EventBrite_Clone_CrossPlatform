@@ -1,8 +1,11 @@
+import 'package:event_brite_app/reusable_widgets/log_in_button.dart';
 import 'package:event_brite_app/screens/home_page/search_screen_body.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../reusable_widgets/log_in_button.dart';
+
 import 'log_in_page2.dart';
 
 class LogInPage1 extends StatelessWidget {

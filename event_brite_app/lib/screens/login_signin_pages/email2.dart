@@ -1,11 +1,13 @@
 
+// import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
+// import 'package:event_brite_app/screens/login_signin_pages/entering_email_page.dart';
+import 'package:event_brite_app/reusable_widgets/emailtext.dart';
 import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
-import 'package:event_brite_app/screens/login_signin_pages/entering_email_page.dart';
-import 'package:event_brite_app/screens/login_signin_pages/entering_password.dart';
+
+import 'entering_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../reusable_widgets/emailtext.dart';
 
 
 

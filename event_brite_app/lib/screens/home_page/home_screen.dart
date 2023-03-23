@@ -1,12 +1,15 @@
 import 'dart:math';
-import 'package:event_brite_app/screens/login_signin_pages/log_in_page1.dart';
-import 'package:event_brite_app/screens/login_signin_pages/log_in_page2.dart';
+import 'package:event_brite_app/constants.dart';
+import 'package:event_brite_app/screens/home_page/search_screen_body.dart';
+
+import '../login_signin_pages/log_in_page1.dart';
+import '../login_signin_pages/log_in_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../constants.dart';
+//import '/../lib/constants.dart';
 import 'home_screen_body.dart';
 import 'profile_page_body.dart';
-import 'search_screen_body.dart';
+//import 'search_screen_body.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

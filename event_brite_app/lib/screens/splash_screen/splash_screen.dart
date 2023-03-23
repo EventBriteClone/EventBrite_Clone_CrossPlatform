@@ -1,5 +1,6 @@
+import 'package:event_brite_app/constants.dart';
 import 'package:flutter/material.dart';
-import '../../constants.dart';
+//import '../../constants.dart';
 import '../home_page/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {

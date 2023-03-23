@@ -1,5 +1,6 @@
+import 'package:event_brite_app/reusable_widgets/event_item.dart';
 import 'package:flutter/material.dart';
-import '../../reusable_widgets/event_item.dart';
+//import '../../reusable_widgets/event_item.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});

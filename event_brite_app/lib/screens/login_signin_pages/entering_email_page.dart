@@ -1,14 +1,12 @@
-import 'package:event_brite_app/constants.dart';
-import 'package:event_brite_app/reusable_widgets/custom_text_field.dart';
-import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
-import 'package:event_brite_app/screens/login_signin_pages/entering_password.dart';
-import 'package:event_brite_app/screens/login_signin_pages/sign_up_page.dart';
-import 'package:event_brite_app/screens/login_signin_pages/valide.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../../reusable_widgets/log_in_button.dart';
+
+import 'package:event_brite_app/reusable_widgets/custom_Text_field.dart';
+import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
+import 'package:event_brite_app/screens/login_signin_pages/valide.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'entering_password.dart';
 
 class EnteringEmail extends StatelessWidget {
   EnteringEmail({super.key});

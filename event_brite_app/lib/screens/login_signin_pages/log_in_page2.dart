@@ -1,14 +1,14 @@
+
+import 'package:event_brite_app/constants.dart';
 import 'package:event_brite_app/reusable_widgets/log_in_button.dart';
-import 'package:event_brite_app/screens/login_signin_pages/email2.dart';
+import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
+import 'package:event_brite_app/screens/login_signin_pages/GoogleSignIn.dart';
+import 'package:event_brite_app/screens/login_signin_pages/Logging.dart';
 import 'package:event_brite_app/screens/login_signin_pages/emailval.dart';
-import 'package:event_brite_app/screens/login_signin_pages/entering_email_page.dart';
 import 'package:event_brite_app/screens/login_signin_pages/face.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../constants.dart';
-import '../../reusable_widgets/log_out_button.dart';
-import 'GoogleSignIn.dart';
-import 'Logging.dart';
+
 
 class  LogInPage2 extends StatelessWidget {
   //BuildContext context;
