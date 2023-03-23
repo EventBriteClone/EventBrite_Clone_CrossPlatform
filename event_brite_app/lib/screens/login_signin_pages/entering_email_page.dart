@@ -1,5 +1,5 @@
 import 'package:event_brite_app/constants.dart';
-import 'package:event_brite_app/reusable_widgets/custom_Text_field.dart';
+import 'package:event_brite_app/reusable_widgets/custom_text_field.dart';
 import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
 import 'package:event_brite_app/screens/login_signin_pages/entering_password.dart';
 import 'package:event_brite_app/screens/login_signin_pages/sign_up_page.dart';

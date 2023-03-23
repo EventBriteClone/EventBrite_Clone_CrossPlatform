@@ -3,13 +3,8 @@ import 'package:event_brite_app/screens/login_signin_pages/email2.dart';
 import 'package:event_brite_app/screens/login_signin_pages/emailval.dart';
 import 'package:event_brite_app/screens/login_signin_pages/entering_email_page.dart';
 import 'package:event_brite_app/screens/login_signin_pages/face.dart';
-import 'package:event_brite_app/screens/home_page/home_screen.dart';
-import 'package:event_brite_app/screens/home_page/home_screen_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../constants.dart';
 import '../../reusable_widgets/log_out_button.dart';
 import 'GoogleSignIn.dart';
@@ -51,7 +46,7 @@ class  LogInPage2 extends StatelessWidget {
                 fontSize: 36,fontFamily: 'Neue Plak',
                 color: Colors.black,fontWeight: FontWeight.w200,
               )),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Text(' Sign up or log in to see what\'s\n happening near you',style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w500

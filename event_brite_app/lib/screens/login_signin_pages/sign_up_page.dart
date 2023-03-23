@@ -1,4 +1,4 @@
-import 'package:event_brite_app/reusable_widgets/custom_Text_field.dart';
+import 'package:event_brite_app/reusable_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';

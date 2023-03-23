@@ -1,12 +1,4 @@
-// TODO Implement this library.
 import 'package:event_brite_app/constants.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   CustomTextField({this.hintText,this.TitleText,this.onChanged,this.obsccureText=false,@required this.suffix=null});

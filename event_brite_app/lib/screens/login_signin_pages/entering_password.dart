@@ -1,4 +1,4 @@
-import 'package:event_brite_app/reusable_widgets/custom_Text_field.dart';
+import 'package:event_brite_app/reusable_widgets/custom_text_field.dart';
 import 'package:event_brite_app/reusable_widgets/profile_custom_container.dart';
 import 'package:event_brite_app/screens/login_signin_pages/choose_page.dart';
 import 'package:event_brite_app/screens/login_signin_pages/entering_email_page.dart';
