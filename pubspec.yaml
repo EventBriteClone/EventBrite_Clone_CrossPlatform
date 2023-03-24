@@ -71,8 +71,8 @@ flutter:
   fonts:
     - family: Neue Plak 
       fonts:
-        - asset: lib/fonts/Neue Plak Extended ExtraBlack.ttf
-        - asset: lib/fonts/Neue Plak Extended Light.ttf
+        - asset: assets/fonts/Neue Plak Extended ExtraBlack.ttf
+        - asset: assets/fonts/Neue Plak Extended Light.ttf
     #       style: italic
     # - family: Trajan Pro
     #   fonts:
