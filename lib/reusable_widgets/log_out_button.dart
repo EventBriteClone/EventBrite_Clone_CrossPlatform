@@ -8,7 +8,7 @@ class LogOutButton extends StatelessWidget {
       this.containerColor,
       required this.text,
       @required this.icon,
-      @required this.sizedBoxWidth});
+      @required this.sizedBoxWidth, required Null Function() onTap});
       
   /// custom IconData and text to handle all login and log out buttons
   final Color? containerColor;
