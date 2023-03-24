@@ -35,6 +35,8 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.4
   font_awesome_flutter: ^10.4.0
+  flutter_facebook_auth: ^5.0.8
+  flutter_pw_validator: ^1.4.2
   geocoding: ^2.0.5
   geolocator: ^9.0.2
   google_sign_in: ^6.0.2
