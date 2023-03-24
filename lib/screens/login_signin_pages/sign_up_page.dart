@@ -1,7 +1,5 @@
 import '../../reusable_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});

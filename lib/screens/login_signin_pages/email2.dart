@@ -3,19 +3,7 @@
 // import 'package:event_brite_app/screens/login_signin_pages/entering_email_page.dart';
 import 'entering_password.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../../reusable_widgets/log_in_button.dart';
-import 'email2.dart';
-import 'emailval.dart';
-import 'entering_email_page.dart';
-import 'face.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../constants.dart';
 import '../../reusable_widgets/log_out_button.dart';
-import 'GoogleSignIn.dart';
-import 'Logging.dart';
-
 import 'package:event_brite_app/reusable_widgets/emailtext.dart';
 
 

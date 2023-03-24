@@ -1,18 +1,6 @@
 //import 'package:event_brite_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import '../../reusable_widgets/log_in_button.dart';
-import 'email2.dart';
-import 'emailval.dart';
-import 'entering_email_page.dart';
-import 'face.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants.dart';
-import '../../reusable_widgets/log_out_button.dart';
-import 'GoogleSignIn.dart';
-import 'Logging.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {
   const CchooseCustomerOrOrganiserPage({super.key});

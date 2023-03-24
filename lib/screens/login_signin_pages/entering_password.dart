@@ -1,10 +1,6 @@
 import '../../reusable_widgets/custom_Text_field.dart';
-import '../../reusable_widgets/profile_custom_container.dart';
-import 'choose_page.dart';
 import 'entering_email_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import '../../reusable_widgets/log_in_button.dart';
 import '../../reusable_widgets/log_out_button.dart';
 import 'chosse2.dart';

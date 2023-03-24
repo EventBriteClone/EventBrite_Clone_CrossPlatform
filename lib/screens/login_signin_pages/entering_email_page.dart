@@ -1,15 +1,8 @@
-import '../../constants.dart';
 import '../../reusable_widgets/custom_Text_field.dart';
 import '../../reusable_widgets/log_out_button.dart';
 import 'entering_password.dart';
-import 'sign_up_page.dart';
 import 'valide.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
-import '../../reusable_widgets/log_in_button.dart';
-
 class EnteringEmail extends StatelessWidget {
   EnteringEmail({super.key});
   GlobalKey<FormState> EmailformKey=GlobalKey();

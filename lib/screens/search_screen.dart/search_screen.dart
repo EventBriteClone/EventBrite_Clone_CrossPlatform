@@ -1,6 +1,8 @@
+import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:event_brite_app/services/geolocation.dart';
 import 'package:flutter/material.dart';
 import '../../reusable_widgets/custom_loading_indicator.dart';
+import '../../reusable_widgets/event_item.dart';
 import 'category_container.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -22,6 +24,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: FutureBuilder(
         future: getPosition(),
         builder: (context, snapshot) {
@@ -37,7 +40,14 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const FindEvents();
+                            },
+                          ),
+                        );
                       },
                       child: Row(
                         children: [
@@ -107,6 +117,17 @@ class _SearchScreenState extends State<SearchScreen> {
                             CategoryContainer(text: 'Charity & Causes'),
                           ],
                         ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.085,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: 5, // will be changed later
+                        itemBuilder: (context, index) {
+                          return const EventItem(); // custom widget
+                        },
                       ),
                     ),
                   ],
