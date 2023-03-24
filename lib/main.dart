@@ -1,23 +1,21 @@
-// ignore_for_file: use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
-import 'screens/splash_screen/splash_screen.dart';
-
+import 'package:organizer/screens/add_event.dart';
+import 'package:organizer/screens/events.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const EventBriteapp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({key});
+class EventBriteapp extends StatelessWidget {
+    const EventBriteapp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: 'Neue Plak'),
-      home: const SplashScreen(),
-      debugShowCheckedModeBanner: false,
+    return const MaterialApp(
+      home: EventPage(),
+      //home: AddEvents(),
+      //debugShowCheckedModeBanner: false,
     );
   }
 }

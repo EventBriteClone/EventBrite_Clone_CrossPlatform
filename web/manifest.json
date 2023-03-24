@@ -1,6 +1,6 @@
 {
-    "name": "event_brite_app",
-    "short_name": "event_brite_app",
+    "name": "organizer",
+    "short_name": "organizer",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

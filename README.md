@@ -1,4 +1,4 @@
-# event_brite_app
+# organizer
 
 A new Flutter project.
 
