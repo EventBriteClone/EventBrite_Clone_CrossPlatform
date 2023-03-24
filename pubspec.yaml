@@ -30,13 +30,14 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   dartdoc: ^4.1.0
+  email_validator: ^2.1.17
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.4
   font_awesome_flutter: ^10.4.0
   geocoding: ^2.0.5
   geolocator: ^9.0.2
-
+  google_sign_in: ^6.0.2
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
@@ -69,6 +70,10 @@ flutter:
     - family: Neue Plak
       fonts:
         - asset: assets/fonts/Neue Plak Regular.ttf
+        - asset: assets/fonts/Neue Plak Extended ExtraBlack.ttf
+        - asset: assets/fonts/Neue Plak Extended Light.ttf
+        - asset: assets/fonts/Neue Plak Extended SemiBold.ttf
+        - asset: assets/fonts/Neue Plak Text Bold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
