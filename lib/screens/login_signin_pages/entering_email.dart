@@ -1,7 +1,9 @@
 // import 'package:event_brite_app/constants.dart';
 // import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
- import 'entering_password.dart';
-import 'valide.dart';
+ import 'package:event_brite_app/screens/login_signin_pages/entering_password.dart';
+
+import 'entering_password.dart';
+import 'sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import '../../constants.dart';
@@ -52,20 +54,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
 
          ),
          SizedBox(height: 50,),
-         LogOutButton(
-              
-              onTap: _isButtonEnabled?  () {
-                //setState(() {
-          //   _isButtonEnabled = !_isButtonEnabled;
-          // });
-                    Navigator.push(context,MaterialPageRoute(builder:(context){
-         return EnteringPassword();
-       }));
-                      // do something when button is pressed
-                    }
-                  : null,
-              text: 'Next',
-            ),
+         
           
             //SizedBox(height: 250,),
      
@@ -102,13 +91,49 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
             // _isButtonEnabled = !_isButtonEnabled;
           //});
                                                  Navigator.push(context,MaterialPageRoute(builder:(context){
-                                      return HomePagee();
+                                      return SignUpPage();
                                     }));
                                                    // do something when button is pressed
                                                  }
                                                : null,
-                                           text: 'Next',
+                                           text: 'Next for sign up (will be changed later) ',
                                          ),
+                             ),
+                           ),
+                         ),
+                         Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 5,
+                                //offset: Offset(0,-4)
+                              )
+                            ] 
+                          ),
+                           child: Padding(
+                             padding: const EdgeInsets.all(8.0),
+                             child: Container(
+                              decoration: BoxDecoration(
+            color: _isButtonEnabled ? primaryColor : Color.fromARGB(255, 97, 95, 95),
+            
+          ),
+
+                               child: LogOutButton(
+              
+              onTap: _isButtonEnabled?  () {
+                //setState(() {
+          //   _isButtonEnabled = !_isButtonEnabled;
+          // });
+                    Navigator.push(context,MaterialPageRoute(builder:(context){
+         return PasswordPage();
+       }));
+                      // do something when button is pressed
+                    }
+                  : null,
+              text: 'Next for sign in (will be changed later)',
+            ),
                              ),
                            ),
                          ),

@@ -1,15 +1,24 @@
+import 'package:flutter/material.dart';
+import 'package:event_brite_app/screens/login_signin_pages/entering_email.dart';
+
 import '../../reusable_widgets/custom_Text_field.dart';
-import 'entering_email_page.dart';
+//import 'entering_email_page.dart';
 import 'package:flutter/material.dart';
 import '../../reusable_widgets/log_in_button.dart';
 import '../../reusable_widgets/log_out_button.dart';
-import 'chosse2.dart';
+import 'choose_organiser_or_attendee.dart';
 
-class EnteringPassword extends StatelessWidget {
-  EnteringPassword({Key? key}):super(key:key);
+class PasswordPage extends StatefulWidget {
+  @override
+  _PasswordPageState createState() => _PasswordPageState();
+}
+
+class _PasswordPageState extends State<PasswordPage> {
+bool _passwordVisible = false;  
 static String id='RegisterPage';
 String?password;  
 bool isPassword=true;
+bool _obscureText = true;
 GlobalKey<FormState> formKey=GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -55,7 +64,7 @@ GlobalKey<FormState> formKey=GlobalKey();
                   GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return EnteringEmail();
+                    return EmailValidationScreen();
                   }));
                 },
                 child: Text(
@@ -66,13 +75,38 @@ GlobalKey<FormState> formKey=GlobalKey();
                   SizedBox(height: 5,),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: CustomTextField(
-                      TitleText: 'Password*',
-                      suffix:Icons.remove_red_eye,
-                                 
-                      obsccureText: isPassword,
-                      hintText: 'Enter Password',
-                    ),
+                    child: TextFormField(
+              obscureText: !_passwordVisible,
+              decoration: InputDecoration(
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                  child: Icon(
+                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                ),
+              ),
+            ),
+//                     child:TextFormField(
+//   obscureText: _obscureText, // show/hide password based on state variable
+//   decoration: InputDecoration(
+//     labelText: 'Password',
+//     suffixIcon: GestureDetector(
+//       onTap: () {
+//         setState(() {
+//           _obscureText = !_obscureText; // toggle state variable
+//         });
+//       },
+//       child: Icon(
+//         _obscureText ? Icons.visibility_off : Icons.visibility,
+//         semanticLabel: _obscureText ? 'Show password' : 'Hide password',
+//       ),
+//     ),
+//   ),
+// ),
                   ),
                   //SizedBox(height: 40,),
                   Expanded(

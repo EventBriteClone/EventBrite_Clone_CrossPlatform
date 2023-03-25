@@ -11,12 +11,15 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height:100),
-          Text('Welcome Youssef Continue as a... ',style: TextStyle(
-                  //decorationThickness: 500,
-                  fontSize: 32,
-                  fontFamily: 'Albertus Extra Bold',
-                  color: Colors.black,
-                  fontWeight: FontWeight.w900,)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Welcome Youssef Continue as a... ',style: TextStyle(
+                    //decorationThickness: 500,
+                    fontSize: 32,
+                    fontFamily: 'Albertus Extra Bold',
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,)),
+          ),
           SizedBox(height: 200,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly ,

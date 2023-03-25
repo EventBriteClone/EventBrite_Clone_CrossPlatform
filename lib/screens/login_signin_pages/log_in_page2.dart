@@ -1,12 +1,12 @@
 import '../../reusable_widgets/log_in_button.dart';
-import 'emailval.dart';
-import 'face.dart';
+import 'entering_email.dart';
+import 'facebook_page&logic.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants.dart';
 import '../../reusable_widgets/log_out_button.dart';
-import 'GoogleSignIn.dart';
-import 'Logging.dart';
+import 'google_logic.dart';
+import 'google_page.dart';
 
 class  LogInPage2 extends StatelessWidget {
   //BuildContext context;
