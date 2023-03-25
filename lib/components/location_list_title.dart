@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LocationListTitle extends StatelessWidget {
-  const LocationListTitle({
-    Key? key,
-    required this.location,
-    //required this.press,
-    required this.onSelect
-  }) : super(key: key);
+  const LocationListTitle(
+      {Key? key,
+      required this.location,
+      //required this.press,
+      required this.onSelect})
+      : super(key: key);
 
   final String location;
   final Function(String) onSelect;
- // final VoidCallback press;
+  // final VoidCallback press;
 
-  //for icon:
+  ///for icon:
   static const IconData location_on =
       IconData(0xe3ab, fontFamily: 'MaterialIcons');
 
@@ -22,8 +22,8 @@ class LocationListTitle extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-         // onTap: press,
-         onTap: () => onSelect(location),
+          // onTap: press,
+          onTap: () => onSelect(location),
           horizontalTitleGap: 0,
           leading: Icon(Icons.location_on),
           title: Text(

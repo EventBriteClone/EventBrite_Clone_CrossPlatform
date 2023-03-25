@@ -6,23 +6,17 @@ enum LocationSelection { Venue, OnlineEvent, ToBeAnnonuced }
 
 enum DateSelection { SingleEvent, RecurringEvent }
 
+///for icon:
+const IconData location_on = IconData(0xe3ab, fontFamily: 'MaterialIcons');
 
+///api key:
+const String apiKey = "AIzaSyCCK4oTJvUUCiu779l_HXak8cqeUqC2u9A";
 
-//for icon:
-   const IconData location_on =
-      IconData(0xe3ab, fontFamily: 'MaterialIcons');
+List<AutocompletePrediction> placePredictions = [];
 
- 
-  //api key:
-   const String apiKey = "AIzaSyCCK4oTJvUUCiu779l_HXak8cqeUqC2u9A";
+final List<String> organizer = ['organizer', 'Mahinour Alaa'];
 
-  
-  List<AutocompletePrediction> placePredictions = [];
-
-final List<String> organizer = [
-  'organizer',
-  'Mahinour Alaa'
-]; //SHOULD BE GOTTEN FROM BACKEND
+///SHOULD BE GOTTEN FROM BACKEND
 final List<String> type = [
   'Type',
   'Appearance or Singing',

@@ -7,11 +7,6 @@ import '../components/recurring_date.dart';
 import '../components/single_date.dart';
 import '../utils/build_drop_menu_items.dart';
 
-/*
-The add events page will be similar to the website where we will have the following:
-==> 
-*/
-
 class AddEvents extends StatefulWidget {
   const AddEvents({super.key});
 
@@ -20,10 +15,10 @@ class AddEvents extends StatefulWidget {
 }
 
 class _AddEventsState extends State<AddEvents> {
-  //for the form:
+  ///for the form:
   final _formKey = GlobalKey<FormState>();
 
-  //selected items:
+  ///selected items:
   String? _selectedType = 'Type';
   String? _selectedCategory = 'Category';
   String? _selectedOrganizer = 'organizer';
@@ -33,17 +28,22 @@ class _AddEventsState extends State<AddEvents> {
   bool _isPressedSingle = false;
   bool _isPressedRecurring = false;
 
-  //for place autocomplete:
+  ///for place autocomplete:
   Future<void> placeAutoComplete(String query) async {
     Uri uri = Uri.https(
       "maps.googleapis.com",
-      '/maps/api/place/autocomplete/json', //unencoder path
+      '/maps/api/place/autocomplete/json',
+
+      ///unencoder path
       {
-        "input": query, //query parameter
+        "input": query,
+
+        ///query parameter
         "key": apiKey, //
       },
     );
-    //for get request:
+
+    ///for get request:
     String? response = await Api.fetchUrl(uri);
     if (response != null) {
       PlaceAutoCompleteResponse result =
@@ -56,15 +56,16 @@ class _AddEventsState extends State<AddEvents> {
     }
   }
 
-//for getting text back (user input)
+  ///for getting text back (user input)
   final TextEditingController _eventTitleController = TextEditingController();
-  //date picker & time picker:
-  //for date:
+
+  ///date picker & time picker:
+  ///for date:
   final _dateControllerStart = TextEditingController();
   final _dateControllerEnd = TextEditingController();
   final _eventLocationController = TextEditingController();
 
-  //for time:
+  ///for time:
   final _timeControllerStart = TextEditingController();
   final _timeControllerEnd = TextEditingController();
 
@@ -82,9 +83,10 @@ class _AddEventsState extends State<AddEvents> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //background:
+      ///background:
       backgroundColor: Colors.white,
-      //we wanted a list view for the column to be scrollable and fit into content to avoid overflow
+
+      ///we wanted a list view for the column to be scrollable and fit into content to avoid overflow
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -93,7 +95,7 @@ class _AddEventsState extends State<AddEvents> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
 
-              //beginning of our form
+              ///beginning of our form
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -106,7 +108,7 @@ class _AddEventsState extends State<AddEvents> {
                       height: 100,
                     ),
 
-                    //Section1:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                    ///Section1:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
                     const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
@@ -131,12 +133,14 @@ class _AddEventsState extends State<AddEvents> {
                       height: 10,
                     ),
 
-                    //First text field ===> title:::::::::::::::::::::::::::::
+                    ///First text field ===> title:::::::::::::::::::::::::::::
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextFormField(
                         controller: _eventTitleController,
-                        maxLength: 75, //we also have maxLines
+                        maxLength: 75,
+
+                        ///we also have maxLines
                         decoration: InputDecoration(
                           hintText: 'Be clear and descriptive.',
                           hintStyle: const TextStyle(
@@ -169,7 +173,7 @@ class _AddEventsState extends State<AddEvents> {
                       ),
                     ),
 
-                    // dropdown ===> organizer:::::::::::::::::::::::::::::
+                    /// dropdown ===> organizer:::::::::::::::::::::::::::::
 
                     Padding(
                       padding: const EdgeInsets.all(11.0),
@@ -196,7 +200,8 @@ class _AddEventsState extends State<AddEvents> {
                     const SizedBox(
                       height: 30,
                     ),
-                    //drop down menu ===> type & category in a row beside each other:::::::::::::::::::::::::::::
+
+                    ///drop down menu ===> type & category in a row beside each other:::::::::::::::::::::::::::::
                     ///note that we used mediquery=> to make drop down take 40% of our device to avoid overflow
                     ///if we did isexpanded= true this means that dropdown list will take all available space if false then takes ssize of its dropdown meny
                     Padding(
@@ -249,9 +254,9 @@ class _AddEventsState extends State<AddEvents> {
                       ),
                     ),
 
-                    //Tags part
+                    ///Tags part
 
-                    //end of section-1:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;;
+                    ///end of section-1:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;;
                     const SizedBox(
                       height: 50,
                     ),
@@ -259,7 +264,7 @@ class _AddEventsState extends State<AddEvents> {
                       color: Colors.black,
                     ),
 
-                    //section-2::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;::
+                    ///section-2::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;::
 
                     Image.asset(
                       'assets/images/location.png',
@@ -314,9 +319,9 @@ class _AddEventsState extends State<AddEvents> {
                       ),
                     ),
 
-                    //checking which one is selected:
+                    ///checking which one is selected:
                     if (_selectedLocation == 'Venue') ...[
-                      // Display these widgets if _selectedLocation is 'Venue'
+                      /// Display these widgets if _selectedLocation is 'Venue'
                       // Text('Venue selected'),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -329,7 +334,9 @@ class _AddEventsState extends State<AddEvents> {
                             placeAutoComplete(value);
                           },
                           controller: _eventLocationController,
-                          maxLength: 75, //we also have maxLines
+                          maxLength: 75,
+
+                          ///we also have maxLines
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.search),
                             hintText: 'Search for a venue or address.',
@@ -367,8 +374,9 @@ class _AddEventsState extends State<AddEvents> {
                         thickness: 2,
                         color: Color.fromARGB(255, 215, 215, 215),
                       ),
-                      //created own components for suggestion
-                      //to show the results:
+
+                      ///created own components for suggestion
+                      ///to show the results:
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.2,
                         child: ListView.builder(
@@ -388,7 +396,7 @@ class _AddEventsState extends State<AddEvents> {
                         ),
                       )
                     ] else if (_selectedLocation == 'Online Event') ...[
-                      // Display these widgets if _selectedLocation is 'Online Event'
+                      /// Display these widgets if _selectedLocation is 'Online Event'
                       const Padding(
                         padding: EdgeInsets.all(12.0),
                         child: Text(
@@ -404,7 +412,7 @@ class _AddEventsState extends State<AddEvents> {
                       // const Text('To be Annonced'),
                     ],
 
-                    //end of section-2:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;;
+                    ///end of section-2:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;;
                     const SizedBox(
                       height: 50,
                     ),
@@ -412,7 +420,7 @@ class _AddEventsState extends State<AddEvents> {
                       color: Colors.black,
                     ),
 
-                    //section-3:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                    /// section-3:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
                     Image.asset(
                       'assets/images/cal.png',
                       width: 100,
@@ -456,10 +464,14 @@ class _AddEventsState extends State<AddEvents> {
                                 style: ElevatedButton.styleFrom(
                                   primary: _isPressedSingle
                                       ? const Color.fromARGB(150, 208, 214, 246)
-                                      : Colors.white, // background color
+                                      : Colors.white,
+
+                                  /// background color
                                   onPrimary: _isPressedSingle
                                       ? Colors.white
-                                      : Colors.grey, // foreground color
+                                      : Colors.grey,
+
+                                  /// foreground color
                                   //backgroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(3),
@@ -498,10 +510,14 @@ class _AddEventsState extends State<AddEvents> {
                                 style: ElevatedButton.styleFrom(
                                   primary: _isPressedRecurring
                                       ? const Color.fromARGB(150, 208, 214, 246)
-                                      : Colors.white, // background color
+                                      : Colors.white,
+
+                                  /// background color
                                   onPrimary: _isPressedRecurring
                                       ? Colors.white
-                                      : Colors.grey, // foreground color
+                                      : Colors.grey,
+
+                                  /// foreground color
                                   //backgroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(3),

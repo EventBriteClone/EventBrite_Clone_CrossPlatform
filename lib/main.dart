@@ -7,9 +7,9 @@ void main() {
 }
 
 class EventBriteapp extends StatelessWidget {
-    const EventBriteapp({super.key});
+  const EventBriteapp({super.key});
 
-  // This widget is the root of your application.
+  /// This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -19,5 +19,3 @@ class EventBriteapp extends StatelessWidget {
     );
   }
 }
-
-

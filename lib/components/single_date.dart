@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 import '../constants/constants.dart';
 import '../utils/date_time.dart';
 
-
-
 class DateSelectionWidget extends StatefulWidget {
   const DateSelectionWidget({Key? key}) : super(key: key);
 
@@ -14,7 +12,6 @@ class DateSelectionWidget extends StatefulWidget {
 }
 
 class _DateSelectionWidgetState extends State<DateSelectionWidget> {
-  
   bool _isChecked1 = false;
   bool _isChecked2 = false;
 
@@ -58,7 +55,6 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
     });
   }
 
-
   TimeOfDay _timeOfDay = const TimeOfDay(hour: 8, minute: 30);
   void _showTimePickerStart() {
     showTimePicker(
@@ -87,13 +83,15 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
       },
     );
   }
-  //to access time of day we use=> _timeOfDay.format(context).toString()
+
+  ///to access time of day we use=> _timeOfDay.format(context).toString()
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      //For a single event:
+
+      ///For a single event:
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -250,7 +248,7 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
         ),
       ],
 
-      //missing time zone + event language ====> idk if need api or wait for backend to do them? or if we will need them?
+      ///missing time zone + event language ====> idk if need api or wait for backend to do them? or if we will need them?
     );
   }
 }
