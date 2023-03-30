@@ -9,17 +9,28 @@ import '../../reusable_widgets/log_out_button.dart';
 import 'choose_organiser_or_attendee.dart';
 
 class PasswordPage extends StatefulWidget {
+  final String text;
+  PasswordPage({required this.text});
+
+
   @override
   _PasswordPageState createState() => _PasswordPageState();
 }
 
 class _PasswordPageState extends State<PasswordPage> {
+String displayText = '';
 bool _passwordVisible = false;  
 static String id='RegisterPage';
 String?password;  
 bool isPassword=true;
 bool _obscureText = true;
 GlobalKey<FormState> formKey=GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    displayText = widget.text;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,11 +61,11 @@ GlobalKey<FormState> formKey=GlobalKey();
                   const SizedBox(
                     height: 3,
                   ),
-                  const Center(
+                   Center(
                     child: Opacity(
                       opacity: 0.8,
-                      child: Text(
-                        'youssefsaadlotfy73@gmail.com',
+                      child: Text(displayText
+                        ,
                         style: TextStyle(
                           fontSize: 16,
                         ),

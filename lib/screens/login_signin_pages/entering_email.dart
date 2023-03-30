@@ -91,7 +91,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
             // _isButtonEnabled = !_isButtonEnabled;
           //});
                                                  Navigator.push(context,MaterialPageRoute(builder:(context){
-                                      return SignUpPage();
+                                      return SignUpPage(text:_emailController.text);
                                     }));
                                                    // do something when button is pressed
                                                  }
@@ -127,7 +127,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
           //   _isButtonEnabled = !_isButtonEnabled;
           // });
                     Navigator.push(context,MaterialPageRoute(builder:(context){
-         return PasswordPage();
+         return PasswordPage(text:_emailController.text);
        }));
                       // do something when button is pressed
                     }

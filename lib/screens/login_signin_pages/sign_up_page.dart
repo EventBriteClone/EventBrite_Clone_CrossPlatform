@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 
+import '../../constants.dart';
 import '../../reusable_widgets/custom_text_field.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  final String text;
+  SignUpPage({required this.text});
 
   @override
   State<SignUpPage> createState() => _HomePageState();
@@ -14,7 +16,13 @@ class SignUpPage extends StatefulWidget {
 class _HomePageState extends State<SignUpPage> {
   final TextEditingController controller = TextEditingController();
   bool success = false;
+  late TextEditingController _textController;
 
+  @override
+  void initState() {
+    super.initState();
+    _textController = TextEditingController(text: widget.text);
+  }
   
 
 /////////////////////////////////////
@@ -42,9 +50,32 @@ class _HomePageState extends State<SignUpPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CustomTextField(
-                  TitleText: 'Email',
-                  hintText: "Enter email address",
+                  TextField(
+                    decoration: InputDecoration(
+              
+              hintStyle: TextStyle(
+                color: Colors.grey,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                color: primaryColor,
+              ))
+,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide(
+              //   color: Color.fromARGB(255, 210, 26, 26),
+              // )),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue) ),
+                  
+
+
+            ),
+                  //TitleText: 'Email',
+                  //hintText: "Enter email address",
+                  controller: _textController,
+                  enabled: false,
                  ),
                  SizedBox(height: 25,),
                   CustomTextField(
