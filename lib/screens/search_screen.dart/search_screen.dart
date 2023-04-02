@@ -1,5 +1,5 @@
 import 'package:event_brite_app/screens/find_events/find_events.dart';
-import 'package:event_brite_app/services/geolocation.dart';
+import 'package:event_brite_app/functions/services/geolocation.dart';
 import 'package:flutter/material.dart';
 import '../../reusable_widgets/custom_loading_indicator.dart';
 import '../../reusable_widgets/event_item.dart';
