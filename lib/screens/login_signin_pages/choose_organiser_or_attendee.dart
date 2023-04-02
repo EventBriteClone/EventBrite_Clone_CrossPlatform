@@ -1,6 +1,7 @@
 //import 'package:event_brite_app/constants.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
+import '../home_page/home_screen.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {
   const CchooseCustomerOrOrganiserPage({super.key});
@@ -11,12 +12,15 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height:100),
-          Text('Welcome Youssef Continue as a... ',style: TextStyle(
-                  //decorationThickness: 500,
-                  fontSize: 32,
-                  fontFamily: 'Albertus Extra Bold',
-                  color: Colors.black,
-                  fontWeight: FontWeight.w900,)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Welcome Youssef Continue as a... ',style: TextStyle(
+                    //decorationThickness: 500,
+                    fontSize: 32,
+                    fontFamily: 'Albertus Extra Bold',
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,)),
+          ),
           SizedBox(height: 200,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
@@ -105,20 +109,34 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
                     ]),
                     height: 150,
                     width: 150,
-                    child: Card(
-                      elevation: 10,
-                              color: Colors.white,
-                              
-                              child: Column(
-                                children: [SizedBox(height: 80,),
-                                  Text('Attendee',style: TextStyle(
-                                    fontSize: 28,
-                                    color: Colors.deepOrange,
-                                    fontWeight: FontWeight.w900),),
-                                ],
-                              ),
-                    
-                              ),
+                    child: GestureDetector(
+                     onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return HomeScreen(
+                            selectedIndex: 0,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                      child: Card(
+                        elevation: 10,
+                                color: Colors.white,
+                                
+                                child: Column(
+                                  children: [SizedBox(height: 80,),
+                                    Text('Attendee',style: TextStyle(
+                                      fontSize: 28,
+                                      color: Colors.deepOrange,
+                                      fontWeight: FontWeight.w900),),
+                                  ],
+                                ),
+                      
+                                ),
+                    ),
                   ),
                   Positioned(
                     right: 25,

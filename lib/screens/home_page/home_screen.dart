@@ -6,6 +6,7 @@ import 'package:event_brite_app/screens/search_screen.dart/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants.dart';
+import '../login_signin_pages/choose_organiser_or_attendee.dart';
 import 'home_screen_body.dart';
 import 'profile_page_body.dart';
 
@@ -18,6 +19,7 @@ int selectedIndex;
     LogInPage1(),
     HomeScreenBody(),
     ProfilePageBody(),
+    CchooseCustomerOrOrganiserPage()
   ];
 
   @override
@@ -67,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: '',
             icon: Icon(
               FontAwesomeIcons.heart,
-              color: widget.selectedIndex == 2 ? Colors.red : Colors.black,
+              color: widget.selectedIndex == 5 ? Colors.red : Colors.black,
               size: 18,
             ),
           ),

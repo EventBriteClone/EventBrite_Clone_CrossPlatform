@@ -69,7 +69,13 @@ class _MyFaceAppState extends State<MyFaceApp> {
     print(_userData);
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Facebook Auth Project')),
+        appBar:AppBar(backgroundColor: Colors.white,
+      shadowColor: Colors.grey,
+      iconTheme: IconThemeData(color: Colors.black,size: 27),
+        title: Text('Log in with Facebook',style: TextStyle(
+              fontSize: 27,fontFamily: 'Neue Plak',
+              color: Colors.black,
+            )),),
         body: _checking
             ? Center(
                 child: CircularProgressIndicator(),

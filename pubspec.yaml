@@ -31,6 +31,7 @@ dependencies:
   build_runner: ^2.3.3
   cupertino_icons: ^1.0.2
   dartdoc: ^6.2.1
+  equatable: ^2.0.5
   email_validator: ^2.1.17
   equatable: ^2.0.5
   flutter:
@@ -40,6 +41,8 @@ dependencies:
   intl: ^0.18.0
   flutter_pw_validator: ^1.5.0
   flutter_svg: ^2.0.4
+  http: ^0.13.5
+  mockito: ^5.3.2
   font_awesome_flutter: ^10.4.0
   geocoding: ^2.0.5
   geolocator: ^9.0.2
@@ -80,7 +83,11 @@ flutter:
   fonts:
     - family: Neue Plak
       fonts:
-        - asset: assets/fonts/Neue Plak Regular.ttf
+         - asset: assets/fonts/Neue Plak Regular.ttf
+        # - asset: assets/fonts/Neue Plak Extended ExtraBlack.ttf
+        # - asset: assets/fonts/Neue Plak Extended Light.ttf
+        # - asset: assets/fonts/Neue Plak Extended SemiBold.ttf
+        # - asset: assets/fonts/Neue Plak Text Bold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
