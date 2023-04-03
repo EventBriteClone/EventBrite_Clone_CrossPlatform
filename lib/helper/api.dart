@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:event_brite_app/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
