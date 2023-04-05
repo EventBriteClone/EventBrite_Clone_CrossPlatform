@@ -1,21 +1,70 @@
-import '../../reusable_widgets/custom_text_field.dart';
-import '../../reusable_widgets/profile_custom_container.dart';
-import 'choose_page.dart';
-import 'entering_email_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:event_brite_app/screens/login_signin_pages/entering_email.dart';
 
+import '../../reusable_widgets/custom_Text_field.dart';
+//import 'entering_email_page.dart';
+import 'package:flutter/material.dart';
 import '../../reusable_widgets/log_in_button.dart';
 import '../../reusable_widgets/log_out_button.dart';
-import 'chosse2.dart';
+import 'choose_organiser_or_attendee.dart';
+import 'dart:convert';
 
-class EnteringPassword extends StatelessWidget {
-  EnteringPassword({Key? key}):super(key:key);
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart';
+class PasswordPage extends StatefulWidget {
+  final String text;
+  
+  PasswordPage({required this.text});
+
+
+  @override
+  _PasswordPageState createState() => _PasswordPageState();
+}
+
+class _PasswordPageState extends State<PasswordPage> {
+TextEditingController passwordController = TextEditingController();
+String displayText = '';
+bool _passwordVisible = false;  
 static String id='RegisterPage';
 String?password;  
 bool isPassword=true;
+bool _obscureText = true;
 GlobalKey<FormState> formKey=GlobalKey();
+void login(String email , password) async {
+    
+    try{
+      //email='joe@gmail.com';
+      Response response = await post(
+        Uri.parse('http://34.235.157.174:8000/user/login/'),
+        body: {
+          'email' : 'joe@gmail.com',
+          'password' : password
+        }
+      );
+
+      if(response.statusCode == 200){
+        
+        var data = jsonDecode(response.body.toString());
+        print("token"+data['token']);
+        print('Login successfully');
+        Navigator.push(context,MaterialPageRoute(builder:(context){
+                                     return CchooseCustomerOrOrganiserPage();
+        
+}));
+      }else {
+        print('failed');
+      }
+    }catch(e){
+      print('ypussef');
+      print(e.toString());
+    }
+  }
+  @override
+  void initState() {
+    super.initState();
+    displayText = widget.text;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,11 +95,11 @@ GlobalKey<FormState> formKey=GlobalKey();
                   const SizedBox(
                     height: 3,
                   ),
-                  const Center(
+                   Center(
                     child: Opacity(
                       opacity: 0.8,
-                      child: Text(
-                        'youssefsaadlotfy73@gmail.com',
+                      child: Text(displayText
+                        ,
                         style: TextStyle(
                           fontSize: 16,
                         ),
@@ -60,7 +109,7 @@ GlobalKey<FormState> formKey=GlobalKey();
                   GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return EnteringEmail();
+                    return EmailValidationScreen();
                   }));
                 },
                 child: Text(
@@ -71,13 +120,39 @@ GlobalKey<FormState> formKey=GlobalKey();
                   SizedBox(height: 5,),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: CustomTextField(
-                      TitleText: 'Password*',
-                      suffix:Icons.remove_red_eye,
-                                 
-                      obsccureText: isPassword,
-                      hintText: 'Enter Password',
-                    ),
+                    child: TextFormField(
+                      controller: passwordController,
+              obscureText: !_passwordVisible,
+              decoration: InputDecoration(
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                  child: Icon(
+                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                ),
+              ),
+            ),
+//                     child:TextFormField(
+//   obscureText: _obscureText, // show/hide password based on state variable
+//   decoration: InputDecoration(
+//     labelText: 'Password',
+//     suffixIcon: GestureDetector(
+//       onTap: () {
+//         setState(() {
+//           _obscureText = !_obscureText; // toggle state variable
+//         });
+//       },
+//       child: Icon(
+//         _obscureText ? Icons.visibility_off : Icons.visibility,
+//         semanticLabel: _obscureText ? 'Show password' : 'Hide password',
+//       ),
+//     ),
+//   ),
+// ),
                   ),
                   //SizedBox(height: 40,),
                   Expanded(
@@ -105,10 +180,14 @@ GlobalKey<FormState> formKey=GlobalKey();
                                    CustomButton(
                                                        onTap: ()
                                     {
-                                      if (formKey.currentState!.validate()) {
-                                                       Navigator.push(context,MaterialPageRoute(builder:(context){
-                                    return CchooseCustomerOrOrganiserPage();
-                                                       }));
+                                       if (formKey.currentState!.validate())
+                                       {
+                login(displayText.toString(), passwordController.text.toString());
+              
+                                    // {
+                                    //                    Navigator.push(context,MaterialPageRoute(builder:(context){
+                                    // return CchooseCustomerOrOrganiserPage();
+                                    //                    }));
                                                      }
                                                      else{
                                                      

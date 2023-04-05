@@ -1,13 +1,16 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 import '../screens/settings_screen/settings_screen.dart';
 
 class ProfileSettingsContainer extends StatelessWidget {
   const ProfileSettingsContainer(
-      {super.key,
+      {key,
       @required this.icon,
       required this.text,
       @required this.sizedBoxWidth});
+  /// custom IconData and text to handle all Profile page options
   final IconData? icon;
   final String? text;
   final double? sizedBoxWidth;

@@ -1,9 +1,11 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:event_brite_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'custom_settings_container.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,11 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: primaryColor,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
+          onPressed: () async {
+            // Navigator.pop(context);
+            // List<Placemark> position =
+            //     await determineLocation(); /// temp variable for geolocator service
+            // print(position.elementAt(2).administrativeArea);
           },
           icon: const Icon(
             Icons.arrow_back,

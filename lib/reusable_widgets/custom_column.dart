@@ -1,9 +1,12 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 
-/// This custom coulmn is used in profile page
+
 class CustomColumn extends StatelessWidget {
-  const CustomColumn({super.key, required this.text});
+  const CustomColumn({key, required this.text});
+  /// text for profile page can take values of (My tickets, Following, Likes)
   final String? text;
 
   @override

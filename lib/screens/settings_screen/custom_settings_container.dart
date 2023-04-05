@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomSettingsContainer extends StatelessWidget {
-  const CustomSettingsContainer({super.key, required this.text});
+  // ignore: use_key_in_widget_constructors
+  const CustomSettingsContainer({key, required this.text});
 
   final String? text;
   @override

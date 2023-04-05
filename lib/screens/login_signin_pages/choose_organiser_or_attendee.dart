@@ -1,18 +1,9 @@
 //import 'package:event_brite_app/constants.dart';
+import 'package:event_brite_app/screens/events_screen/events.dart';
+import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import '../../reusable_widgets/log_in_button.dart';
-import 'email2.dart';
-import 'emailval.dart';
-import 'entering_email_page.dart';
-import 'face.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants.dart';
-import '../../reusable_widgets/log_out_button.dart';
-import 'GoogleSignIn.dart';
-import 'Logging.dart';
+import '../home_page/home_screen.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {
   const CchooseCustomerOrOrganiserPage({super.key});
@@ -23,12 +14,15 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height:100),
-          Text('Welcome Youssef Continue as a... ',style: TextStyle(
-                  //decorationThickness: 500,
-                  fontSize: 32,
-                  fontFamily: 'Albertus Extra Bold',
-                  color: Colors.black,
-                  fontWeight: FontWeight.w900,)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Welcome Youssef Continue as a... ',style: TextStyle(
+                    //decorationThickness: 500,
+                    fontSize: 32,
+                    fontFamily: 'Albertus Extra Bold',
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,)),
+          ),
           SizedBox(height: 200,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
@@ -62,22 +56,36 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
                     ]),
                     height: 150,
                     width: 150,
-                    child: Card(
+                    child: GestureDetector(
+                      onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return EventPage(
+                            
+                          );
+                        },
+                      ),
+                    );
+                  },
+                      child: Card(
+                        
+                        
+                        elevation: 10,
+                                color: Colors.white,
+                                
+                                child: Column(
+                                  children: [SizedBox(height: 80,),
+                                    Text('Organizer',style: TextStyle(
+                                      fontSize: 28,
+                                      color: Color.fromARGB(255, 64, 14, 91),
+                                      fontWeight: FontWeight.w900),),
+                                  ],
+                                ),
                       
-                      
-                      elevation: 10,
-                              color: Colors.white,
-                              
-                              child: Column(
-                                children: [SizedBox(height: 80,),
-                                  Text('Organizer',style: TextStyle(
-                                    fontSize: 28,
-                                    color: Color.fromARGB(255, 64, 14, 91),
-                                    fontWeight: FontWeight.w900),),
-                                ],
-                              ),
-                    
-                              ),
+                                ),
+                    ),
                   ),
                   Positioned(
                     right: -13,
@@ -117,20 +125,34 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
                     ]),
                     height: 150,
                     width: 150,
-                    child: Card(
-                      elevation: 10,
-                              color: Colors.white,
-                              
-                              child: Column(
-                                children: [SizedBox(height: 80,),
-                                  Text('Attendee',style: TextStyle(
-                                    fontSize: 28,
-                                    color: Colors.deepOrange,
-                                    fontWeight: FontWeight.w900),),
-                                ],
-                              ),
-                    
-                              ),
+                    child: GestureDetector(
+                     onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return HomeScreen(
+                            selectedIndex: 0,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                      child: Card(
+                        elevation: 10,
+                                color: Colors.white,
+                                
+                                child: Column(
+                                  children: [SizedBox(height: 80,),
+                                    Text('Attendee',style: TextStyle(
+                                      fontSize: 28,
+                                      color: Colors.deepOrange,
+                                      fontWeight: FontWeight.w900),),
+                                  ],
+                                ),
+                      
+                                ),
+                    ),
                   ),
                   Positioned(
                     right: 25,
