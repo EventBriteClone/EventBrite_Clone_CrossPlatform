@@ -32,13 +32,19 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartdoc: ^6.2.1
   equatable: ^2.0.5
+  email_validator: ^2.1.17
   flutter:
     sdk: flutter
+  flutter_facebook_auth: ^5.0.8
+  rive: ^0.7.2
+  intl: ^0.18.0
+  flutter_pw_validator: ^1.5.0
   flutter_svg: ^2.0.4
+  http: ^0.13.5
   font_awesome_flutter: ^10.4.0
   geocoding: ^2.0.5
   geolocator: ^9.0.2
-  http: ^0.13.5
+  google_sign_in: ^6.0.2
   mockito: ^5.3.2
 
 dev_dependencies:
@@ -60,6 +66,7 @@ flutter:
   assets:
     - assets/images/EventusLogoSVG.svg
     - assets/images/Eventbrite_logo.png
+    - assets/images/Circle.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
@@ -72,7 +79,11 @@ flutter:
   fonts:
     - family: Neue Plak
       fonts:
-        - asset: assets/fonts/Neue Plak Regular.ttf
+         - asset: assets/fonts/Neue Plak Regular.ttf
+        # - asset: assets/fonts/Neue Plak Extended ExtraBlack.ttf
+        # - asset: assets/fonts/Neue Plak Extended Light.ttf
+        # - asset: assets/fonts/Neue Plak Extended SemiBold.ttf
+        # - asset: assets/fonts/Neue Plak Text Bold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

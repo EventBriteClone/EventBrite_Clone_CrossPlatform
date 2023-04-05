@@ -1,17 +1,16 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:event_brite_app/screens/home_page/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../search_screen.dart/search_screen.dart';
 import 'container_find_events.dart';
+
 class FindEvents extends StatefulWidget {
   const FindEvents({key});
 
   @override
   State<FindEvents> createState() => _FindEventsState();
 }
-
-
 
 class _FindEventsState extends State<FindEvents> {
   @override
@@ -25,7 +24,9 @@ class _FindEventsState extends State<FindEvents> {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     icon: const Icon(
                       Icons.arrow_back,
                       size: 28,
@@ -54,27 +55,25 @@ class _FindEventsState extends State<FindEvents> {
                     method: () async {
                       //var position = await determineLocation();
                       // print(position.elementAt(2).administrativeArea);
-                      setState(() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SearchScreen(),
-                          ),
-                        );
-                      });
+                      setState(
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomeScreen(
+                                  selectedIndex: 1,
+                                );
+                              },
+                            ),
+                          );
+                          ;
+                        },
+                      );
                     },
                     text: 'Nearby',
                     subText: 'Current location',
                     icon: FontAwesomeIcons.locationCrosshairs,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.09,
-                  ),
-                  ContainerFindEvents(
-                    method: () {},
-                    text: 'Online events',
-                    subText: 'Virtual attendance',
-                    icon: Icons.ondemand_video_rounded,
                   ),
                 ],
               ),
