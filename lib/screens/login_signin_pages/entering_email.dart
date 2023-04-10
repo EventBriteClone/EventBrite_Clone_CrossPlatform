@@ -2,6 +2,7 @@
 // import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
  import 'package:event_brite_app/screens/login_signin_pages/entering_password.dart';
 import 'package:event_brite_app/screens/login_signin_pages/signApi.dart';
+import 'package:event_brite_app/screens/login_signin_pages/up_api.dart';
 
 import 'entering_password.dart';
 import 'sign_up_page.dart';
@@ -44,7 +45,8 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
         //{
         //print("exits"+data['exits']);
         Navigator.push(context,MaterialPageRoute(builder:(context){
-                                       return SignUpPage(text:_emailController.text);
+                                       //return SignUpPage(text:_emailController.text);
+                                  return SignupPagee();
                                   }));      
         //}
         //print("token"+data['token']);

@@ -1,5 +1,7 @@
+import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
 import 'package:event_brite_app/screens/login_signin_pages/signApi.dart';
 import 'package:event_brite_app/screens/login_signin_pages/sign_up_page.dart';
+import 'package:event_brite_app/screens/login_signin_pages/up_api.dart';
 
 import '../../reusable_widgets/log_in_button.dart';
 import 'entering_email.dart';
@@ -57,7 +59,7 @@ class  LogInPage2 extends StatelessWidget {
                 onTap: ()
                       {
                         Navigator.push(context,MaterialPageRoute(builder:(context){
-                          return EmailValidationScreen();
+                          return DependentDropdownMenu();
                         }));
                       },
                 text: 'Continue with email address'),
