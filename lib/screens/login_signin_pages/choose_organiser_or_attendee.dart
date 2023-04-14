@@ -16,7 +16,7 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
           SizedBox(height:100),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Welcome Youssef Continue as a... ',style: TextStyle(
+            child: Text('Welcome..\n  Continue as a... ',style: TextStyle(
                     //decorationThickness: 500,
                     fontSize: 32,
                     fontFamily: 'Albertus Extra Bold',

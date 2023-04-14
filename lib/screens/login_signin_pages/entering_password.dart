@@ -36,9 +36,9 @@ void login(String email , password) async {
     try{
       //email='joe@gmail.com';
       Response response = await post(
-        Uri.parse('http://34.235.157.174:8000/user/login/'),
+        Uri.parse('https://event-us.me/user/login/'),
         body: {
-          'email' : 'joe@gmail.com',
+          'email' : email,
           'password' : password
         }
       );

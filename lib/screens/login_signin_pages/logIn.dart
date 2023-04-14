@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:http/http.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -20,7 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     try{
       
       Response response = await post(
-        Uri.parse('http://34.235.157.174:8000/user/login/'),
+        Uri.parse('https://event-us.me/user/login/'),
         body: {
           'email' : email,
           'password' : password

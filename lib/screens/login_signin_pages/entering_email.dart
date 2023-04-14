@@ -1,8 +1,8 @@
 // import 'package:event_brite_app/constants.dart';
 // import 'package:event_brite_app/reusable_widgets/log_out_button.dart';
  import 'package:event_brite_app/screens/login_signin_pages/entering_password.dart';
-import 'package:event_brite_app/screens/login_signin_pages/signApi.dart';
-import 'package:event_brite_app/screens/login_signin_pages/up_api.dart';
+import 'package:event_brite_app/screens/login_signin_pages/logIn.dart';
+import 'package:event_brite_app/screens/login_signin_pages/signUp.dart';
 
 import 'entering_password.dart';
 import 'sign_up_page.dart';
@@ -25,12 +25,17 @@ class EmailValidationScreen extends StatefulWidget {
 class _EmailValidationScreenState extends State<EmailValidationScreen> {
   final TextEditingController _emailController = TextEditingController();
   bool _isButtonEnabled = false;
+  bool _isLoading = false;
+  String _errorMessage = '';
   void val(String email) async {
-    
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
     try{
       
       Response response = await post(
-        Uri.parse('http://34.235.157.174:8000/user/emailCheck/'),
+        Uri.parse('https://event-us.me/user/emailCheck/'),
         
         body: {
           'email' : email,
@@ -42,18 +47,27 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
         print('200');
         var data = jsonDecode(response.body.toString());
         //if (data['exits']==false)
-        //{
+        {
         //print("exits"+data['exits']);
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });     
         Navigator.push(context,MaterialPageRoute(builder:(context){
-                                       //return SignUpPage(text:_emailController.text);
-                                  return SignupPagee();
+                                       return SignupPagee(text:_emailController.text);
+                                  
+                                  //return SignupPagee();
                                   }));      
-        //}
+        }
         //print("token"+data['token']);
         //print('Login successfully');
 
       }else {
         print('failed');
+                    setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });     
         Navigator.push(context,MaterialPageRoute(builder:(context){
                                        return PasswordPage(text:_emailController.text);
                                   //return SignUpScreen();
@@ -121,30 +135,55 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
                             ] 
                           ),
                            child: Padding(
-                             padding: const EdgeInsets.all(8.0),
+                             padding: const EdgeInsets.all(4.0),
                              child: Container(
+                              width: double.infinity,
                               decoration: BoxDecoration(
-            color: _isButtonEnabled ? primaryColor : Color.fromARGB(255, 97, 95, 95),
+                                //color: Colors.grey
+            //color: _isButtonEnabled ? primaryColor : Color.fromARGB(255, 97, 95, 95),
             
           ),
-
-                               child: LogOutButton(
-                                           onTap: _isButtonEnabled
-                                                ? (){
-                val(_emailController.text.toString());
-              }
-          //{
-            //                                           setState(() {
-            // _isButtonEnabled = !_isButtonEnabled;
-          //});
-          //                                        Navigator.push(context,MaterialPageRoute(builder:(context){
-          //                             return SignUpPage(text:_emailController.text);
-          //                           }));
-          //                                          // do something when button is pressed
-          //                                        }
-                                               : null,
-                                           text: 'Next',
-                                         ),
+          
+              child:Expanded(
+                child: ElevatedButton(
+                  
+                  style: ElevatedButton.styleFrom(
+                    //minimumSize: Size.fromWidth(50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  elevation: 8,
+                  shadowColor: Colors.black.withOpacity(0.3),
+                  // change the colors below to match your neumorphism design
+                  primary: Colors.grey[200],
+                  onPrimary: Colors.grey[900],
+                ),
+                    onPressed:  _isButtonEnabled
+                        ?  () {
+                      //onTap: _isButtonEnable
+                        //?null
+                        //: (){
+                      
+                  val(_emailController.text.toString());
+                //};
+                          }:null,
+                          
+                          
+                    child: _isLoading
+                        ? CircularProgressIndicator()
+                        : Text('Sign Up',style: TextStyle( fontWeight: FontWeight.bold ),),
+                  ),
+              ),
+              //                  child: LogOutButton(
+              //                              onTap: _isButtonEnabled
+              //                                   ? (){
+              //   val(_emailController.text.toString());
+              // }
+          
+              //                                  : null,
+              //                              text: 'Next',
+              //                            ),
                              ),
                            ),
                          ),

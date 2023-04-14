@@ -4,7 +4,11 @@ import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 
 import '../../constants.dart';
 import '../../reusable_widgets/custom_text_field.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 class SignUpPage extends StatefulWidget {
   final String text;
   SignUpPage({required this.text});
@@ -68,12 +72,8 @@ class _HomePageState extends State<SignUpPage> {
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.blue) ),
-                  
-
-
             ),
-                  //TitleText: 'Email',
-                  //hintText: "Enter email address",
+
                   controller: _textController,
                   enabled: false,
                  ),

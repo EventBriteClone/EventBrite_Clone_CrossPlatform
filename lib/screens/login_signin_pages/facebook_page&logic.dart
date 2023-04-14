@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:http/http.dart';
+
+import 'choose_organiser_or_attendee.dart';
 class MyFaceApp extends StatefulWidget {
   const MyFaceApp({Key? key}) : super(key: key);
 
@@ -13,7 +18,121 @@ class _MyFaceAppState extends State<MyFaceApp> {
   Map<String, dynamic>? _userData;
   AccessToken? _accessToken;
   bool _checking = true;
+  ///
+   bool _isLoading = false;
+   String _errorMessage = '';
+  void login(String email , password) async {
+    
+    try{
+      //email='joe@gmail.com';
+      Response response = await post(
+        Uri.parse('https://event-us.me/user/login/'),
+        body: {
+          'email' : email,
+          'password' : password
+        }
+      );
 
+      if(response.statusCode == 200){
+        
+        var data = jsonDecode(response.body.toString());
+        print("token"+data['token']);
+        print('Login successfully');
+        Navigator.push(context,MaterialPageRoute(builder:(context){
+                                     return CchooseCustomerOrOrganiserPage();
+        
+}));
+      }else {
+        print('failed');
+      }
+    }catch(e){
+      print('ypussef');
+      print(e.toString());
+    }
+  } 
+  Future<void> _signup() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
+    final url = 'https://event-us.me/user/signup/';
+    final response = await post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(<String, String>{
+        'email':_userData!['email'].toString(),
+        'first_name': _userData!['email'].toString(),
+        'last_name': _userData!['email'].toString(),
+        'password': _userData!['email'].toString(),
+      }),
+      
+    );
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (response.statusCode == 201) {
+      // Handle successful sign up here.
+        //var data = jsonDecode(response.body.toString());
+        //print("token"+data['token']);
+        print('SignUp successfully');
+        login(_userData!['email'].toString(),_userData!['email'].toString());
+    } else {
+      setState(() {
+        _errorMessage = 'Failed to sign up. Please try again.';
+      });
+    }
+  }   
+    void val(String email) async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+    try{
+      
+      Response response = await post(
+        Uri.parse('https://event-us.me/user/emailCheck/'),
+        
+        body: {
+          'email' : email,
+          //'password' : '512002joee'
+        }
+      );
+
+      if(response.statusCode == 200){
+        print('200');
+        var data = jsonDecode(response.body.toString());
+        //if (data['exits']==false)
+        {
+        //print("exits"+data['exits']);
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });     
+        _signup();
+        
+
+        }
+        //print("token"+data['token']);
+        //print('Login successfully');
+
+      }else {
+        print('failedd');
+                    setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });     
+        login(_userData!['email'].toString(), _userData!['email'].toString());
+      }
+    }catch(e){
+      print('ypussef');
+      print(e.toString());
+    }
+  }
+  ///
+  ////
   @override
   void initState() {
     // TODO: implement initState
@@ -104,7 +223,21 @@ class _MyFaceAppState extends State<MyFaceApp> {
                         _userData != null ? 'LOGOUT' : 'LOGIN',
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: _userData != null ? _logout : _login)
+                      onPressed: _userData != null ? _logout : _login),
+                      ElevatedButton(
+                  onPressed: _isLoading
+                      ? null
+                      : () {
+                    //onTap: _isButtonEnabled
+                      //?null
+                      //: (){
+                val(_userData!['name'].toString());
+              //};
+                        },
+                  child: _isLoading
+                      ? CircularProgressIndicator()
+                      : Text('Sign Up'),
+                ),
                 ],
               )),
       ),

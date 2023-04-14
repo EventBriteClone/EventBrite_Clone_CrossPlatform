@@ -22,8 +22,8 @@ class LogInPage1 extends StatelessWidget {
                 style: TextStyle(
                   //decorationThickness: 500,
                   fontSize: 32,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w800,
+                  fontFamily: 'Neue Plak',
+                color: Colors.black,fontWeight: FontWeight.w700,
                 ),
               ),
             ),

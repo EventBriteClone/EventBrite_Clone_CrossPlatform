@@ -25,125 +25,129 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
               fontSize: 27,fontFamily: 'Neue Plak',
               color: Color.fromRGBO(60, 0, 100, 1),//fontWeight: FontWeight.w900,
             )),),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
-          Padding(
-            padding:const EdgeInsets.only(left:15.0,top:15.0),
-            child: DropdownButton<String>(
-              value: _dropdownValue,
-              onChanged: (String? newValue) {
-                setState(() {
-                  _dropdownValue = newValue!;
-                  if (_dropdownValue == 'Private') {
-                    _showCheckbox = true;
-                  } else {
-                    _showCheckbox = false;
-                  }
-                });
-              },
-              items: <String>['Public', 'Private'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
-          SizedBox(height: 5),
-          _dropdownValue == 'Public'
-              ? Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left:20),
-                    child: Text('This event will be listed on eventus and in search engines'),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:const EdgeInsets.only(left:15.0,top:15.0),
+                child: DropdownButton<String>(
+                  value: _dropdownValue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _dropdownValue = newValue!;
+                      if (_dropdownValue == 'Private') {
+                        _showCheckbox = true;
+                      } else {
+                        _showCheckbox = false;
+                      }
+                    });
+                  },
+                  items: <String>['Public', 'Private'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+              SizedBox(height: 5),
+              _dropdownValue == 'Public'
+                  ? Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left:20),
+                        child: Text('This event will be listed on eventus and in search engines'),
+                      ),
+                      Divider(),
+                      SizedBox(height: 20,),
+                    Center(
+                      child: NeumorphicButton(
+                      onPressed: () {},
+                      child: Center(child: Text('Publish',style: TextStyle(color:Color.fromRGBO(60, 0, 100, 1),fontSize: 19,
+                      fontWeight: FontWeight.w900),)),
+                      ),
+                    )
+
+                    ],
+                  )
+                  
+                  : Column(
+                      children: [
+                        Text('This event will not be listed on Eventus or in search engines'),
+                        Divider(),
+                        CheckboxListTile(
+                          title: Text('Guests must receive an Eventus invitation to register'),
+                          value: _checkboxValue,
+                          activeColor: Color.fromRGBO(60, 0, 100, 1) ,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _checkboxValue = newValue!;
+                            });
+                          },
+                        ),
+                        Divider(),
+                        SwitchListTile(
+                          title: Text('Guests must enter password to register'),
+                          value: _switchValue,
+                          activeColor: Color.fromRGBO(60, 0, 100, 1),
+                          onChanged: (newValue) {
+                            setState(() {
+                              _switchValue = newValue;
+                            });
+                          },
+                          
+                        ),
+                        
+              SizedBox(height: 10),
+              _switchValue
+                  ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter Password',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                  )
+                  : SizedBox(),
+                  Divider(),
+                  SwitchListTile(
+                  title: Text('Make the Event public after a certain date'),
+                   activeColor: Color.fromRGBO(60, 0, 100, 1),
+                  value: _switchValue2,
+                  onChanged: (bool newValue) {
+                    setState(() {
+                      _switchValue2 = newValue;
+                    });
+                  },
+                ),
+                if (_switchValue2)
+                  ElevatedButton(
+                    style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(60, 0, 100, 1)),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+  ),
+                    onPressed: () {
+                      _selectDateTime(context);
+                    },
+                    child: Text(_selectedDateTime != null
+                        ? 'Selected Date Time: $_selectedDateTime'
+                        : 'Select Date Time'),
                   ),
                   Divider(),
                   SizedBox(height: 20,),
-                Center(
-                  child: NeumorphicButton(
-                  onPressed: () {},
-                  child: Center(child: Text('Publish',style: TextStyle(color:Color.fromRGBO(60, 0, 100, 1),fontSize: 19,
-                  fontWeight: FontWeight.w900),)),
-                  ),
-                )
-
-                ],
-              )
-              
-              : Column(
-                  children: [
-                    Text('This event will not be listed on Eventus or in search engines'),
-                    Divider(),
-                    CheckboxListTile(
-                      title: Text('Guests must receive an Eventus invitation to register'),
-                      value: _checkboxValue,
-                      activeColor: Color.fromRGBO(60, 0, 100, 1) ,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _checkboxValue = newValue!;
-                        });
-                      },
-                    ),
-                    Divider(),
-                    SwitchListTile(
-                      title: Text('Guests must enter password to register'),
-                      value: _switchValue,
-                      activeColor: Color.fromRGBO(60, 0, 100, 1),
-                      onChanged: (newValue) {
-                        setState(() {
-                          _switchValue = newValue;
-                        });
-                      },
-                      
-                    ),
-                    
-          SizedBox(height: 10),
-          _switchValue
-              ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Enter Password',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-              )
-              : SizedBox(),
-              Divider(),
-              SwitchListTile(
-              title: Text('Make the Event public after a certain date'),
-               activeColor: Color.fromRGBO(60, 0, 100, 1),
-              value: _switchValue2,
-              onChanged: (bool newValue) {
-                setState(() {
-                  _switchValue2 = newValue;
-                });
-              },
-            ),
-            if (_switchValue2)
-              ElevatedButton(
-                style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(60, 0, 100, 1)),
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-  ),
-                onPressed: () {
-                  _selectDateTime(context);
-                },
-                child: Text(_selectedDateTime != null
-                    ? 'Selected Date Time: $_selectedDateTime'
-                    : 'Select Date Time'),
-              ),
-              Divider(),
-              SizedBox(height: 20,),
-              NeumorphicButton(
+                  NeumorphicButton(
   onPressed: () {},
   child: Center(child: Text('Publish',style: TextStyle(color:Color.fromRGBO(60, 0, 100, 1),fontSize: 19,
-                fontWeight: FontWeight.w900),)),
+                    fontWeight: FontWeight.w900),)),
 )
 
-                  ],
-                ),
+                      ],
+                    ),
+            ],
+          ),
         ],
       ),
     );

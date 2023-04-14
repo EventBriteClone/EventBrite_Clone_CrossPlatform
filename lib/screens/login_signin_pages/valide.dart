@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 
 import '../../reusable_widgets/custom_text_field.dart';
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 class HomePagee extends StatefulWidget {
   const HomePagee({Key? key}) : super(key: key);
 
@@ -13,15 +18,49 @@ class HomePagee extends StatefulWidget {
 class _HomePageState extends State<HomePagee> {
   final TextEditingController controller = TextEditingController();
   bool success = false;
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  
+  bool _isLoading = false;
+  String _errorMessage = '';
+  Future<void> _signup() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+    final url = 'https://event-us.me/user/signup/';
+    final response = await post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(<String, String>{
+        'email': _emailController.text,
+        'first_name': _firstNameController.text,
+        'last_name': _lastNameController.text,
+        'password': _passwordController.text,
+      }),
+      
+    );
 
-/////////////////////////////////////
-//@CodeWithFlexz on Instagram
-//
-//AmirBayat0 on Github
-//Programming with Flexz on Youtube
-/////////////////////////////////////
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (response.statusCode == 201) {
+      // Handle successful sign up here.
+        //var data = jsonDecode(response.body.toString());
+        //print("token"+data['token']);
+        print('Login successfully');
+    } else {
+      setState(() {
+        _errorMessage = 'Failed to sign up. Please try again.';
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -1,17 +1,21 @@
 import '../constants.dart';
 import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
-  CustomTextField({this.hintText,this.TitleText,this.onChanged,this.obsccureText=false,@required this.suffix=null});
+  //final TextEditingController controller;, required TextEditingController controller
+  CustomTextField({this.hintText,this.TitleText,this.onChanged,this.controller,this.obsccureText=false,@required this.suffix=null,Key? key}): super(key: key);
   String? hintText;
   String? TitleText;
   bool? obsccureText;
   IconData? suffix;
   Function(String)? onChanged;
+  TextEditingController? controller;
+  //String? controller;
+  //Controller
   //Function suffixPressed;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
+      controller: controller,
       obscureText: obsccureText!,
       validator: (data)
       {
