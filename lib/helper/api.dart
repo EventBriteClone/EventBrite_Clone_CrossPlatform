@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,8 +16,13 @@ class Api {
     }
     return null;
   }
-  Future<dynamic> get({required String url}) async {
-    http.Response response = await http.get(Uri.parse(url));
+  Future<dynamic> get({required String url, required String token}) async {
+    http.Response response = await http.get(Uri.parse(url),
+      headers: {
+        HttpHeaders.authorizationHeader: token,
+      },
+    );
+    
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);

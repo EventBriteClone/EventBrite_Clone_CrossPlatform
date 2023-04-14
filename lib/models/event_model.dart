@@ -1,39 +1,40 @@
 import 'package:equatable/equatable.dart';
 
 class EventModel extends Equatable {
-	final String? id;
-	final String? userId;
+	final int? id;
+	final String? image;
+	final int? ID;
+	final int? userId;
 	final String? title;
 	final String? organizer;
+	final String? summery;
 	final String? description;
 	final String? type;
-	final String? category;
+	final String? categoryName;
 	final String? subCategory;
 	final String? venueName;
-	final String? categoryId;
-	final String? subCategoryId;
 	final String? stDate;
 	final String? endDate;
 	final String? stTime;
 	final String? endTime;
 	final String? online;
-	final String? capacity;
+	final int? capacity;
 	final String? password;
-	final String? locationId;
 	final String? status;
 
 	const EventModel({
 		this.id, 
+		this.image, 
+		this.ID, 
 		this.userId, 
 		this.title, 
 		this.organizer, 
+		this.summery, 
 		this.description, 
 		this.type, 
-		this.category, 
+		this.categoryName, 
 		this.subCategory, 
 		this.venueName, 
-		this.categoryId, 
-		this.subCategoryId, 
 		this.stDate, 
 		this.endDate, 
 		this.stTime, 
@@ -41,45 +42,45 @@ class EventModel extends Equatable {
 		this.online, 
 		this.capacity, 
 		this.password, 
-		this.locationId, 
 		this.status, 
 	});
 
 	factory EventModel.fromJson(Map<String, dynamic> json) => EventModel(
-				id: json['id'] as String?,
-				userId: json['User_id'] as String?,
+				id: json['id'] as int?,
+				image: json['image'] as String?,
+				ID: json['ID'] as int?,
+				userId: json['User_id'] as int?,
 				title: json['Title'] as String?,
 				organizer: json['organizer'] as String?,
+				summery: json['Summery'] as String?,
 				description: json['Description'] as String?,
 				type: json['type'] as String?,
-				category: json['Category'] as String?,
+				categoryName: json['category_name'] as String?,
 				subCategory: json['sub_Category'] as String?,
 				venueName: json['venue_name'] as String?,
-				categoryId: json['CATEGORY_ID'] as String?,
-				subCategoryId: json['SUB_CATEGORY_ID'] as String?,
 				stDate: json['ST_DATE'] as String?,
 				endDate: json['END_DATE'] as String?,
 				stTime: json['ST_TIME'] as String?,
 				endTime: json['END_TIME'] as String?,
 				online: json['online'] as String?,
-				capacity: json['CAPACITY'] as String?,
+				capacity: json['CAPACITY'] as int?,
 				password: json['PASSWORD'] as String?,
-				locationId: json['locationـid'] as String?,
 				status: json['STATUS'] as String?,
 			);
 
 	Map<String, dynamic> toJson() => {
 				'id': id,
+				'image': image,
+				'ID': ID,
 				'User_id': userId,
 				'Title': title,
 				'organizer': organizer,
+				'Summery': summery,
 				'Description': description,
 				'type': type,
-				'Category': category,
+				'category_name': categoryName,
 				'sub_Category': subCategory,
 				'venue_name': venueName,
-				'CATEGORY_ID': categoryId,
-				'SUB_CATEGORY_ID': subCategoryId,
 				'ST_DATE': stDate,
 				'END_DATE': endDate,
 				'ST_TIME': stTime,
@@ -87,7 +88,6 @@ class EventModel extends Equatable {
 				'online': online,
 				'CAPACITY': capacity,
 				'PASSWORD': password,
-				'locationـid': locationId,
 				'STATUS': status,
 			};
 
@@ -95,16 +95,17 @@ class EventModel extends Equatable {
 	List<Object?> get props {
 		return [
 				id,
+				image,
+				id,
 				userId,
 				title,
 				organizer,
+				summery,
 				description,
 				type,
-				category,
+				categoryName,
 				subCategory,
 				venueName,
-				categoryId,
-				subCategoryId,
 				stDate,
 				endDate,
 				stTime,
@@ -112,7 +113,6 @@ class EventModel extends Equatable {
 				online,
 				capacity,
 				password,
-				locationId,
 				status,
 		];
 	}
