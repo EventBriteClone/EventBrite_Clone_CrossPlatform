@@ -7,9 +7,14 @@ import 'package:flutter/material.dart';
 import '../../reusable_widgets/log_in_button.dart';
 import '../../reusable_widgets/log_out_button.dart';
 import 'choose_organiser_or_attendee.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart';
 class PasswordPage extends StatefulWidget {
   final String text;
+  
   PasswordPage({required this.text});
 
 
@@ -18,14 +23,48 @@ class PasswordPage extends StatefulWidget {
 }
 
 class _PasswordPageState extends State<PasswordPage> {
+TextEditingController passwordController = TextEditingController();
 String displayText = '';
 bool _passwordVisible = false;  
 static String id='RegisterPage';
 String?password;  
 bool isPassword=true;
 bool _obscureText = true;
+bool _isLoading = false;
+String _errorMessage = '';
 GlobalKey<FormState> formKey=GlobalKey();
+void login(String email , password) async {
+     setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+    try{
+      //email='joe@gmail.com';
+      Response response = await post(
+        Uri.parse('https://event-us.me:8000/user/login/'),
+        body: {
+          'email' : email,
+          'password' : password
+        }
+      );
 
+      if(response.statusCode == 200){
+        
+        var data = jsonDecode(response.body.toString());
+        print("token"+data['token']);
+        print('Login successfully');
+        Navigator.push(context,MaterialPageRoute(builder:(context){
+                                     return CchooseCustomerOrOrganiserPage();
+        
+}));
+      }else {
+        print('failed');
+      }
+    }catch(e){
+      print('ypussef');
+      print(e.toString());
+    }
+  }
   @override
   void initState() {
     super.initState();
@@ -87,6 +126,7 @@ GlobalKey<FormState> formKey=GlobalKey();
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: passwordController,
               obscureText: !_passwordVisible,
               decoration: InputDecoration(
                 suffixIcon: GestureDetector(
@@ -145,10 +185,14 @@ GlobalKey<FormState> formKey=GlobalKey();
                                    CustomButton(
                                                        onTap: ()
                                     {
-                                      if (formKey.currentState!.validate()) {
-                                                       Navigator.push(context,MaterialPageRoute(builder:(context){
-                                    return CchooseCustomerOrOrganiserPage();
-                                                       }));
+                                       if (formKey.currentState!.validate())
+                                       {
+                login(displayText.toString(), passwordController.text.toString());
+              
+                                    // {
+                                    //                    Navigator.push(context,MaterialPageRoute(builder:(context){
+                                    // return CchooseCustomerOrOrganiserPage();
+                                    //                    }));
                                                      }
                                                      else{
                                                      
@@ -192,4 +236,5 @@ GlobalKey<FormState> formKey=GlobalKey();
       ),
     );
   }
+  
 }

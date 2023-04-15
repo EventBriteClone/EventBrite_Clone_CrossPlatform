@@ -6,6 +6,7 @@ import '../../functions/utils/build_drop_menu_items.dart';
 import '../../helper/api.dart';
 import 'package:event_brite_app/models/place_auto_complete_response';
 import '../../components/single_date.dart';
+
 class AddEvents extends StatefulWidget {
   const AddEvents({super.key});
 

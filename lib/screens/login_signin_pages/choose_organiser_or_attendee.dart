@@ -1,8 +1,8 @@
 //import 'package:event_brite_app/constants.dart';
+import 'package:event_brite_app/screens/events_screen/events.dart';
 import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
-import '../creator/events_page/events.dart';
 import '../home_page/home_screen.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
           SizedBox(height:100),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Welcome Youssef Continue as a... ',style: TextStyle(
+            child: Text('Welcome..\n  Continue as a... ',style: TextStyle(
                     //decorationThickness: 500,
                     fontSize: 32,
                     fontFamily: 'Albertus Extra Bold',
@@ -63,6 +63,7 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) {
                           return EventPage(
+                            
                           );
                         },
                       ),

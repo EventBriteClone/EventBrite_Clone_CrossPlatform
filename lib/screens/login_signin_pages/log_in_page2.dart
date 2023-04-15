@@ -1,3 +1,8 @@
+import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
+import 'package:event_brite_app/screens/login_signin_pages/logIn.dart';
+import 'package:event_brite_app/screens/login_signin_pages/sign_up_page.dart';
+import 'package:event_brite_app/screens/login_signin_pages/signUp.dart';
+
 import '../../reusable_widgets/log_in_button.dart';
 import 'entering_email.dart';
 import 'facebook_page&logic.dart';
@@ -42,7 +47,7 @@ class  LogInPage2 extends StatelessWidget {
               Text('Let\'s get started',
               style: TextStyle(
                 fontSize: 36,fontFamily: 'Neue Plak',
-                color: Colors.black,fontWeight: FontWeight.w200,
+                color: Colors.black,fontWeight: FontWeight.w700,
               )),
               const SizedBox(height: 20,),
               Text(' Sign up or log in to see what\'s\n happening near you',style: TextStyle(
@@ -55,6 +60,7 @@ class  LogInPage2 extends StatelessWidget {
                       {
                         Navigator.push(context,MaterialPageRoute(builder:(context){
                           return EmailValidationScreen();
+                          //return DependentDropdownMenu();
                         }));
                       },
                 text: 'Continue with email address'),

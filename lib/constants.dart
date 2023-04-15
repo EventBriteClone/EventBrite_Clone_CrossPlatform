@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/autocomplate_prediction.dart';
+import '../models/autocomplate_prediction.dart';
 
 const primaryColor = Colors.white;
 const secondaryColor = Color(0xfff05537);

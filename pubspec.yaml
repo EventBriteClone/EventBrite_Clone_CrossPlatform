@@ -29,7 +29,11 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   build_runner: ^2.3.3
+  build_runner: ^2.3.3
   cupertino_icons: ^1.0.2
+  dartdoc: ^6.2.1
+  equatable: ^2.0.5
+  email_validator: ^2.1.17
   dartdoc: ^6.2.1
   equatable: ^2.0.5
   email_validator: ^2.1.17
@@ -41,9 +45,19 @@ dependencies:
   flutter_pw_validator: ^1.5.0
   flutter_svg: ^2.0.4
   http: ^0.13.5
+  flutter_facebook_auth: ^5.0.8
+  rive: ^0.7.2
+  intl: ^0.18.0
+  flutter_pw_validator: ^1.5.0
+  flutter_svg: ^2.0.4
+  http: ^0.13.5
   font_awesome_flutter: ^10.4.0
   geocoding: ^2.0.5
   geolocator: ^9.0.2
+  google_sign_in: ^6.0.2
+  mockito: ^5.3.2
+  shared_preferences: ^2.1.0
+  flutter_neumorphic: ^3.2.0
   google_sign_in: ^6.0.2
   mockito: ^5.3.2
   provider: ^6.0.5
@@ -68,7 +82,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/EventusLogoSVG.svg
+    - assets/images/EventusLogoSVG.svg
     - assets/images/Eventbrite_logo.png
+    - assets/images/Circle.jpeg
     - assets/images/Circle.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

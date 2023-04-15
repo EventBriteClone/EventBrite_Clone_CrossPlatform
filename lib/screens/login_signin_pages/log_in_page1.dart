@@ -22,8 +22,8 @@ class LogInPage1 extends StatelessWidget {
                 style: TextStyle(
                   //decorationThickness: 500,
                   fontSize: 32,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w800,
+                  fontFamily: 'Neue Plak',
+                  color: Colors.black, fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -37,11 +37,10 @@ class LogInPage1 extends StatelessWidget {
                 child: Text(
                   'Log in to see your favourites',
                   style: TextStyle(
-                    //fontFamily: 'Neue Plak',
-                    fontSize: 16,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900
-                  ),
+                      //fontFamily: 'Neue Plak',
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w900),
                 ),
               ),
             ),
@@ -76,57 +75,57 @@ class LogInPage1 extends StatelessWidget {
             ),
             Stack(
               children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
-                //height:350,
-                //width: 900,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Image(
-                      image: AssetImage('assets/images/Circle.jpeg'),
-                      height: 400,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  //height:350,
+                  //width: 900,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      Image(
+                        image: AssetImage('assets/images/Circle.jpeg'),
+                        height: 400,
+                      ),
+                    ],
+                  ),
+                ),
+                //SizedBox(height: 200,),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.327,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 25, top: 60),
+                            child: Icon(
+                              FontAwesomeIcons.heart,
+                              size: 180,
+                              color: const Color.fromARGB(255, 181, 181, 181)
+                                  .withOpacity(0.2),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomButton(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return LogInPage2();
+                          }));
+                        },
+                        text: 'Log in',
+                      ),
                     ),
                   ],
                 ),
-              ),
-              //SizedBox(height: 200,),
-              Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.327,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 25, top: 60),
-                          child: Icon(
-                        FontAwesomeIcons.heart,
-                        size: 180,
-                        color: const Color.fromARGB(255, 181, 181, 181)
-                            .withOpacity(0.2),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomButton(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return LogInPage2();
-                        }));
-                      },
-                      text: 'Log in',
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
         ),
       ),
     );
