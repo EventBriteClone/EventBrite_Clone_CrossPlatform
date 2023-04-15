@@ -33,18 +33,18 @@ dependencies:
   dartdoc: ^6.2.1
   email_validator: ^2.1.17
   equatable: ^2.0.5
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_facebook_auth: ^5.0.8
-  rive: ^0.7.2
-  intl: ^0.18.0
   flutter_pw_validator: ^1.5.0
   flutter_svg: ^2.0.4
-  http: ^0.13.5
   font_awesome_flutter: ^10.4.0
   geocoding: ^2.0.5
   geolocator: ^9.0.2
   google_sign_in: ^6.0.2
+  http: ^0.13.5
+  intl: ^0.18.0
   mockito: ^5.3.2
   shared_preferences: ^2.1.0
   flutter_neumorphic: ^3.2.0

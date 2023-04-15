@@ -1,9 +1,6 @@
 import 'dart:io';
-
 import 'package:event_brite_app/helper/api.dart';
-import 'package:event_brite_app/models/event_model.dart';
 import 'package:mockito/mockito.dart';
-
 import 'events_list_test.mocks.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
