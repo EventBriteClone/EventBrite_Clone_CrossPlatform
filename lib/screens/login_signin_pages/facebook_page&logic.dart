@@ -231,11 +231,11 @@ class _MyFaceAppState extends State<MyFaceApp> {
                         _userData != null ? 'LOGOUT' : 'LOGIN',
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: _userData != null? _logout :(){
-                      _login;
+                      onPressed: _userData != null? _logout :
+                      _login
                      
               //};
-                      } ),
+                       ),
 //                       ElevatedButton(
 //                   onPressed: _isLoading
 //                       ? null

@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
+import '../../constants.dart';
+import '../../reusable_widgets/final_button.dart';
 import 'choose_organiser_or_attendee.dart';
 import 'google_logic.dart';
 import 'log_in_page2.dart';
@@ -167,23 +169,50 @@ class _LoggedInPageState extends State<LoggedInPage> {
             Text(
               'Email: '+widget.user.email
       ,          )
-      ,ElevatedButton(
-                  onPressed: _isLoading
-                      ? null
-                      : () {
-                    //onTap: _isButtonEnabled
-                      //?null
-                      //: (){
-                val(widget.user.email);
-              //};
-                        },
-                  child: _isLoading
-                      ? CircularProgressIndicator()
-                      : Text('Sign Up'),
-                ),
+      // ,ElevatedButton(
+      //             onPressed: _isLoading
+      //                 ? null
+      //                 : () {
+      //               //onTap: _isButtonEnabled
+      //                 //?null
+      //                 //: (){
+      //           val(widget.user.email);
+      //         //};
+      //                   },
+      //             child: _isLoading
+      //                 ? CircularProgressIndicator()
+      //                 : Text('Sign Up'),
+      //           ),
+                ,Container(
+  height: 350,
+  child:   Column(
+    mainAxisAlignment:MainAxisAlignment.end,
+    children:   [Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: finalCustomButton(
+      onTap: _isLoading? (){ //:() {
+          null;
+          // Do something when the button is pressed
+        
+        }:(){
+          val(widget.user.email);
+          //val(_userData!['email'].toString());
+        },
+       child: _isLoading
+                            ? SizedBox(
+                              width: 10,
+                              child: CircularProgressIndicator(strokeWidth: 1.5,
+                              color:secondaryColor,))
+                            : Center(child: Text('Continue through our application',style: TextStyle(color: secondaryColor,fontSize: 20,fontWeight:FontWeight.bold),)),
+        backgroundColor:secondaryColor,
+      ),
+    ),]
+  ),
+),
           ],
         ),
       ),
+
     );
   }
 }
