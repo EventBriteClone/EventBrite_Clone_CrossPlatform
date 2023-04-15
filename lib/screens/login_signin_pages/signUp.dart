@@ -39,7 +39,7 @@ class _SignupPageeState extends State<SignupPagee> {
     try{
       
       Response response = await post(
-        Uri.parse('https://event-us.me/user/login/'),
+        Uri.parse('https://event-us.me:8000/user/login/'),
         body: {
           'email' : email,
           'password' : password
@@ -73,7 +73,7 @@ class _SignupPageeState extends State<SignupPagee> {
       _errorMessage = '';
     });
 
-    final url = 'https://event-us.me/user/signup/';
+    final url = 'https://event-us.me:8000/user/signup/';
     final response = await post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},

@@ -14,9 +14,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool _isLoading = false;
+  String _errorMessage = '';
+  
   void login(String email , password) async {
-    
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
     try{
       
       Response response = await post(

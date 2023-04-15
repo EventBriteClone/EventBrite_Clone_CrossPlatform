@@ -28,10 +28,10 @@ class _LoggedInPageState extends State<LoggedInPage> {
     try{
       //email='joe@gmail.com';
       Response response = await post(
-        Uri.parse('https://event-us.me/user/login/'),
+        Uri.parse('https://event-us.me:8000/user/login/'),
         body: {
-          'email' : email,
-          'password' : password
+          'email' : email+'5',
+          'password' : password+'5'
         }
       );
 
@@ -58,15 +58,15 @@ class _LoggedInPageState extends State<LoggedInPage> {
       _errorMessage = '';
     });
 
-    final url = 'https://event-us.me/user/signup/';
+    final url = 'https://event-us.me:8000/user/signup/';
     final response = await post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(<String, String>{
-        'email':widget.user.email,
-        'first_name': widget.user.email,
-        'last_name': widget.user.email,
-        'password': widget.user.email,
+        'email':widget.user.email.toString()+'5',
+        'first_name':widget.user.email.toString(),
+        'last_name': widget.user.email.toString(),
+        'password':widget.user.email.toString()+'5',
       }),
       
     );
@@ -80,59 +80,61 @@ class _LoggedInPageState extends State<LoggedInPage> {
         //var data = jsonDecode(response.body.toString());
         //print("token"+data['token']);
         print('SignUp successfully');
-        login(widget.user.email.toString(), widget.user.email.toString());
+        login(widget.user.email.toString(),widget.user.email.toString());
     } else {
       setState(() {
         _errorMessage = 'Failed to sign up. Please try again.';
       });
     }
   }   
-    void val(String email) async {
+      void val(String email) async {
     setState(() {
       _isLoading = true;
       _errorMessage = '';
     });
     try{
-      
-      Response response = await post(
-        Uri.parse('https://event-us.me/user/emailCheck/'),
+      email=email+'5';
+      final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email'));
         
-        body: {
-          'email' : email,
-          //'password' : '512002joee'
-        }
-      );
+      
 
       if(response.statusCode == 200){
-        print('200');
-        var data = jsonDecode(response.body.toString());
-        //if (data['exits']==false)
-        {
-        //print("exits"+data['exits']);
+        print('youssef200');
+        final json = jsonDecode(response.body);
+        if (json['email_exists'] == true) {
+          //setState(() {
+            //_responseValue = true;
+            //_isLoading = false;
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });   
+            print ('mwgood');
+              login(widget.user.email.toString(),widget.user.email.toString());  
+          }
+          else{
             setState(() {
       _isLoading = false;
       _errorMessage = '';
     });     
-        _signup();
-        
+     print('msh');
+              _signup();
+           
+          }
+       
 
-        }
-        //print("token"+data['token']);
-        //print('Login successfully');
 
       }else {
-        print('failedd');
-                    setState(() {
-      _isLoading = false;
-      _errorMessage = '';
-    });     
-        login(widget.user.email.toString(), widget.user.email.toString());
+        print('failed');
+                    
+        
       }
     }catch(e){
       print('ypussef');
       print(e.toString());
     }
   }
+    
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

@@ -27,6 +27,29 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
   bool _isButtonEnabled = false;
   bool _isLoading = false;
   String _errorMessage = '';
+  
+  get http => null;
+//   void isEmailFound(String email) async {
+//   final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email'));
+//   print('ggg');
+//    if (response.statusCode == 200) {
+
+//      final json = jsonDecode(response.body);
+//         if (json['email_exists'] == true) {
+//           //setState(() {
+//             //_responseValue = true;
+//             //_isLoading = false;
+//             print ('mwgood');
+//           }
+//           else{
+//             print('msh');
+//           }
+    
+    
+//   } else {
+//     print('false');
+//   }
+// }
   void val(String email) async {
     setState(() {
       _isLoading = true;
@@ -34,44 +57,46 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
     });
     try{
       
-      Response response = await post(
-        Uri.parse('https://event-us.me/user/emailCheck/'),
+      final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email'));
         
-        body: {
-          'email' : email,
-          //'password' : '512002joee'
-        }
-      );
+      
 
       if(response.statusCode == 200){
-        print('200');
-        var data = jsonDecode(response.body.toString());
-        //if (data['exits']==false)
-        {
-        //print("exits"+data['exits']);
+        print('youssef200');
+        final json = jsonDecode(response.body);
+        if (json['email_exists'] == true) {
+          //setState(() {
+            //_responseValue = true;
+            //_isLoading = false;
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });   
+            print ('mwgood');
+             Navigator.push(context,MaterialPageRoute(builder:(context){
+                                       return PasswordPage(text:_emailController.text);
+                                  //return SignUpScreen();
+                                  }));  
+          }
+          else{
             setState(() {
       _isLoading = false;
       _errorMessage = '';
     });     
-        Navigator.push(context,MaterialPageRoute(builder:(context){
+             Navigator.push(context,MaterialPageRoute(builder:(context){
                                        return SignupPagee(text:_emailController.text);
                                   
                                   //return SignupPagee();
-                                  }));      
-        }
-        //print("token"+data['token']);
-        //print('Login successfully');
+                                  }));   
+            print('msh');
+          }
+       
+
 
       }else {
         print('failed');
-                    setState(() {
-      _isLoading = false;
-      _errorMessage = '';
-    });     
-        Navigator.push(context,MaterialPageRoute(builder:(context){
-                                       return PasswordPage(text:_emailController.text);
-                                  //return SignUpScreen();
-                                  }));   
+                    
+        
       }
     }catch(e){
       print('ypussef');
@@ -164,7 +189,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
                       //onTap: _isButtonEnable
                         //?null
                         //: (){
-                      
+                      //isEmailFound(_emailController.text.toString());
                   val(_emailController.text.toString());
                 //};
                           }:null,

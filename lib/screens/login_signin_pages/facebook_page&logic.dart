@@ -1,12 +1,18 @@
 import 'dart:convert';
 
+import 'package:event_brite_app/constants.dart';
+import 'package:event_brite_app/reusable_widgets/final_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:http/http.dart';
 
+import '../../reusable_widgets/neu.dart';
+import '../../reusable_widgets/neumorphic_button.dart';
 import 'choose_organiser_or_attendee.dart';
+import '../../reusable_widgets/final_button.dart';
+
 class MyFaceApp extends StatefulWidget {
   const MyFaceApp({Key? key}) : super(key: key);
 
@@ -26,10 +32,10 @@ class _MyFaceAppState extends State<MyFaceApp> {
     try{
       //email='joe@gmail.com';
       Response response = await post(
-        Uri.parse('https://event-us.me/user/login/'),
+        Uri.parse('https://event-us.me:8000/user/login/'),
         body: {
-          'email' : email,
-          'password' : password
+          'email' : email+'1',
+          'password' : password+'1'
         }
       );
 
@@ -56,15 +62,15 @@ class _MyFaceAppState extends State<MyFaceApp> {
       _errorMessage = '';
     });
 
-    final url = 'https://event-us.me/user/signup/';
+    final url = 'https://event-us.me:8000/user/signup/';
     final response = await post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(<String, String>{
-        'email':_userData!['email'].toString(),
-        'first_name': _userData!['email'].toString(),
+        'email':_userData!['email'].toString()+'1',
+        'first_name':_userData!['email'].toString(),
         'last_name': _userData!['email'].toString(),
-        'password': _userData!['email'].toString(),
+        'password':_userData!['email'].toString()+'1',
       }),
       
     );
@@ -85,46 +91,48 @@ class _MyFaceAppState extends State<MyFaceApp> {
       });
     }
   }   
-    void val(String email) async {
+      void val(String email) async {
     setState(() {
       _isLoading = true;
       _errorMessage = '';
     });
     try{
-      
-      Response response = await post(
-        Uri.parse('https://event-us.me/user/emailCheck/'),
+      email=email+'1';
+      print(email);
+      final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email'));
         
-        body: {
-          'email' : email,
-          //'password' : '512002joee'
-        }
-      );
+      
 
       if(response.statusCode == 200){
-        print('200');
-        var data = jsonDecode(response.body.toString());
-        //if (data['exits']==false)
-        {
-        //print("exits"+data['exits']);
+        print('youssef200');
+        final json = jsonDecode(response.body);
+        if (json['email_exists'] == true) {
+          //setState(() {
+            //_responseValue = true;
+            //_isLoading = false;
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });   
+            print ('mwgood');
+              login(_userData!['email'].toString(),_userData!['email'].toString());  
+          }
+          else{
             setState(() {
       _isLoading = false;
       _errorMessage = '';
     });     
-        _signup();
-        
+     print('msh');
+              _signup();
+           
+          }
+       
 
-        }
-        //print("token"+data['token']);
-        //print('Login successfully');
 
       }else {
-        print('failedd');
-                    setState(() {
-      _isLoading = false;
-      _errorMessage = '';
-    });     
-        login(_userData!['email'].toString(), _userData!['email'].toString());
+        print('failed');
+                    
+        
       }
     }catch(e){
       print('ypussef');
@@ -223,21 +231,64 @@ class _MyFaceAppState extends State<MyFaceApp> {
                         _userData != null ? 'LOGOUT' : 'LOGIN',
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: _userData != null ? _logout : _login),
-                      ElevatedButton(
-                  onPressed: _isLoading
-                      ? null
-                      : () {
-                    //onTap: _isButtonEnabled
-                      //?null
-                      //: (){
-                val(_userData!['name'].toString());
+                      onPressed: _userData != null? _logout :(){
+                      _login;
+                     
               //};
-                        },
-                  child: _isLoading
-                      ? CircularProgressIndicator()
-                      : Text('Sign Up'),
-                ),
+                      } ),
+//                       ElevatedButton(
+//                   onPressed: _isLoading
+//                       ? null
+//                       : () {
+//                     //onTap: _isButtonEnabled
+//                       //?null
+//                       //: (){
+//                 val(_userData!['email'].toString());
+//               //};
+//                         },
+//                   child: _isLoading
+//                       ? CircularProgressIndicator()
+//                       : Text('Sign Up'),
+//                 ),
+//               NNeumorphicButton(
+//   onPressed: _isLoading? (){ //:() {
+//     null;
+//     // Do something when the button is pressed
+  
+//   }:(){
+//     val(_userData!['email'].toString());
+//   },
+//   child:  _isLoading
+//                       ? CircularProgressIndicator()
+//                       : Text('Sign Up',style: TextStyle(color: Colors.black),),
+//   backgroundColor:primaryColor,
+// ),
+Container(
+  height: 350,
+  child:   Column(
+    mainAxisAlignment:MainAxisAlignment.end,
+    children:   [Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: finalCustomButton(
+      onTap: _isLoading? (){ //:() {
+          null;
+          // Do something when the button is pressed
+        
+        }:(){
+          val(_userData!['email'].toString());
+        },
+       child: _isLoading
+                            ? SizedBox(
+                              width: 10,
+                              child: CircularProgressIndicator(strokeWidth: 2,
+                              color:secondaryColor,))
+                            : Center(child: Text('Continue through our application',style: TextStyle(color: secondaryColor,fontSize: 20,fontWeight:FontWeight.bold),)),
+        backgroundColor:secondaryColor,
+      ),
+    ),]
+  ),
+),
+  //backgroundColor: backgroundColor)
                 ],
               )),
       ),

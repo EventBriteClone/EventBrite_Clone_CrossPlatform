@@ -46,7 +46,7 @@ class  LogInPage2 extends StatelessWidget {
               SizedBox(height: 60,),
               Text('Let\'s get started',
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 36,fontFamily: 'Neue Plak',
                 color: Colors.black,fontWeight: FontWeight.w700,
               )),
               const SizedBox(height: 20,),
