@@ -278,7 +278,7 @@ class _MyFaceAppState extends State<MyFaceApp> {
                                       width: 10,
                                       child: CircularProgressIndicator(
                                         strokeWidth: 2,
-                                        color: secondaryColor,
+                                        color: primaryColor,
                                       ))
                                   : Center(
                                       child: Text(

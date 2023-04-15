@@ -63,7 +63,7 @@ class  LogInPage2 extends StatelessWidget {
                           //return DependentDropdownMenu();
                         }));
                       },
-                child:Center(child: Text( 'Log in', style: TextStyle(fontWeight:FontWeight.bold,color: primaryColor,fontSize: 17 ),)),
+                child:Center(child: Text( 'Continue with email address', style: TextStyle(fontWeight:FontWeight.bold,color: primaryColor,fontSize: 17 ),)),
                       ),
               SizedBox(height: 15,),
                // ignore: prefer_const_constructors

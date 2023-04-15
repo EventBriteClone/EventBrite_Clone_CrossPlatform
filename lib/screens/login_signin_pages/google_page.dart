@@ -201,8 +201,8 @@ class _LoggedInPageState extends State<LoggedInPage> {
        child: _isLoading
                             ? SizedBox(
                               width: 10,
-                              child: CircularProgressIndicator(strokeWidth: 1.5,
-                              color:secondaryColor,))
+                              child: CircularProgressIndicator(strokeWidth: 2,
+                              color:primaryColor,))
                             : Center(child: Text('Continue through our application',style: TextStyle(color: secondaryColor,fontSize: 20,fontWeight:FontWeight.bold),)),
         backgroundColor:secondaryColor,
       ),
