@@ -21,6 +21,7 @@ class EventModel extends Equatable {
 	final int? capacity;
 	final String? password;
 	final String? status;
+  final dynamic? ticketPrice;
 
 	const EventModel({
 		this.id, 
@@ -43,6 +44,7 @@ class EventModel extends Equatable {
 		this.capacity, 
 		this.password, 
 		this.status, 
+    this.ticketPrice,
 	});
 
 	factory EventModel.fromJson(Map<String, dynamic> json) => EventModel(
@@ -66,6 +68,7 @@ class EventModel extends Equatable {
 				capacity: json['CAPACITY'] as int?,
 				password: json['PASSWORD'] as String?,
 				status: json['STATUS'] as String?,
+        ticketPrice: json['ticket_price'] as double?,
 			);
 
 	Map<String, dynamic> toJson() => {
@@ -114,6 +117,7 @@ class EventModel extends Equatable {
 				capacity,
 				password,
 				status,
+        ticketPrice,
 		];
 	}
 }

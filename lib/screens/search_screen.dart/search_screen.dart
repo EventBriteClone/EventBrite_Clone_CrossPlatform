@@ -120,14 +120,14 @@ class _SearchScreenState extends State<SearchScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.085,
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: 5, // will be changed later
-                        itemBuilder: (context, index) {
-                          return const EventItem(); // custom widget
-                        },
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: ListView.builder(
+                    //     itemCount: 5, // will be changed later
+                    //     itemBuilder: (context, index) {
+                    //       return const EventItem(); // custom widget
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

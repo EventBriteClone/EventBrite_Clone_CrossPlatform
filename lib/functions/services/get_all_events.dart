@@ -8,7 +8,7 @@ class Events {
         token: 'Basic a2FyZWVtc29iaGk1MEBnbWFpbC5jb206TmttbnJzMTIzIQ==');
         //print(dataUnFiltered['results']);
        List<dynamic> data = (dataUnFiltered['results']);
-  print(data);
+  // print(data);
     List<EventModel> allEventsList = [];
     for (int i = 0; i < data.length; i++) {
       allEventsList.add(EventModel.fromJson(data[i]));

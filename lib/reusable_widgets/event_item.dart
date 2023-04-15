@@ -25,8 +25,8 @@ class EventItem extends StatelessWidget {
         children: [
           Image.network(
             'https://event-us.me:8000$imageURL',
-            width: MediaQuery.of(context).size.width * 0.2,
-            height: MediaQuery.of(context).size.width * 0.2,
+            width: MediaQuery.of(context).size.width * 0.22,
+            height: MediaQuery.of(context).size.width * 0.22,
           ),
           const SizedBox(
             width: 12,
