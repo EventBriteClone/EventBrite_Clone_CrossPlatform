@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:rive/rive.dart';
 
 import '../../components/side_menu.dart';
 import '../../components/tabs/draft_events.dart';
