@@ -22,7 +22,7 @@ class LogInPage1 extends StatelessWidget {
                 style: TextStyle(
                   //decorationThickness: 500,
                   fontSize: 32,
-                  fontFamily: 'Neue Plak',
+                  fontFamily: 'Neue_Plak',
                   color: Colors.black, fontWeight: FontWeight.w700,
                 ),
               ),

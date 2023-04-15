@@ -1,3 +1,4 @@
+import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
 import 'package:flutter/material.dart';
 import 'package:event_brite_app/constants.dart';
 import '../../components/location_list_title.dart';
@@ -578,10 +579,10 @@ class _AddEventsState extends State<AddEvents> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => NextPage()),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DependentDropdownMenu()),
+          );
         },
         child: const Icon(Icons.arrow_forward),
         backgroundColor: Colors.orange,
