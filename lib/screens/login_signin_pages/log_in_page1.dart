@@ -1,3 +1,4 @@
+import 'package:event_brite_app/constants.dart';
 import 'package:event_brite_app/screens/home_page/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,7 +24,7 @@ class LogInPage1 extends StatelessWidget {
                   //decorationThickness: 500,
                   fontSize: 32,
                   fontFamily: 'Neue_Plak',
-                  color: Colors.black, fontWeight: FontWeight.w700,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -118,7 +119,7 @@ class LogInPage1 extends StatelessWidget {
                             return LogInPage2();
                           }));
                         },
-                        text: 'Log in',
+                        child:Center(child: Text( 'Log in', style: TextStyle(fontWeight:FontWeight.bold,color: primaryColor,fontSize: 17 ),)),
                       ),
                     ),
                   ],

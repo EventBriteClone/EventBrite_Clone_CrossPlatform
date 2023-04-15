@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:event_brite_app/screens/login_signin_pages/entering_email.dart';
 
+import '../../constants.dart';
 import '../../reusable_widgets/custom_Text_field.dart';
 //import 'entering_email_page.dart';
 import 'package:flutter/material.dart';
@@ -185,21 +186,13 @@ void login(String email , password) async {
                                    CustomButton(
                                                        onTap: ()
                                     {
-                                       if (formKey.currentState!.validate())
-                                       {
-                login(displayText.toString(), passwordController.text.toString());
-              
-                                    // {
-                                    //                    Navigator.push(context,MaterialPageRoute(builder:(context){
-                                    // return CchooseCustomerOrOrganiserPage();
-                                    //                    }));
-                                                     }
-                                                     else{
+                                       if (formKey.currentState!.validate()) {
+                                login(displayText.toString(),
+                                    passwordController.text.toString());
+                              } else {}
                                                      
-                                                     }
-                                    },
-                                                       text:'Log in',
-                                                  ),
+                                    },child:Center(child: Text( 'Log in', style: TextStyle(fontWeight:FontWeight.bold,color: primaryColor,fontSize: 17 ),)),
+                      ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(top:8),
                                                     child: LogOutButton(
