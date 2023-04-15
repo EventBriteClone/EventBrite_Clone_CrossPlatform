@@ -226,43 +226,26 @@ class _MyFaceAppState extends State<MyFaceApp> {
                   SizedBox(
                     height: 20,
                   ),
-                  CupertinoButton(color: Colors.blue,
-                      child: Text(
-                        _userData != null ? 'LOGOUT' : 'LOGIN',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: _userData != null? _logout :
-                      _login
-                     
-              //};
-                       ),
-//                       ElevatedButton(
-//                   onPressed: _isLoading
-//                       ? null
-//                       : () {
-//                     //onTap: _isButtonEnabled
-//                       //?null
-//                       //: (){
-//                 val(_userData!['email'].toString());
-//               //};
-//                         },
-//                   child: _isLoading
-//                       ? CircularProgressIndicator()
-//                       : Text('Sign Up'),
-//                 ),
-//               NNeumorphicButton(
-//   onPressed: _isLoading? (){ //:() {
-//     null;
-//     // Do something when the button is pressed
-  
-//   }:(){
-//     val(_userData!['email'].toString());
-//   },
-//   child:  _isLoading
-//                       ? CircularProgressIndicator()
-//                       : Text('Sign Up',style: TextStyle(color: Colors.black),),
-//   backgroundColor:primaryColor,
-// ),
+                  Neumorphic(
+                    style: NeumorphicStyle(
+        color: Colors.white70,
+        shape: NeumorphicShape.flat,
+        depth: 8,
+        intensity: 0.8,
+        lightSource: LightSource.topLeft,
+      ),
+                    child: CupertinoButton(color: Colors.white70,
+                        child: Text(
+                          _userData != null ? 'LOGOUT' : 'LOGIN',
+                          style: TextStyle(color: secondaryColor),
+                        ),
+                        onPressed: _userData != null? _logout :
+                        _login
+                       
+                                //};
+                         ),
+                  ),
+
 Container(
   height: 350,
   child:   Column(
@@ -281,7 +264,7 @@ Container(
                             ? SizedBox(
                               width: 10,
                               child: CircularProgressIndicator(strokeWidth: 2,
-                              color:secondaryColor,))
+                              color:Colors.white24))
                             : Center(child: Text('Continue through our application',style: TextStyle(color: secondaryColor,fontSize: 20,fontWeight:FontWeight.bold),)),
         backgroundColor:secondaryColor,
       ),

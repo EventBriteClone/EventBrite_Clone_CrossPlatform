@@ -179,10 +179,10 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   elevation: 8,
-                  shadowColor: Colors.black.withOpacity(0.3),
+                  shadowColor: secondaryColor.withOpacity(0.3),
                   // change the colors below to match your neumorphism design
-                  primary: Colors.grey[200],
-                  onPrimary: Colors.grey[900],
+                  primary: secondaryColor,
+                  onPrimary: primaryColor,
                 ),
                     onPressed:  _isButtonEnabled
                         ?  () {
