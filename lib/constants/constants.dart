@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../models/autocomplate_prediction.dart';
 
+//import 'dart:html' as html;
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+///The is our constants file that contains constans that might be needed in our project
+
 enum LocationSelection { Venue, OnlineEvent, ToBeAnnonuced }
 
 enum DateSelection { SingleEvent, RecurringEvent }
 
-///for icon:
+//for icon:
 const IconData location_on = IconData(0xe3ab, fontFamily: 'MaterialIcons');
 
-///api key:
+//api key:
 const String apiKey = "AIzaSyCCK4oTJvUUCiu779l_HXak8cqeUqC2u9A";
 
 List<AutocompletePrediction> placePredictions = [];
 
-final List<String> organizer = ['organizer', 'Mahinour Alaa'];
-
-///SHOULD BE GOTTEN FROM BACKEND
 final List<String> type = [
   'Type',
   'Appearance or Singing',
@@ -67,3 +69,11 @@ final List<String> category = [
 ];
 
 final List<String> location = ['Venue', 'Online Event', 'To be Announced'];
+
+final List<String> Organizer = ['Organizer', 'Mahy '];
+
+//const bool kIsWeb = bool.fromEnvironment('dart.library.js_util');
+
+
+//const bool kIsWeb = identical(0, 0.0) && html.window != null;
+

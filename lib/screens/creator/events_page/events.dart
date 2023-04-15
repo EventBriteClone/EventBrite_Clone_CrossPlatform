@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:organizer/components/side_menu.dart';
+import 'package:organizer/components/main_side_menu.dart';
 import 'package:organizer/tabs/draft_events.dart';
 import 'package:organizer/tabs/live_events.dart';
 import 'package:organizer/tabs/past_events.dart';
 import 'package:rive/rive.dart';
 
-import 'add_event.dart';
+import '../../../reusable_widgets/app_bar.dart';
+import '../create_event/add_event_p_one.dart';
 
-///our event page (main page):
+//our event page (main page):
+/*
+    1. it has the scaffold which has app bar
+      our app bar has: title : Events
+      it also has a search icon on the top
+      and has this options (3 lines) on the left   //to be done later
 
-///1. it has the scaffold which has app bar
-///our app bar has: title : Events
-///it also has a search icon on the top
-///and has this options (3 lines) on the left   //to be done later
+      //we will need a body that has column widget consisting of 2 parts
+    2. it has a row widget above that includes past live and draft events    ==> this will be gesture detectors and then we would need listtitles for each of the 3 
+       when each is pressed it opens anew widget that has the events
 
-///we will need a body that has column widget consisting of 2 parts
-///2. it has a row widget above that includes past live and draft events    ==> this will be gesture detectors and then we would need listtitles for each of the 3
-///when each is pressed it opens anew widget that has the events
+       //floating action points:
+    3. we have an csv export icon at the bottom left
+    4. we have a + icon to add a new event at bottom right
+*/
 
-///floating action points:
-///3. we have an csv export icon at the bottom left
-///4. we have a + icon to add a new event at bottom right
+//it is stateful widget as it will be interactive
 
-///it is stateful widget as it will be interactive
-
-///for rive:
-//const riveFile = 'assets/loading.riv';
+/// This [EventPage] is a [StatefulWidget] where it has [Scaffold] that consists of main appbar, body and 2 floating action points
+/// It has a search idon on top to search for events
+/// It has a [Drawer] for the sidemenu for navigation
+/// It has a [tabBar] that has 3 tabs for live, past and draft events
+/// the 2 [floatingActionButtons] are used for Exporting to csv file or for adding or creating new events
 
 class EventPage extends StatefulWidget {
   //we will remove the const keyword from here as it will change
@@ -37,60 +42,22 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
-  ///my variables:
-  //int selectedGestureDetector = -1;
-  // Artboard? _artboard;
-  // RiveAnimationController? _animationController;
-  // @override
-  // void initState() {
-  //   _loadRiveFile();
-  //   super.initState();
-  // }
-
-//.functions":
+//functions":
   exportToCsv() {}
 
-  // void _loadRiveFile() async {
-  //   final bytes = await rootBundle.load(riveFile);
-  //   RiveFile rFile = RiveFile.import(bytes);
-  // }
-
-  ///start of build widget:
+  //start of build widget:
   @override
   Widget build(BuildContext context) {
-    ///since we need a tab bar we will wrap pur scaffold with it
+    //since we need a tab bar we will wrap pur scaffold with it
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        ///our app bar:  it contains title and 2 icons
+        //our app bar:  it contains title and 2 icons
 
-        appBar: AppBar(
-          // leading: IconButton(
-          //   icon: Icon(Icons.menu),
-          //   onPressed: () {
-          //     //will open side menu    //this will be done in another file
-          //     SideMenu();
-          //   },
-          // ),
-          title: Text(
-            'Events',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-          ), //our title
-          backgroundColor: Color.fromARGB(255, 13, 5, 37),
-          actions: [
-            IconButton(
-              onPressed: () {},
-
-              ///navigate to search page
-              icon: Icon(Icons.search),
-            )
-          ],
-        ),
-
-        ///drawer:  for the sidemenu
+        appBar: AppBarWidget(),
+        //drawer:  for the sidemenu
         drawer: SideMenu(),
-
-        ///our body:
+        //our body:
 
         body: Column(
           children: [
@@ -100,9 +67,8 @@ class _EventPageState extends State<EventPage> {
                   'Live',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color.fromARGB(236, 77, 77, 77),
-
-                    /// set the text color here
+                    color: Color.fromARGB(
+                        236, 77, 77, 77), // set the text color here
                   ),
                 ),
               ),
@@ -111,9 +77,8 @@ class _EventPageState extends State<EventPage> {
                   'Past',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color.fromARGB(236, 77, 77, 77),
-
-                    /// set the text color here
+                    color: Color.fromARGB(
+                        236, 77, 77, 77), // set the text color here
                   ),
                 ),
               ),
@@ -122,15 +87,14 @@ class _EventPageState extends State<EventPage> {
                   'Draft',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color.fromARGB(236, 77, 77, 77),
-
-                    /// set the text color here
+                    color: Color.fromARGB(
+                        236, 77, 77, 77), // set the text color here
                   ),
                 ),
               )
             ]),
 
-            ///we need a tab bar view for the content of our 3 tabs:
+            //we need a tab bar view for the content of our 3 tabs:
             Expanded(
               child: TabBarView(children: [
                 //1st tab:
@@ -155,7 +119,7 @@ class _EventPageState extends State<EventPage> {
               FloatingActionButton(
                   heroTag: null,
                   onPressed: () {
-                    ///a function to export to csv
+                    //a function to export to csv
 
                     // exportToCsv();
                   },

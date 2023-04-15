@@ -1,16 +1,16 @@
 class AutocompletePrediction {
-  /// [description] contains the human readable name for the returned result
-  ///the business name
+  // [description] contains the human readable name for the returned result
+  //the business name
   final String? description;
 
   /// [structuredFormatting] provides pre formatted text that can be shown
   final StructuredFormatting? structuredFormatting;
 
-  /// [placeID] is a textual identifier that uniquely identifies a place.
-  /// to pass this identifier in placeID field of a places API request
+  // [placeID] is a textual identifier that uniquely identifies a place.
+  // to pass this identifier in placeID field of a places API request
   final String? placeID;
 
-  /// [refernce] contains reference
+  //[refernce] contains reference
   final String? reference;
 
   AutocompletePrediction({
