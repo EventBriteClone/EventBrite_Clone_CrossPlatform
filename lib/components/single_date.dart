@@ -25,151 +25,139 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
   Widget build(BuildContext context) {
     return Consumer<DateSelectionModel>(
       builder: (BuildContext context, model, Widget? child) => Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
         //For a single event:
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  child: TextFormField(
-                    onTap: () {
-                      model.showDatePickerStart(context);
-                    },
-                    //_showDatePickerStart,
-                    controller: model.dateControllerStart,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.calendar_month_outlined),
-                        labelText: 'Event Starts   ',
-                        hintText: '05/02/2023',
-                        labelStyle: TextStyle(
-                          fontSize: 18,
-                        ),
-                        border: OutlineInputBorder(),
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 10),
-                        suffixIcon: const Text(
-                          '*',
-                          style: TextStyle(color: Colors.red, fontSize: 24),
-                        )),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'This field is required';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  child: TextFormField(
-                    onTap: () {
-                      model.showTimePickerStart(context);
-                    },
-                    controller: model.timeControllerStart,
-                    decoration: const InputDecoration(
-                      labelText: 'Start Time ',
-                      hintText: '7:00 PM',
-                      labelStyle: TextStyle(
-                        fontSize: 18,
-                      ),
-                      border: OutlineInputBorder(),
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 10),
-                      suffixIcon: const Text(
-                        '*',
-                        style: TextStyle(color: Colors.red, fontSize: 24),
-                      ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              //width: MediaQuery.of(context).size.width * 0.8,
+              child: TextFormField(
+                onTap: () {
+                  model.showDatePickerStart(context);
+                },
+                //_showDatePickerStart,
+                controller: model.dateControllerStart,
+                decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.calendar_month_outlined),
+                    labelText: 'Event Starts   ',
+                    hintText: '05/02/2023',
+                    labelStyle: TextStyle(
+                      fontSize: 18,
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'This field is required';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
+                    border: OutlineInputBorder(),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                    suffixIcon: const Text(
+                      '*',
+                      style: TextStyle(color: Colors.red, fontSize: 24),
+                    )),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'This field is required';
+                  }
+                  return null;
+                },
               ),
-            ],
+            ),
           ),
-          const SizedBox(
-            height: 20,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              //width: MediaQuery.of(context).size.width * 0.45,
+              child: TextFormField(
+                onTap: () {
+                  model.showTimePickerStart(context);
+                },
+                controller: model.timeControllerStart,
+                decoration: const InputDecoration(
+                  labelText: 'Start Time ',
+                  hintText: '7:00 PM',
+                  labelStyle: TextStyle(
+                    fontSize: 18,
+                  ),
+                  border: OutlineInputBorder(),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                  suffixIcon: const Text(
+                    '*',
+                    style: TextStyle(color: Colors.red, fontSize: 24),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'This field is required';
+                  }
+                  return null;
+                },
+              ),
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  child: TextFormField(
-                    onTap: () {
-                      model.showDatePickerEnd(context);
-                    },
-                    controller: model.dateControllerEnd,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.calendar_month_outlined),
-                      hintText: '05/02/2023',
-                      labelText: 'Event Ends  ',
-                      labelStyle: TextStyle(
-                        fontSize: 18,
-                      ),
-                      border: OutlineInputBorder(),
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 10),
-                      suffixIcon: const Text(
-                        '*',
-                        style: TextStyle(color: Colors.red, fontSize: 24),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'This field is required';
-                      }
-                      return null;
-                    },
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              // width: MediaQuery.of(context).size.width * 0.45,
+              child: TextFormField(
+                onTap: () {
+                  model.showDatePickerEnd(context);
+                },
+                controller: model.dateControllerEnd,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.calendar_month_outlined),
+                  hintText: '05/02/2023',
+                  labelText: 'Event Ends  ',
+                  labelStyle: TextStyle(
+                    fontSize: 18,
+                  ),
+                  border: OutlineInputBorder(),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                  suffixIcon: const Text(
+                    '*',
+                    style: TextStyle(color: Colors.red, fontSize: 24),
                   ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'This field is required';
+                  }
+                  return null;
+                },
               ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  child: TextFormField(
-                    onTap: () {
-                      model.showTimePickerEnd(context);
-                    },
-                    controller: model.timeControllerEnd,
-                    decoration: const InputDecoration(
-                      labelText: 'End Time  ',
-                      hintText: ' 10:00 PM',
-                      labelStyle: TextStyle(
-                        fontSize: 18,
-                      ),
-                      border: OutlineInputBorder(),
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 10),
-                      suffixIcon: const Text(
-                        '*',
-                        style: TextStyle(color: Colors.red, fontSize: 24),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'This field is required';
-                      }
-                      return null;
-                    },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              //width: MediaQuery.of(context).size.width * 0.45,
+              child: TextFormField(
+                onTap: () {
+                  model.showTimePickerEnd(context);
+                },
+                controller: model.timeControllerEnd,
+                decoration: const InputDecoration(
+                  labelText: 'End Time  ',
+                  hintText: ' 10:00 PM',
+                  labelStyle: TextStyle(
+                    fontSize: 18,
+                  ),
+                  border: OutlineInputBorder(),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                  suffixIcon: const Text(
+                    '*',
+                    style: TextStyle(color: Colors.red, fontSize: 24),
                   ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'This field is required';
+                  }
+                  return null;
+                },
               ),
-            ],
+            ),
           ),
           const SizedBox(
             height: 20,

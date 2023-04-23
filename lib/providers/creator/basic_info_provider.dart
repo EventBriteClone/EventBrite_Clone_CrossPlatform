@@ -24,7 +24,7 @@ class BasicInfoFormDataProvider extends ChangeNotifier {
     bool displayStartTimeSingle,
     bool displayEndTimeSingle,
     bool displayEndTimeRecurring,
-    String singleOrRecurring,
+    // String singleOrRecurring,
     String organzier,
     String status,
     String online,
@@ -69,7 +69,7 @@ class BasicInfoFormDataProvider extends ChangeNotifier {
     _formData.display_start_time_Single = displayStartTimeSingle;
     _formData.display_end_time_Single = displayEndTimeSingle;
     _formData.display_end_time_Recurring = displayEndTimeRecurring;
-    _formData.singleOrRecurring = singleOrRecurring;
+    // _formData.singleOrRecurring = singleOrRecurring;
     notifyListeners();
   }
 

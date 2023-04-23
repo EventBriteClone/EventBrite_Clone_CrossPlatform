@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 
 import '../../helper/api.dart';
 import '../../models/basic_info_form.dart';
-
 
 class CreateEventService {
   Future<dynamic> createEvent({
@@ -39,48 +39,58 @@ class CreateEventService {
     required String? PASSWORD,
   }) async {
 // Format the start and end dates as dd/mm/yyyy
-    String formattedDateStart = DateFormat('dd/MM/yyyy').format(eventStart!);
-    String formattedDateEnd = DateFormat('dd/MM/yyyy').format(eventEnd!);
+    print(eventStart);
+    String formattedDateStart = DateFormat('yyyy-MM-dd').format(eventStart!);
+    String formattedDateEnd = DateFormat('yyyy-MM-dd').format(eventEnd!);
+
+    print(formattedDateEnd);
+    print(formattedDateStart);
 
 // Format the start and end times as --:-- --
-    String formattedStartTime = DateFormat('hh:mm a')
+    String formattedStartTime = DateFormat('hh:mm:ss')
         .format(DateTime(1, 1, 1, startTime!.hour, startTime.minute));
-    String formattedEndTime = DateFormat('hh:mm a')
+    String formattedEndTime = DateFormat('hh:mm:ss')
         .format(DateTime(1, 1, 1, endTime!.hour, endTime.minute));
 
-    Map<String, dynamic> data = await Api().post(
-        url: 'http://event-us.me:8000/events/create',
-        body: {
-          // "id": 0,
-          "image":
-              "https://127.0.0.1:8000/media/events/${eventImage!.path.split('/').last}",
-          "ID": 2247453646.toString(),
-          "User_id": 2247453646.toString(),
-          "Title": eventTitle,
-          "organizer": organizer,
-          "Summery": summary,
-          "Description": eventDesc,
-          "type": type,
-          "category_name": category,
-          "sub_Category": ' ',
-          "venue_name": venueLocation,
-          "ST_DATE": formattedDateStart,
-          "END_DATE": formattedDateEnd,
-          "ST_TIME": formattedStartTime,
-          "END_TIME": formattedEndTime,
-          "online": online,
-          "CAPACITY": 30.toString(),
-          "PASSWORD": '123',
-          "STATUS": status,
-        },
-        token: '55c8705b56499f311a6966ad60600d4c28b9f468');
+    print(
+        "https://127.0.0.1:8000/media/events/${eventImage!.path.split('/').last}");
 
-    return BasicInfoFormData.fromJson(data);
+    final response = await Api().postWithFile(
+      url: 'https://event-us.me:8000/events/create/',
+      body: {
+        'ID': 2110480642.toString(),
+        'User_id': 2110480640.toString(),
+        'Title': eventTitle,
+        'organizer': organizer,
+        'Summery': summary,
+        'Description': eventDesc,
+        'type': type,
+        'category_name': category,
+        'sub_Category': "bla",
+        'venue_name': venueLocation,
+        'ST_DATE': formattedDateStart,
+        'END_DATE': formattedDateEnd,
+        'ST_TIME': formattedStartTime,
+        'END_TIME': formattedEndTime,
+        'online': online,
+        'CAPACITY': 30.toString(),
+        'PASSWORD': "123",
+        'STATUS': status,
+      },
+      file: eventImage,
+      token: 'Basic a2FyZWVtc29iaGk1MEBnbWFpbC5jb206TmttbnJzMTIzIQ==',
+    );
+
+    return BasicInfoFormData.fromJson(response);
+
+    //return BasicInfoFormData.fromJson(data);
   }
 }
 
 
 /*
+
+
 18:
 {
   "id": 0,

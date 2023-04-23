@@ -113,6 +113,7 @@ class LogInPage1 extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomButton(
+                        key: ValueKey("login Button"),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {

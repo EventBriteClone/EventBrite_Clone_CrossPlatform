@@ -2,33 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/basic_info_form.dart';
+import '../models/event_model.dart';
 import '../screens/creator/create_event/add_event_p_one.dart';
 
 class DraftComponent extends StatelessWidget {
-  final BasicInfoFormData event;
+  final EventModel event;
 
   const DraftComponent({Key? key, required this.event}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String formattedDateStart = '';
-    String formattedDateEnd = '';
-    String formattedStartTime = '';
-    String formattedEndTime = '';
+    String? eventStDate = event.stDate;
+    String? eventEndDate = event.endDate;
+    String? eventStTime = event.stTime;
+    String? eventEndTime = event.endTime;
 
-    final eventStart = event.eventStart!;
-    final eventEnd = event.eventEnd!;
-    final startTime = event.startTime!;
-    final endTime = event.endTime!;
-    formattedDateStart = eventStart.toString().substring(0, 10);
-    formattedDateStart = DateFormat('E, d MMM ').format(eventStart);
-    formattedDateEnd = eventEnd.toString().substring(0, 10);
-    formattedDateEnd = DateFormat('E, d MMM ').format(eventEnd);
+    final eventStDateD = DateTime.parse(eventStDate!);
+    final eventEndDateD = DateTime.parse(eventEndDate!);
 
-    formattedStartTime = DateFormat.jm()
+    final List<String> stTimeSplit = eventStTime!.split(':');
+    final List<String> endTimeSplit = eventEndTime!.split(':');
+    final TimeOfDay startTime = TimeOfDay(
+        hour: int.parse(stTimeSplit[0]), minute: int.parse(stTimeSplit[1]));
+    final TimeOfDay endTime = TimeOfDay(
+        hour: int.parse(endTimeSplit[0]), minute: int.parse(endTimeSplit[1]));
+
+    final formattedStartTime = DateFormat.jm()
         .format(DateTime(1, 1, 1, startTime.hour, startTime.minute));
-    formattedEndTime =
+    final formattedEndTime =
         DateFormat.jm().format(DateTime(1, 1, 1, endTime.hour, endTime.minute));
+
+    final formattedeventStDate = DateFormat('E, d MMM ').format(eventStDateD);
+    final formattedeventEndDate = DateFormat('E, d MMM ').format(eventEndDateD);
 
     return GestureDetector(
       onTap: () {
@@ -65,7 +70,7 @@ class DraftComponent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  event.eventTitle!,
+                  event.title!,
                   style: TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 ),
@@ -73,7 +78,9 @@ class DraftComponent extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  '$formattedDateStart , $formattedStartTime',
+                  //'$formattedDateStart , $formattedStartTime',
+
+                  '$formattedeventStDate ,  $formattedStartTime',
                   style: TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 )

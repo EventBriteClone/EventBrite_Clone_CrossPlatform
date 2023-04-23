@@ -2,7 +2,7 @@
 
 import 'dart:math';
 import 'package:event_brite_app/screens/login_signin_pages/log_in_page1.dart';
-import 'package:event_brite_app/screens/search_screen.dart/search_screen.dart';
+import 'package:event_brite_app/screens/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants.dart';

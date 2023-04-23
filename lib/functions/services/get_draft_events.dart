@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 
 import '../../helper/api.dart';
 import '../../models/basic_info_form.dart';
+import '../../models/event_model.dart';
 
 ///[AllDraftEventsServices] is a class related to draft events
 ///It consists of a m[Future] method of type [BasicInfoFormData] which is [getAllDraftEvents]
@@ -12,20 +13,24 @@ import '../../models/basic_info_form.dart';
 ///The method returns a [List] at the end of all draft events
 
 class AllDraftEventsServices {
-  Future<List<BasicInfoFormData>> getAllDraftEvents() async {
-    Map<String, dynamic> data = await Api().getM(
+  Future<List<EventModel>> getAllDraftEvents() async {
+    Map<String, dynamic> dataUnFiltered = await Api().getM(
         url: 'https://event-us.me:8000/events/ALL/?STATUS=Draft',
-        token: '55c8705b56499f311a6966ad60600d4c28b9f468');
+        token: 'Basic a2FyZWVtc29iaGk1MEBnbWFpbC5jb206TmttbnJzMTIzIQ==');
 
-    List<BasicInfoFormData> eventDraftsList = [];
-    for (int i = 0; i < data['results'].length; i++) {
+    List<dynamic> data = (dataUnFiltered['results']);
+
+    List<EventModel> eventDraftsList = [];
+    for (int i = 0; i < data.length; i++) {
       eventDraftsList.add(
-        BasicInfoFormData.fromJson(data['results'][i]),
+        EventModel.fromJson(data[i]),
       );
     }
     return eventDraftsList;
   }
 }
+
+
 
 /*
 {
