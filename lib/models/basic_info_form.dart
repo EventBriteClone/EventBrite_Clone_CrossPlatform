@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 /// we have [organzier]
 /// [status] indicates whether event is draft , live or past
 /// [online] indicates whether event is online or not
-
 class BasicInfoFormData {
   String? eventTitle;
   String? type;

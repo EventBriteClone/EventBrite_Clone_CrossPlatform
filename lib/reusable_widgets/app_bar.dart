@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:organizer/components/inside_side_menu.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({

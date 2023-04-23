@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants/constants.dart';
-import '../utils/build_drop_menu_items.dart';
+
+import '../functions/utils/build_drop_menu_items.dart';
 import '../providers/common_providers/dropd_down_state_provider.dart';
 
 /// A custom [DropDownListWidget]  that displays a dropdown list with provided [items]

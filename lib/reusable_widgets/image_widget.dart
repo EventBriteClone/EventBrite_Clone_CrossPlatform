@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
 import 'empty_image_widget.dart';
 
 import 'dart:convert';

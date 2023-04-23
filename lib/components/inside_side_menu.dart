@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:organizer/providers/creator/basic_info_provider.dart';
-import 'package:organizer/reusable_widgets/item_side_menu_widget_without_icon.dart';
-import 'package:organizer/screens/creator/basic_info/basic_info.dart';
-import 'package:organizer/screens/creator/basic_info/dashboard.dart';
-import 'package:organizer/screens/creator/basic_info/manage_attendees.dart';
-import 'package:organizer/screens/creator/basic_info/publish.dart';
-import 'package:organizer/screens/creator/basic_info/tickets.dart';
-import 'package:organizer/screens/creator/events_page/events.dart';
 import 'package:provider/provider.dart';
 
+import '../functions/utils/back_button_to_events.dart';
+import '../providers/creator/basic_info_provider.dart';
 import '../providers/creator/icon_state_provider.dart';
 import '../reusable_widgets/item_side_menu_widget_with_icon.dart';
-import '../utils/back_button_to_events.dart';
+import '../reusable_widgets/item_side_menu_widget_without_icon.dart';
+import '../screens/creator/basic_info/basic_info.dart';
+import '../screens/creator/basic_info/dashboard.dart';
+import '../screens/creator/basic_info/manage_attendees.dart';
+import '../screens/creator/basic_info/publish.dart';
+import '../screens/creator/basic_info/tickets.dart';
+
 
 ///This is a function to build the drawer for the side menu that exists inside [BasicInfo] page
 ///It helps navigate between these pages=> [BasicInfo], [Publish], [Tickets], [Dashboard], [ManageAttendees]

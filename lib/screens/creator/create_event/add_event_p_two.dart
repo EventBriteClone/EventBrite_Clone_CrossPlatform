@@ -2,17 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:organizer/reusable_widgets/app_bar.dart';
-import 'package:organizer/screens/creator/basic_info/basic_info.dart';
-import 'package:organizer/screens/creator/create_event/add_event_p_one.dart';
 import 'package:provider/provider.dart';
 
+import '../../../functions/services/create_event.dart';
 import '../../../providers/creator/basic_info_provider.dart';
 import '../../../providers/creator/details_provider.dart';
+import '../../../reusable_widgets/app_bar.dart';
 import '../../../reusable_widgets/heading_description_widget.dart';
 import '../../../reusable_widgets/heading_widget.dart';
 import '../../../reusable_widgets/text_form_field.dart';
-import '../../../services/create_event.dart';
+import '../basic_info/basic_info.dart';
 import '../events_page/events.dart';
 
 class AddDetails extends StatefulWidget {

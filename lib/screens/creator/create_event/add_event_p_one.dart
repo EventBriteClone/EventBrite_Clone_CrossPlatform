@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:organizer/helpers/api.dart';
-import 'package:organizer/models/basic_info_form.dart';
-import 'package:organizer/screens/creator/basic_info/basic_info.dart';
-import 'package:organizer/utils/back_button_to_events.dart';
 import 'package:provider/provider.dart';
 import '../../../components/location_list_title.dart';
-import 'package:organizer/models/place_auto_complete_response';
-import 'package:organizer/constants/constants.dart';
 import '../../../components/recurring_date.dart';
 import '../../../components/single_date.dart';
+import '../../../constants.dart';
+import '../../../functions/utils/back_button_to_events.dart';
+import '../../../helper/api.dart';
+import '../../../models/place_auto_complete_response';
 import '../../../providers/creator/basic_info_provider.dart';
 import '../../../providers/creator/date_selection_provider.dart';
 import '../../../reusable_widgets/drop_down_list_widget.dart';
@@ -372,107 +370,108 @@ class _AddEventsState extends State<AddEvents> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _isPressedSingle
-                                      ? const Color.fromARGB(150, 208, 214, 246)
-                                      : Colors.white, // background color
-                                  onPrimary: _isPressedSingle
-                                      ? Colors.white
-                                      : Colors.grey, // foreground color
-                                  //backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(3),
-                                      side: BorderSide(
-                                        color: _isPressedSingle
-                                            ? const Color.fromARGB(
-                                                255, 100, 117, 224)
-                                            : Colors.grey,
-                                      )),
-                                  elevation: 0,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedDateButton =
-                                        DateSelection.SingleEvent;
-                                    _isPressedSingle = !_isPressedSingle;
-                                    _isPressedRecurring = false;
-                                  });
-                                },
-                                child: Text(
-                                  'Single Event',
-                                  style: TextStyle(
-                                      color: _isPressedSingle
-                                          ? const Color.fromARGB(
-                                              255, 100, 117, 224)
-                                          : Colors.black,
-                                      fontSize: 16,
-                                      fontFamily: "Poppins"),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _isPressedRecurring
-                                      ? const Color.fromARGB(150, 208, 214, 246)
-                                      : Colors.white, // background color
-                                  onPrimary: _isPressedRecurring
-                                      ? Colors.white
-                                      : Colors.grey, // foreground color
-                                  //backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(3),
-                                      side: BorderSide(
-                                        color: _isPressedRecurring
-                                            ? const Color.fromARGB(
-                                                255, 100, 117, 224)
-                                            : Colors.grey,
-                                      )),
-                                  elevation: 0,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedDateButton =
-                                        DateSelection.RecurringEvent;
-                                    _isPressedRecurring = !_isPressedRecurring;
-                                    _isPressedSingle = false;
-                                  });
-                                },
-                                child: Text(
-                                  'Recurring Event',
-                                  style: TextStyle(
-                                      color: _isPressedRecurring
-                                          ? const Color.fromARGB(
-                                              255, 100, 117, 224)
-                                          : Colors.black,
-                                      fontSize: 16,
-                                      fontFamily: "Poppins"),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Flexible(
-                          child:
-                              _selectedDateButton == DateSelection.SingleEvent
-                                  ? const DateSelectionWidget()
-                                  : _selectedDateButton ==
-                                          DateSelection.RecurringEvent
-                                      ? const RecurringDateButtonWidget()
-                                      : const DateSelectionWidget(),
-                        )
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     SizedBox(
+                        //       height: MediaQuery.of(context).size.height * 0.07,
+                        //       width: MediaQuery.of(context).size.width * 0.45,
+                        //       child: ElevatedButton(
+                        //         style: ElevatedButton.styleFrom(
+                        //           primary: _isPressedSingle
+                        //               ? const Color.fromARGB(150, 208, 214, 246)
+                        //               : Colors.white, // background color
+                        //           onPrimary: _isPressedSingle
+                        //               ? Colors.white
+                        //               : Colors.grey, // foreground color
+                        //           //backgroundColor: Colors.white,
+                        //           shape: RoundedRectangleBorder(
+                        //               borderRadius: BorderRadius.circular(3),
+                        //               side: BorderSide(
+                        //                 color: _isPressedSingle
+                        //                     ? const Color.fromARGB(
+                        //                         255, 100, 117, 224)
+                        //                     : Colors.grey,
+                        //               )),
+                        //           elevation: 0,
+                        //         ),
+                        //         onPressed: () {
+                        //           setState(() {
+                        //             _selectedDateButton =
+                        //                 DateSelection.SingleEvent;
+                        //             _isPressedSingle = !_isPressedSingle;
+                        //             _isPressedRecurring = false;
+                        //           });
+                        //         },
+                        //         child: Text(
+                        //           'Single Event',
+                        //           style: TextStyle(
+                        //               color: _isPressedSingle
+                        //                   ? const Color.fromARGB(
+                        //                       255, 100, 117, 224)
+                        //                   : Colors.black,
+                        //               fontSize: 16,
+                        //               fontFamily: "Poppins"),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     SizedBox(
+                        //       height: MediaQuery.of(context).size.height * 0.07,
+                        //       width: MediaQuery.of(context).size.width * 0.45,
+                        //       child: ElevatedButton(
+                        //         style: ElevatedButton.styleFrom(
+                        //           primary: _isPressedRecurring
+                        //               ? const Color.fromARGB(150, 208, 214, 246)
+                        //               : Colors.white, // background color
+                        //           onPrimary: _isPressedRecurring
+                        //               ? Colors.white
+                        //               : Colors.grey, // foreground color
+                        //           //backgroundColor: Colors.white,
+                        //           shape: RoundedRectangleBorder(
+                        //               borderRadius: BorderRadius.circular(3),
+                        //               side: BorderSide(
+                        //                 color: _isPressedRecurring
+                        //                     ? const Color.fromARGB(
+                        //                         255, 100, 117, 224)
+                        //                     : Colors.grey,
+                        //               )),
+                        //           elevation: 0,
+                        //         ),
+                        //         onPressed: () {
+                        //           setState(() {
+                        //             _selectedDateButton =
+                        //                 DateSelection.RecurringEvent;
+                        //             _isPressedRecurring = !_isPressedRecurring;
+                        //             _isPressedSingle = false;
+                        //           });
+                        //         },
+                        //         child: Text(
+                        //           'Recurring Event',
+                        //           style: TextStyle(
+                        //               color: _isPressedRecurring
+                        //                   ? const Color.fromARGB(
+                        //                       255, 100, 117, 224)
+                        //                   : Colors.black,
+                        //               fontSize: 16,
+                        //               fontFamily: "Poppins"),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                        // const SizedBox(
+                        //   height: 20,
+                        // ),
+                        // Flexible(
+                        //   child:
+                        //       _selectedDateButton == DateSelection.SingleEvent
+                        //           ? const DateSelectionWidget()
+                        //           : _selectedDateButton ==
+                        //                   DateSelection.RecurringEvent
+                        //               ? const RecurringDateButtonWidget()
+                        //               : const DateSelectionWidget(),
+                        // ),
+                        const DateSelectionWidget(),
                       ],
                     ),
 
@@ -509,12 +508,12 @@ class _AddEventsState extends State<AddEvents> {
 
           if (_formKey.currentState!.validate()) {
             // if the form is valid, save the data
-            String? singleorRecurring;
-            if (_selectedDateButton == DateSelection.SingleEvent) {
-              singleorRecurring = 'Single';
-            } else {
-              singleorRecurring = 'Recurring';
-            }
+            // String? singleorRecurring;
+            // if (_selectedDateButton == DateSelection.SingleEvent) {
+            //   singleorRecurring = 'Single';
+            // } else {
+            //   singleorRecurring = 'Recurring';
+            // }
 
             String? _online = 'False';
             if (_selectedLocationInput == 'Online Event') {
@@ -536,7 +535,7 @@ class _AddEventsState extends State<AddEvents> {
               dateSelectionState.isChecked1,
               dateSelectionState.isChecked2,
               dateSelectionState.isChecked3,
-              singleorRecurring,
+              //singleorRecurring,
               _organizer!,
               _status,
               _online,

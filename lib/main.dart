@@ -1,23 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:organizer/components/single_date.dart';
-import 'package:organizer/providers/common_providers/dropd_down_state_provider.dart';
-import 'package:organizer/providers/creator/basic_info_provider.dart';
-import 'package:organizer/providers/creator/date_selection_provider.dart';
-import 'package:organizer/providers/creator/details_provider.dart';
-import 'package:organizer/providers/creator/icon_state_provider.dart';
-import 'package:organizer/providers/creator/side_menu_icon_state_provider.dart';
-import 'package:organizer/screens/creator/basic_info/basic_info.dart';
-import 'package:organizer/screens/creator/create_event/add_event_p_one.dart';
-import 'package:organizer/screens/creator/create_event/add_event_p_two.dart';
-import 'package:organizer/screens/creator/events_page/events.dart';
-import 'package:provider/provider.dart';
+// ignore_for_file: use_key_in_widget_constructors
 
-void main() {
-  runApp(const EventBriteapp());
+import 'dart:io';
+
+import 'package:event_brite_app/providers/common_providers/dropd_down_state_provider.dart';
+import 'package:event_brite_app/providers/creator/basic_info_provider.dart';
+import 'package:event_brite_app/providers/creator/date_selection_provider.dart';
+import 'package:event_brite_app/providers/creator/details_provider.dart';
+import 'package:event_brite_app/providers/creator/icon_state_provider.dart';
+import 'package:event_brite_app/providers/creator/side_menu_icon_state_provider.dart';
+import 'package:event_brite_app/screens/creator/events_page/events.dart';
+import 'package:event_brite_app/screens/home_page/home_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'screens/splash_screen/splash_screen.dart';
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
 }
 
-class EventBriteapp extends StatelessWidget {
-  const EventBriteapp({super.key});
+void main()async {
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(const MyApp());
+}
+///youssef is here
+class MyApp extends StatelessWidget {
+  const MyApp({key});
 
   // This widget is the root of your application.
   @override
@@ -31,13 +41,14 @@ class EventBriteapp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => DateSelectionModel()),
         ChangeNotifierProvider(create: (_) => SideMenuItemState()),
       ],
-      child: const MaterialApp(
-        home: EventPage(),
-        //home: AddDetails(),
-        //home: BasicInfo(),
-        //home: AddEvents(),
-        //debugShowCheckedModeBanner: false,
+      child: MaterialApp(
+        theme: ThemeData(fontFamily: 'Neue Plak'),
+        home: const EventPage(),
+        //HomeScreen(selectedIndex: 0),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
 }
+
+

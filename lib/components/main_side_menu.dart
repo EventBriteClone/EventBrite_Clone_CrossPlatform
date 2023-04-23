@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:organizer/components/info_cards.dart';
-import 'package:rive/rive.dart';
+
+import 'info_cards.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});

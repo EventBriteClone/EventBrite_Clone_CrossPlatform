@@ -2,18 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:organizer/components/main_side_menu.dart';
-import 'package:organizer/models/basic_info_form.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../components/basic_info_details/event_date.dart';
-
 import '../../../components/basic_info_details/event_tickets.dart';
 import '../../../components/basic_info_details/event_title_component.dart';
 import '../../../components/basic_info_details/event_type_category.dart';
 import '../../../components/basic_info_details/event_venue.dart';
 import '../../../components/inside_side_menu.dart';
-
 import '../../../providers/creator/basic_info_provider.dart';
 import '../../../providers/creator/details_provider.dart';
 import '../../../reusable_widgets/app_bar.dart';

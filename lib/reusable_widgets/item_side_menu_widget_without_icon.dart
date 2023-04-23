@@ -54,7 +54,6 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:organizer/screens/creator/basic_info/basic_info.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/creator/icon_state_provider.dart';

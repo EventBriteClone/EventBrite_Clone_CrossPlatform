@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:organizer/components/main_side_menu.dart';
-import 'package:organizer/tabs/draft_events.dart';
-import 'package:organizer/tabs/live_events.dart';
-import 'package:organizer/tabs/past_events.dart';
-import 'package:rive/rive.dart';
-
+import '../../../components/main_side_menu.dart';
+import '../../../components/tabs/draft_events.dart';
+import '../../../components/tabs/live_events.dart';
+import '../../../components/tabs/past_events.dart';
 import '../../../reusable_widgets/app_bar.dart';
 import '../create_event/add_event_p_one.dart';
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:organizer/components/main_side_menu.dart';
-import 'package:organizer/models/basic_info_form.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../components/inside_side_menu.dart';
