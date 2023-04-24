@@ -1,8 +1,8 @@
 //import 'package:event_brite_app/constants.dart';
-import 'package:event_brite_app/screens/events_screen/events.dart';
 import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
+import '../creator/events_page/events.dart';
 import '../home_page/home_screen.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {
