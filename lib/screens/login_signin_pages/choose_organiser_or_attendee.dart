@@ -1,4 +1,6 @@
 //import 'package:event_brite_app/constants.dart';
+import 'package:event_brite_app/screens/events_screen/events.dart';
+import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../home_page/home_screen.dart';
@@ -54,22 +56,36 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
                     ]),
                     height: 150,
                     width: 150,
-                    child: Card(
+                    child: GestureDetector(
+                      onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return EventPage(
+                            
+                          );
+                        },
+                      ),
+                    );
+                  },
+                      child: Card(
+                        
+                        
+                        elevation: 10,
+                                color: Colors.white,
+                                
+                                child: Column(
+                                  children: [SizedBox(height: 80,),
+                                    Text('Organizer',style: TextStyle(
+                                      fontSize: 28,
+                                      color: Color.fromARGB(255, 64, 14, 91),
+                                      fontWeight: FontWeight.w900),),
+                                  ],
+                                ),
                       
-                      
-                      elevation: 10,
-                              color: Colors.white,
-                              
-                              child: Column(
-                                children: [SizedBox(height: 80,),
-                                  Text('Organizer',style: TextStyle(
-                                    fontSize: 28,
-                                    color: Color.fromARGB(255, 64, 14, 91),
-                                    fontWeight: FontWeight.w900),),
-                                ],
-                              ),
-                    
-                              ),
+                                ),
+                    ),
                   ),
                   Positioned(
                     right: -13,
