@@ -15,7 +15,7 @@ class EventDetails {
     data.addAll(ticketsPrice);
     EventModel eventDetails = EventModel.fromJson(data);
     //print(data);
-    //print(eventDetails);
+    print(eventDetails);
     return eventDetails;
   }
 }

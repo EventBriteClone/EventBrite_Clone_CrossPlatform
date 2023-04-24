@@ -57,16 +57,6 @@ class EventDetailsScreen extends StatelessWidget {
             String? venueName = eventDetails.venueName;
             String? imageURl = eventDetails.image;
             String? organizer = eventDetails.organizer;
-            String CheckOnlineStatus() {
-              if (online == 'False') {
-                return venueName!;
-              } else {
-                return 'Online';
-              }
-            }
-
-            //print(eventDetails);
-            String? functionReturn = CheckOnlineStatus();
             return Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.05),
@@ -100,7 +90,7 @@ class EventDetailsScreen extends StatelessWidget {
                     icon: Icons.calendar_today,
                   ),
                   EventDetailsRow(
-                    data: functionReturn,
+                    data: venueName,
                     icon: Icons.slideshow,
                     dataNotRequired: '',
                   ),

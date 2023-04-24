@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
         color: primaryColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
+          children: const  [
             SizedBox(
               height: 15,
             ),
@@ -55,6 +55,7 @@ class SettingsScreen extends StatelessWidget {
               height: 20,
             ),
             CustomSettingsContainer(
+              key: ValueKey('Push notifications'),
               text: 'Push Notifications',
             ),
             CustomSettingsContainer(
