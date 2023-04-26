@@ -43,8 +43,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Neue Plak'),
-        home: const EventPage(),
-        //HomeScreen(selectedIndex: 0),
+        home: HomeScreen(selectedIndex: 0),
         debugShowCheckedModeBanner: false,
       ),
     );
