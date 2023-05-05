@@ -2,7 +2,9 @@
 import 'package:event_brite_app/screens/events_screen/events.dart';
 import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../constants.dart';
+import '../../providers/token_provider.dart';
 import '../home_page/home_screen.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {
@@ -10,6 +12,12 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final authTokenProvider = Provider.of<AuthTokenProvider>(context);
+      final token = authTokenProvider.token;
+      token.toString();
+      print('tttttc');
+      print(token);
+    // final token = authTokenProvider.token;
     return Scaffold(
       body: Column(
         children: [

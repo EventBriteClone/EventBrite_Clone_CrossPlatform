@@ -96,7 +96,7 @@ class _LoggedInPageState extends State<LoggedInPage> {
     });
     try{
       email=email+'5';
-      final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email'));
+      final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email/'));
         
       
 
@@ -201,8 +201,8 @@ class _LoggedInPageState extends State<LoggedInPage> {
        child: _isLoading
                             ? SizedBox(
                               width: 10,
-                              child: CircularProgressIndicator(strokeWidth: 1.5,
-                              color:secondaryColor,))
+                              child: CircularProgressIndicator(strokeWidth: 2,
+                              color:primaryColor,))
                             : Center(child: Text('Continue through our application',style: TextStyle(color: secondaryColor,fontSize: 20,fontWeight:FontWeight.bold),)),
         backgroundColor:secondaryColor,
       ),

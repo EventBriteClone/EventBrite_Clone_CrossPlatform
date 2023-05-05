@@ -26,10 +26,20 @@ class _SignupPageeState extends State<SignupPagee> {
   late TextEditingController _textController;
   bool _isLoading = false;
   String _errorMessage = '';
+    bool _isButtonNotEnabled = true;
   @override
+  void _checkIfButtonEnabled() {
+    setState(() {
+      _isButtonNotEnabled =
+          _textController.text.trim() != _emailController.text.trim();
+    });
+  }
+   @override
   void initState() {
     super.initState();
     _textController = TextEditingController(text: widget.text);
+    _textController.addListener(_checkIfButtonEnabled);
+    _emailController.addListener(_checkIfButtonEnabled);
   }
   void login(String email , password) async {
     setState(() {
@@ -241,6 +251,7 @@ class _SignupPageeState extends State<SignupPagee> {
                               success = true;
                             });
                             print("MATCHED");
+
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text("Password is matched")));
@@ -270,7 +281,7 @@ class _SignupPageeState extends State<SignupPagee> {
                   primary: secondaryColor,
                   onPrimary: Colors.grey[900],
                 ),
-                  onPressed: _isLoading
+                  onPressed: _isLoading | _isButtonNotEnabled
                       ? null
                       : () {
                           if (_formKey.currentState!.validate()) {

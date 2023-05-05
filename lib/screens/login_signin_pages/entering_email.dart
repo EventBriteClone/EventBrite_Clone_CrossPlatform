@@ -57,7 +57,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
     });
     try{
       
-      final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email'));
+      final response = await get(Uri.parse('https://event-us.me:8000/user/emailcheck/$email/'));
         
       
 
@@ -169,37 +169,35 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
             
           ),
           
-              child:Expanded(
-                child: ElevatedButton(
-                  
-                  style: ElevatedButton.styleFrom(
-                    //minimumSize: Size.fromWidth(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  elevation: 8,
-                  shadowColor: secondaryColor.withOpacity(0.3),
-                  // change the colors below to match your neumorphism design
-                  primary: secondaryColor,
-                  onPrimary: primaryColor,
+              child:ElevatedButton(
+                
+                style: ElevatedButton.styleFrom(
+                  //minimumSize: Size.fromWidth(50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                    onPressed:  _isButtonEnabled
-                        ?  () {
-                      //onTap: _isButtonEnable
-                        //?null
-                        //: (){
-                      //isEmailFound(_emailController.text.toString());
-                  val(_emailController.text.toString());
-                //};
-                          }:null,
-                          
-                          
-                    child: _isLoading
-                        ? CircularProgressIndicator()
-                        : Text('Sign Up',style: TextStyle( fontWeight: FontWeight.bold ),),
-                  ),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                elevation: 8,
+                shadowColor: Colors.black.withOpacity(0.3),
+                // change the colors below to match your neumorphism design
+                primary: Colors.grey[200],
+                onPrimary: Colors.grey[900],
               ),
+                  onPressed:  _isButtonEnabled
+                      ?  () {
+                    //onTap: _isButtonEnable
+                      //?null
+                      //: (){
+                    //isEmailFound(_emailController.text.toString());
+                val(_emailController.text.toString());
+              //};
+                        }:null,
+                        
+                        
+                  child: _isLoading
+                      ? CircularProgressIndicator()
+                      : Text('Next',style: TextStyle( fontWeight: FontWeight.bold ),),
+                ),
               //                  child: LogOutButton(
               //                              onTap: _isButtonEnabled
               //                                   ? (){

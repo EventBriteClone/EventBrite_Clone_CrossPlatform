@@ -27,7 +27,7 @@ class LogOutButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.07,
+        height: MediaQuery.of(context).size.height * 0.06,
         decoration: BoxDecoration(
           color: containerColor,
           border: Border.all(

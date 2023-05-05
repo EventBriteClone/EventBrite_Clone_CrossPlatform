@@ -1,11 +1,16 @@
+import 'package:event_brite_app/screens/login_signin_pages/forget.dart';
 import 'package:flutter/material.dart';
 import 'package:event_brite_app/screens/login_signin_pages/entering_email.dart';
+import 'package:provider/provider.dart';
 
+import '../../constants.dart';
+import '../../providers/token_provider.dart';
 import '../../reusable_widgets/custom_Text_field.dart';
 //import 'entering_email_page.dart';
 import 'package:flutter/material.dart';
 import '../../reusable_widgets/log_in_button.dart';
 import '../../reusable_widgets/log_out_button.dart';
+import '../home_page/home_screen.dart';
 import 'choose_organiser_or_attendee.dart';
 import 'dart:convert';
 
@@ -32,11 +37,69 @@ bool isPassword=true;
 bool _obscureText = true;
 bool _isLoading = false;
 String _errorMessage = '';
+
+
 GlobalKey<FormState> formKey=GlobalKey();
-void login(String email , password) async {
+void gotochooseAndOrg()
+{
+  Navigator.push(context,MaterialPageRoute(builder:(context){
+                                     return CchooseCustomerOrOrganiserPage();
+           }));
+}
+void val(String email) async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+    try{
+      
+      final response = await get(Uri.parse('https://event-us.me:8000/user/reset-password/$email/'));
+        
+      
+
+      if(response.statusCode == 200){
+        print('youssef200');
+        final json = jsonDecode(response.body);
+        if (json['email_exists'] == true) {
+          print('email sent');
+          //setState(() {
+            //_responseValue = true;
+            //_isLoading = false;
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });   
+            print ('mwgood');
+               
+          }
+          else{
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });     
+             
+                                  //return SignupPagee();
+                                   
+            print('msh');
+          }
+       
+
+
+      }else {
+        print('failed');
+                    
+        
+      }
+    }catch(e){
+      print('ypussef');
+      print(e.toString());
+    }
+  }
+Future login(String email , password) async {
      setState(() {
       _isLoading = true;
       _errorMessage = '';
+      
     });
     try{
       //email='joe@gmail.com';
@@ -49,21 +112,24 @@ void login(String email , password) async {
       );
 
       if(response.statusCode == 200){
-        
+              
         var data = jsonDecode(response.body.toString());
-        print("token"+data['token']);
+        String token = data['token'].toString();
+        print("token:"+data['token']);
         print('Login successfully');
-        Navigator.push(context,MaterialPageRoute(builder:(context){
-                                     return CchooseCustomerOrOrganiserPage();
-        
-}));
+        print('asdasd'+token);
+
+        return token;
+         
       }else {
         print('failed');
+        //return ('sadasd');
       }
     }catch(e){
       print('ypussef');
       print(e.toString());
     }
+    return null;
   }
   @override
   void initState() {
@@ -72,6 +138,8 @@ void login(String email , password) async {
   }
   @override
   Widget build(BuildContext context) {
+     final authTokenProvider = Provider.of<AuthTokenProvider>(context,listen: false);
+     
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.white,
       shadowColor: Colors.grey,
@@ -184,40 +252,52 @@ void login(String email , password) async {
                                  children: [
                                    CustomButton(
                                                        onTap: ()
+                                    async {
+                                       if (formKey.currentState!.validate()) {
+                                var tokn=login(displayText.toString(),
+                                    
+                                    passwordController.text.toString());
+                                   await Future.delayed(const Duration(seconds: 5));
+                                    
+                                    print ('wwww');
+                                    print(tokn);
+                                    tokn.then((value)
                                     {
-                                       if (formKey.currentState!.validate())
-                                       {
-                login(displayText.toString(), passwordController.text.toString());
-              
-                                    // {
-                                    //                    Navigator.push(context,MaterialPageRoute(builder:(context){
-                                    // return CchooseCustomerOrOrganiserPage();
-                                    //                    }));
-                                                     }
-                                                     else{
+                                      String sad=value;
+    print('ewaf'+value); 
+          authTokenProvider.setToken(AuthToken(sad));
+    // prints "Hello, World!"
+  });
+          
+          print('ada');
+          print(tokn);
+gotochooseAndOrg();
+                              } else {}
                                                      
-                                                     }
-                                    },
-                                                       text:'Log in',
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:8),
-                                                    child: LogOutButton(
-                                                      //imgFlag: false,
-                                                                            text: 'Email Me a login link',
-                                                                             //icon: icon,
-                                                                              sizedBoxWidth: null),
-                                                  ),
+                                    },child:Center(child: Text( 'Log in', style: TextStyle(fontWeight:FontWeight.bold,color: primaryColor,fontSize: 17 ),)),
+                      ),
+                                                  
                                                   
                                  Padding(
                                    padding: const EdgeInsets.all(8.0),
-                                   child: Text(
+                                   child:
+                                    GestureDetector(
+                  onTap: () {
+                    //val(displayText.toString());
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return EmailValidationScreen();
+                  }));    
+                        
+                      
+                    
+                  },
+                  child: Text(
                                                    '    I forgot my password',
                                                    style: TextStyle(
                                                        color: Color.fromRGBO(54, 89, 227, 1),
                                                         fontWeight: FontWeight.w500,
                                                         fontSize: 16),
-                                                 ),
+                                                 ),),
                                  )
                                  ],
 

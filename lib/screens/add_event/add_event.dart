@@ -1,11 +1,12 @@
+import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
 import 'package:flutter/material.dart';
 import 'package:event_brite_app/constants.dart';
 import '../../components/location_list_title.dart';
 import '../../components/recurring_date.dart';
-import '../../components/single_date.dart';
 import '../../functions/utils/build_drop_menu_items.dart';
 import '../../helper/api.dart';
 import 'package:event_brite_app/models/place_auto_complete_response';
+import '../../components/single_date.dart';
 
 class AddEvents extends StatefulWidget {
   const AddEvents({super.key});
@@ -191,7 +192,7 @@ class _AddEventsState extends State<AddEvents> {
                         isExpanded: true,
                         value: _selectedOrganizer,
                         iconSize: 36,
-                        items: organizer.map(buildMenuItem).toList(),
+                        items: Organizer.map(buildMenuItem).toList(),
                         onChanged: (value) =>
                             setState(() => this._selectedOrganizer = value),
                       ),
@@ -578,10 +579,10 @@ class _AddEventsState extends State<AddEvents> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => NextPage()),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DependentDropdownMenu()),
+          );
         },
         child: const Icon(Icons.arrow_forward),
         backgroundColor: Colors.orange,

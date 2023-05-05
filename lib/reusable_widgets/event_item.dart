@@ -1,80 +1,75 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:event_brite_app/screens/event_screen/event_screen.dart';
+import 'package:event_brite_app/screens/event_details_screen/event_details_screen.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'followers_and_icons_row.dart';
 
 class EventItem extends StatelessWidget {
-  const EventItem({key});
+  const EventItem({key, this.stDate, this.endDate, this.stTime, this.title, this.venue, this.ID, this.imageURL,});
+ final String? stDate;
+ final String? endDate;
+ final String? stTime;
+ final String? title;
+ final String? venue;
+ final int? ID;
+ final String? imageURL;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const EventScreen();
-            },
+    return Container(
+      decoration: const BoxDecoration(color: primaryColor),
+      height: MediaQuery.of(context).size.height * .17,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Image.network(
+            'https://event-us.me:8000$imageURL',
+            width: MediaQuery.of(context).size.width * 0.22,
+            height: MediaQuery.of(context).size.width * 0.22,
           ),
-        );
-      },
-      child: Container(
-        decoration: const BoxDecoration(color: primaryColor),
-        height: MediaQuery.of(context).size.height * .17,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset(
-              'assets/images/Eventbrite_logo.png',
-              width: 110,
-              height: 110,
-            ),
-            const SizedBox(
-              width: 12,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Tue, Mar 7 - Thu, Mar 9 . 08:00 EET',
-                  style: TextStyle(
-                    color: secondaryColor,
-                    fontWeight: FontWeight.w600,
+          const SizedBox(
+            width: 12,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '$stDate - $endDate . $stTime',
+                style: const TextStyle(
+                  color: secondaryColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.0001,
+              ),
+              Text(
+                title!,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(
+                height: 7,
+              ),
+              Opacity(
+                opacity: .7,
+                child: Text(
+                  venue!,
+                  style: const TextStyle(
+                    fontSize: 12,
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'The Design Show Egypt',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                Opacity(
-                  opacity: .7,
-                  child: Text(
-                    'Cairo International Convention Centre',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-                FollowersAndIconsRow(),
-              ],
-            )
-          ],
-        ),
+              ),
+              FollowersAndIconsRow(),
+            ],
+          )
+        ],
       ),
     );
   }

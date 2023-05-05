@@ -82,54 +82,52 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.05,
-                      child: Expanded(
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            CategoryContainer(text: 'All'),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.055,
-                            ),
-                            CategoryContainer(text: 'Online'),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.055,
-                            ),
-                            CategoryContainer(text: 'Today'),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.055,
-                            ),
-                            CategoryContainer(text: 'This weekend'),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.055,
-                            ),
-                            CategoryContainer(text: 'Free'),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.055,
-                            ),
-                            CategoryContainer(text: 'Music'),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.055,
-                            ),
-                            CategoryContainer(text: 'Food & Drink'),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.055,
-                            ),
-                            CategoryContainer(text: 'Charity & Causes'),
-                          ],
-                        ),
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          CategoryContainer(text: 'All'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Online'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Today'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'This weekend'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Free'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Music'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Food & Drink'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Charity & Causes'),
+                        ],
                       ),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.085,
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: 5, // will be changed later
-                        itemBuilder: (context, index) {
-                          return const EventItem(); // custom widget
-                        },
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: ListView.builder(
+                    //     itemCount: 5, // will be changed later
+                    //     itemBuilder: (context, index) {
+                    //       return const EventItem(); // custom widget
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

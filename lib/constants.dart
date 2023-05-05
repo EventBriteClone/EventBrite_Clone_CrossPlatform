@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/autocomplate_prediction.dart';
+import '../models/autocomplate_prediction.dart';
 
 const primaryColor = Colors.white;
-const secondaryColor = Color(0xfff05537);
+const secondaryColor = Color.fromRGBO(209, 65, 12, 1);
 
 enum LocationSelection { Venue, OnlineEvent, ToBeAnnonuced }
 
@@ -16,7 +17,7 @@ const String apiKey = "AIzaSyCCK4oTJvUUCiu779l_HXak8cqeUqC2u9A";
 
 List<AutocompletePrediction> placePredictions = [];
 
-final List<String> organizer = ['organizer', 'Mahinour Alaa'];
+final List<String> Organizer = ['organizer', 'Mahinour Alaa'];
 
 ///SHOULD BE GOTTEN FROM BACKEND
 final List<String> type = [

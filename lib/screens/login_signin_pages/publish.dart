@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:event_brite_app/screens/creator/basic_info/publish.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 
 import '../../reusable_widgets/neu.dart';
 
@@ -14,7 +19,70 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
   bool _checkboxValue=false;
   bool _switchValue2 = false;
   DateTime? _selectedDateTime;
+  bool _isLoading = false;
+String _errorMessage = '';
+String?  formattedTime;
+  TextEditingController passwordController = TextEditingController();
+/////
+void publish( int Event_ID, String Event_Status, String Audience_Password,bool Keep_Private,String Publication_Date ) async {
+     setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+    //try{
+      //email='joe@gmail.com';
+      Event_ID=1936;
+      String eva;
+      eva=Event_ID.toString();
+      int eventID = 7406; // integer variable
+      print("pubdate:"+Publication_Date);
+      print('eventstatus:'+Event_Status);
+      print('pass:'+Audience_Password);
+      print('keep:');
+      print(!Keep_Private);
 
+
+//Future<void> publish(int id, bool abas, String isPrivate) async {
+  final url = 'https://event-us.me:8000/eventmanagement/2953/publish/';
+  //final headers = {'Content-Type': 'application/json'};
+  String email="youssefsaadlotfy73@gmail.com";
+  String password="Youssef@33";
+  final headers = {
+    //'Content-Type': 'application/json',
+    'Authorization': '1565a9cee178221c2d24f5e7b21a0f3425385532c64615e2c27f7d7faf8664e1'
+
+
+  };
+  final body = 
+  { 
+    "Event_ID": "2953",
+    "Event_Status": Event_Status,
+    "Audience_Password":Audience_Password,
+    "Keep_Private": !Keep_Private,
+    "Publication_Date": Publication_Date
+    };
+    
+  
+  final response = await post(Uri.parse(url), headers: headers, body: jsonEncode(body));
+
+
+
+      if(response.statusCode == 201){
+        
+        //var data = jsonDecode(response.body.toString());
+        //print("token"+data['token']);
+        print('Publish successfully');
+       
+      
+      }else {
+        print('failed');
+      }
+    // }catch(e){
+    //   print('ypussef');
+    //   print(e.toString());
+    // }
+  }
+///
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +132,9 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                       SizedBox(height: 20,),
                     Center(
                       child: NeumorphicButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        publish( 1, "Public", passwordController.text.toString(), _switchValue,_selectedDateTime.toString());
+                      },
                       child: Center(child: Text('Publish',style: TextStyle(color:Color.fromRGBO(60, 0, 100, 1),fontSize: 19,
                       fontWeight: FontWeight.w900),)),
                       ),
@@ -105,10 +175,11 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                   ? Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                        controller: passwordController,
                         decoration: InputDecoration(
                           hintText: 'Enter Password',
                           border: OutlineInputBorder(),
-                        ),
+                        ), 
                       ),
                   )
                   : SizedBox(),
@@ -139,7 +210,9 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                   Divider(),
                   SizedBox(height: 20,),
                   NeumorphicButton(
-  onPressed: () {},
+  onPressed: () {
+    publish( 2222, "Private", passwordController.text.toString(), !_switchValue2,formattedTime!);
+  },
   child: Center(child: Text('Publish',style: TextStyle(color:Color.fromRGBO(60, 0, 100, 1),fontSize: 19,
                     fontWeight: FontWeight.w900),)),
 )
@@ -175,7 +248,9 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
             picked.day,
             timePicked.hour,
             timePicked.minute,
+            
           );
+            formattedTime = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(_selectedDateTime!);
         });
       }
     }

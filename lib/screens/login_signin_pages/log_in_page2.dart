@@ -46,8 +46,8 @@ class  LogInPage2 extends StatelessWidget {
               SizedBox(height: 60,),
               Text('Let\'s get started',
               style: TextStyle(
-                fontSize: 36,fontFamily: 'Neue Plak',
-                color: Colors.black,fontWeight: FontWeight.w700,
+                fontSize: 32,fontFamily: 'Neue_Plak',
+                color: Colors.black,
               )),
               const SizedBox(height: 20,),
               Text(' Sign up or log in to see what\'s\n happening near you',style: TextStyle(
@@ -63,7 +63,8 @@ class  LogInPage2 extends StatelessWidget {
                           //return DependentDropdownMenu();
                         }));
                       },
-                text: 'Continue with email address'),
+                child:Center(child: Text( 'Continue with email address', style: TextStyle(fontWeight:FontWeight.bold,color: primaryColor,fontSize: 17 ),)),
+                      ),
               SizedBox(height: 15,),
                // ignore: prefer_const_constructors
               //  ElevatedButton(
