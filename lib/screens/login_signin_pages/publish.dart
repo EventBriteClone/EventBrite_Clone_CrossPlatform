@@ -43,23 +43,24 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
 
 
 //Future<void> publish(int id, bool abas, String isPrivate) async {
-  final url = 'https://event-us.me:8000/eventmanagement/2953/publish/';
+  final url = 'https://event-us.me:8000/eventmanagement/9085/publish/';
   //final headers = {'Content-Type': 'application/json'};
   String email="youssefsaadlotfy73@gmail.com";
   String password="Youssef@33";
   final headers = {
-    //'Content-Type': 'application/json',
-    'Authorization': '1565a9cee178221c2d24f5e7b21a0f3425385532c64615e2c27f7d7faf8664e1'
+    'Content-Type': 'application/json',
+    'Authorization': 'CustomToken 65e1180796caf66355282edfae231cf52353ee8591a6efa8aa98d6ef76856a0c'
 
 
   };
   final body = 
   { 
-    "Event_ID": "2953",
+    "Event_ID": "9085",
     "Event_Status": Event_Status,
     "Audience_Password":Audience_Password,
-    "Keep_Private": !Keep_Private,
-    "Publication_Date": Publication_Date
+    "Keep_Private": Keep_Private,
+    "Publication_Date": Publication_Date,
+    //"error":"dfssdfsdfsuyu"
     };
     
   
@@ -147,16 +148,7 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
                       children: [
                         Text('This event will not be listed on Eventus or in search engines'),
                         Divider(),
-                        CheckboxListTile(
-                          title: Text('Guests must receive an Eventus invitation to register'),
-                          value: _checkboxValue,
-                          activeColor: Color.fromRGBO(60, 0, 100, 1) ,
-                          onChanged: (newValue) {
-                            setState(() {
-                              _checkboxValue = newValue!;
-                            });
-                          },
-                        ),
+                        
                         Divider(),
                         SwitchListTile(
                           title: Text('Guests must enter password to register'),

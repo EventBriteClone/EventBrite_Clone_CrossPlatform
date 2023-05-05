@@ -1,7 +1,10 @@
 import 'package:event_brite_app/providers/token_provider.dart';
 import 'package:event_brite_app/screens/login_signin_pages/Lsign_up.dart';
+import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
+import 'package:event_brite_app/screens/login_signin_pages/gmail.dart';
 import 'package:event_brite_app/screens/login_signin_pages/log_in_page1.dart';
 import 'package:flutter/material.dart';
+
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter/services.dart' show PlatformException;
 // ignore_for_file: use_key_in_widget_constructors
@@ -31,7 +34,10 @@ import 'package:go_router/go_router.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter/services.dart' show DeviceOrientation, MethodChannel, PlatformException, SystemChrome;
 import 'package:event_brite_app/screens/login_signin_pages/lsign_up.dart';
+final GlobalKey<NavigatorState> navigatorKey=GlobalKey<NavigatorState>();
 String? _token;
+String? param2Value;
+String? param1Value;
 class MyHttpOverrides extends HttpOverrides{
   @override
   HttpClient createHttpClient(SecurityContext? context){
@@ -51,8 +57,8 @@ void main() {
 
 Future<void> initUniLinks() async {
   // Get the initial deep link URL
-  final initialLink = await getInitialLink();
-  handleDeepLink(initialLink);
+  //final initialLink = await getInitialLink();
+  //handleDeepLink(initialLink);
 
   // Listen for deep link changes
   linkStream.listen((link) {
@@ -60,32 +66,55 @@ Future<void> initUniLinks() async {
   }, onError: (err) {
     // Handle link stream errors
   });
-}
+ }
+  // ignore: non_constant_identifier_names
+  void LogInPaffdge2ddd(String? param1){
+    print('hj');
+    print(param1);
+    if(param1=='signup'){
+   //Navigator.push(context,
+             print("kkk");
+                           //   MaterialPageRoute(builder: (context) {
+    //Get.off(EmailValidationScreen());
+                            //return CchooseCustomerOrOrganiserPage();
+                         // }));
+ }
+  }
 
-Future<void> handleDeepLink(String? link) async {
+Future handleDeepLink(String? link) async {
   // Parse the deep link URL
   final uri = Uri.parse(link ?? '');
  print('asds');
  print(uri);
  List<String> pathSegments=uri.pathSegments;
- //String param1Value = pathSegments[2]; // 'value1'
- //String param2Value = pathSegments[2]; // 'value2'
- //print(param1Value);
+ String param1Value = pathSegments[1];
+  // 'value1'
+param2Value = pathSegments[2];
+LogInPaffdge2ddd(param1Value);
+//return CchooseCustomerOrOrganiserPage();
+//LogInPage2ddd(param1Value);
+ //if(param2Value=='')  // 'value2'
+ print(param2Value);
+   
   // Check if the URL matches the deep link pattern
-  if (uri.pathSegments.contains('user') &&
-      uri.pathSegments.contains('signup')) {
+  if (uri.pathSegments.contains('signup')) {
+     navigatorKey.currentState?.pushNamed( '/user/signup/null/');
+    //Navigator.of(c).pushNamed('/user/signup');
     // Retrieve the token from the deep link URL
-    _token = uri.queryParameters['token'];
+    //_token = uri.queryParameters['token'];
     print("sad:");
     print(_token);
   }
 }
+
+
 class MyApp extends StatelessWidget {
   const MyApp({key});
-
+    
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => BasicInfoFormDataProvider()),
@@ -94,41 +123,60 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => IconState()),
         ChangeNotifierProvider(create: (_) => DateSelectionModel()),
         ChangeNotifierProvider(create: (_) => SideMenuItemState()),
-        ChangeNotifierProvider(create: (_) => AuthTokenProvider()),
+        //ChangeNotifierProvider(create: (_) => AuthTokenProvider()),
+       ChangeNotifierProvider<TokenModel>(create: (_) => TokenModel()),
       ],
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Neue Plak'),
         //home: HomeScreen(selectedIndex: 0),
         debugShowCheckedModeBanner: false,
-        home:HomeScreen(selectedIndex: 0),
+        //home:LogInPage1(),
+       navigatorKey: navigatorKey,      
       routes: {
-        '/user/signup/': (context) => CchooseCustomerOrOrganiserPage(),
+        '/': (context) => LogInPage2(),
+        '/user/signup/null/': (context) => NewPasswordPage(),
+         
       },
+  //     initialRoute: '/',
+  //     onGenerateRoute: (RouteSettings settings) {
+  //     switch (settings.name) {
+  //     case '/':
+  //     print('asdd');
+  //       return MaterialPageRoute(builder: (_) =>EmailValidationScreen());
+  //     case '/user/signup/':
+  //     print('asd');
+  //     Navigator.of(context).pushNamed('/user/signup/');
+  //       return MaterialPageRoute(builder: (_) => LogInPage1());
+  //     default:
+  //       return MaterialPageRoute(builder: (_) => LogInPage1());
+  //   }
+  // },
       ),
+      
     );
   }
 }
 
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text('Sign Up'),
-          onPressed: () {
-            // Navigate to the deep link destination
-            Navigator.pushNamed(context, '/user/signup/');
-          },
-        ),
-      ),
-    );
-  }
-}
+// class HomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Home'),
+//       ),
+//       body: Center(
+//         child: ElevatedButton(
+//           child: Text('Sign Up'),
+//           onPressed: () {
+//             // Navigate to the deep link destination
+//             Navigator.pushNamed(context, '/user/signup/');
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
 @override
 void initState() {
   initState();

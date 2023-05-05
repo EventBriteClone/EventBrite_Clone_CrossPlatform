@@ -12,8 +12,10 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final authTokenProvider = Provider.of<AuthTokenProvider>(context);
-      final token = authTokenProvider.token;
+      //final authTokenProvider = Provider.of<AuthTokenProvider>(context);
+      //final token = authTokenProvider.token;
+          String? token = Provider.of<TokenModel>(context).token;
+
       token.toString();
       print('tttttc');
       print(token);
