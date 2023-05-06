@@ -23,7 +23,7 @@ class PasswordPage extends StatefulWidget {
   final String text;
 
   PasswordPage({required this.text});
-
+  bool _isLoading = false;
   @override
   _PasswordPageState createState() => _PasswordPageState();
 }
@@ -104,7 +104,10 @@ class _PasswordPageState extends State<PasswordPage> {
         print("token:" + data['token']);
         print('Login successfully');
         print('asdasd' + token);
-
+         setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });
         return token;
       } else {
         print('failed');
@@ -171,6 +174,7 @@ class _PasswordPageState extends State<PasswordPage> {
             ),
           ),
           GestureDetector(
+            key:ValueKey("Change Text in Password page"),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return EmailValidationScreen();
@@ -241,6 +245,7 @@ class _PasswordPageState extends State<PasswordPage> {
                       child: Column(
                         children: [
                           CustomButton(
+                            key:ValueKey("login Button"),
                             onTap: () async {
                               if (formKey.currentState!.validate()) {
                                 var token = login(displayText.toString(),
@@ -265,18 +270,14 @@ class _PasswordPageState extends State<PasswordPage> {
                                 gotochooseAndOrg();
                               } else {}
                             },
-                            child: Center(
-                                child: Text(
-                              'Log in',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: primaryColor,
-                                  fontSize: 17),
-                            )),
-                          ),
+                            child:_isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : Text('Sign Up',style: TextStyle(color: primaryColor),),
+                ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: GestureDetector(
+                              key:ValueKey("I forgot my password text"),
                               onTap: () {
                                 //val(displayText.toString());
                                 Navigator.push(context,

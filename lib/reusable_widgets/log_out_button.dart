@@ -23,8 +23,11 @@ class LogOutButton extends StatelessWidget {
   //VoidCallback? onTap;
   VoidCallback? onPressed;
   @override
+  Key? get key => super.key;
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key:key,
       onTap: onTap,
       child: Container(
         height: MediaQuery.of(context).size.height * 0.06,

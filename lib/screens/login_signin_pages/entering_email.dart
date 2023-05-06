@@ -5,7 +5,6 @@ import 'package:event_brite_app/screens/login_signin_pages/logIn.dart';
 import 'package:event_brite_app/screens/login_signin_pages/signUp.dart';
 
 import 'entering_password.dart';
-import 'sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import '../../constants.dart';
@@ -117,8 +116,8 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
       appBar: AppBar(backgroundColor: Colors.white,
       shadowColor: Colors.grey,
       iconTheme: IconThemeData(color: Colors.black,size: 27),
-        title: Text('Log in or sign in',style: TextStyle(
-              fontSize: 27,fontFamily: 'Neue Plak',
+        title: Text('Log in or sign up',style: TextStyle(
+              fontSize: 23,fontFamily: 'Neue_Plak',
               color: Colors.black,
             )),),
       
@@ -170,6 +169,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
           ),
           
               child:ElevatedButton(
+                key:const ValueKey("EmailValidatioButton"),
                 
                 style: ElevatedButton.styleFrom(
                   //minimumSize: Size.fromWidth(50),

@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../reusable_widgets/custom_column.dart';
 import '../../reusable_widgets/log_out_button.dart';
 import '../../reusable_widgets/profile_custom_container.dart';
+import '../login_signin_pages/log_in_page1.dart';
 
 class ProfilePageBody extends StatelessWidget {
   const ProfilePageBody({key});
@@ -138,6 +139,12 @@ class ProfilePageBody extends StatelessWidget {
             ),
           ),
           LogOutButton(
+            onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return LogInPage1();
+                          }));
+                        } ,
             containerColor: primaryColor,
             text: 'Log out',
             icon: null,

@@ -276,9 +276,11 @@ class _MyFaceAppState extends State<MyFaceApp> {
                               child: _isLoading
                                   ? SizedBox(
                                       width: 10,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        color: primaryColor,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: primaryColor,
+                                        ),
                                       ))
                                   : Center(
                                       child: Text(
