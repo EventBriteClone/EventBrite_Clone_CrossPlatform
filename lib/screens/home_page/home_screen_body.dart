@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import '../../functions/services/get_all_events.dart';
+import '../../functions/services/get_list_of_events.dart';
 import '../../models/event_model.dart';
 import '../../reusable_widgets/event_item.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
@@ -17,7 +17,6 @@ class HomeScreenBody extends StatelessWidget {
       future: Events().getAllEvents(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-        //  List eventusData = eventData();
           List<EventModel> events = snapshot.data!;
           int? listLength = events.length;
           return Column(
