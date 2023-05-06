@@ -11,15 +11,18 @@ import 'package:event_brite_app/providers/creator/icon_state_provider.dart';
 import 'package:event_brite_app/providers/creator/side_menu_icon_state_provider.dart';
 import 'package:event_brite_app/screens/login_signin_pages/log_in_page2.dart';
 import 'package:provider/provider.dart';
-final GlobalKey<NavigatorState> navigatorKey=GlobalKey<NavigatorState>();
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 String? _token;
 String? param2Value;
 String? param1Value;
-class MyHttpOverrides extends HttpOverrides{
+
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
 
@@ -43,39 +46,40 @@ Future<void> initUniLinks() async {
   }, onError: (err) {
     // Handle link stream errors
   });
- }
-  // ignore: non_constant_identifier_names
-  void LogInPaffdge2ddd(String? param1){
-    print('hj');
-    print(param1);
-    if(param1=='signup'){
-   //Navigator.push(context,
-             print("kkk");
-                           //   MaterialPageRoute(builder: (context) {
+}
+
+// ignore: non_constant_identifier_names
+void LogInPaffdge2ddd(String? param1) {
+  print('hj');
+  print(param1);
+  if (param1 == 'signup') {
+    //Navigator.push(context,
+    print("kkk");
+    //   MaterialPageRoute(builder: (context) {
     //Get.off(EmailValidationScreen());
-                            //return CchooseCustomerOrOrganiserPage();
-                         // }));
- }
+    //return CchooseCustomerOrOrganiserPage();
+    // }));
   }
+}
 
 Future handleDeepLink(String? link) async {
   // Parse the deep link URL
   final uri = Uri.parse(link ?? '');
- print('asds');
- print(uri);
- List<String> pathSegments=uri.pathSegments;
- String param1Value = pathSegments[1];
+  print('asds');
+  print(uri);
+  List<String> pathSegments = uri.pathSegments;
+  String param1Value = pathSegments[1];
   // 'value1'
-param2Value = pathSegments[2];
-LogInPaffdge2ddd(param1Value);
+  param2Value = pathSegments[2];
+  LogInPaffdge2ddd(param1Value);
 //return CchooseCustomerOrOrganiserPage();
 //LogInPage2ddd(param1Value);
- //if(param2Value=='')  // 'value2'
- print(param2Value);
-   
+  //if(param2Value=='')  // 'value2'
+  print(param2Value);
+
   // Check if the URL matches the deep link pattern
   if (uri.pathSegments.contains('signup')) {
-     navigatorKey.currentState?.pushNamed( '/user/signup/null/');
+    navigatorKey.currentState?.pushNamed('/user/signup/null/');
     //Navigator.of(c).pushNamed('/user/signup');
     // Retrieve the token from the deep link URL
     //_token = uri.queryParameters['token'];
@@ -84,14 +88,12 @@ LogInPaffdge2ddd(param1Value);
   }
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({key});
-    
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => BasicInfoFormDataProvider()),
@@ -101,39 +103,36 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => DateSelectionModel()),
         ChangeNotifierProvider(create: (_) => SideMenuItemState()),
         //ChangeNotifierProvider(create: (_) => AuthTokenProvider()),
-       ChangeNotifierProvider<TokenModel>(create: (_) => TokenModel()),
+        ChangeNotifierProvider<TokenModel>(create: (_) => TokenModel()),
       ],
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Neue Plak'),
         //home: HomeScreen(selectedIndex: 0),
         debugShowCheckedModeBanner: false,
         //home:LogInPage1(),
-       navigatorKey: navigatorKey,      
-      routes: {
-        '/': (context) => LogInPage2(),
-        '/user/signup/null/': (context) => NewPasswordPage(),
-         
-      },
-  //     initialRoute: '/',
-  //     onGenerateRoute: (RouteSettings settings) {
-  //     switch (settings.name) {
-  //     case '/':
-  //     print('asdd');
-  //       return MaterialPageRoute(builder: (_) =>EmailValidationScreen());
-  //     case '/user/signup/':
-  //     print('asd');
-  //     Navigator.of(context).pushNamed('/user/signup/');
-  //       return MaterialPageRoute(builder: (_) => LogInPage1());
-  //     default:
-  //       return MaterialPageRoute(builder: (_) => LogInPage1());
-  //   }
-  // },
+        navigatorKey: navigatorKey,
+        routes: {
+          '/': (context) => LogInPage2(),
+          '/user/signup/null/': (context) => NewPasswordPage(),
+        },
+        //     initialRoute: '/',
+        //     onGenerateRoute: (RouteSettings settings) {
+        //     switch (settings.name) {
+        //     case '/':
+        //     print('asdd');
+        //       return MaterialPageRoute(builder: (_) =>EmailValidationScreen());
+        //     case '/user/signup/':
+        //     print('asd');
+        //     Navigator.of(context).pushNamed('/user/signup/');
+        //       return MaterialPageRoute(builder: (_) => LogInPage1());
+        //     default:
+        //       return MaterialPageRoute(builder: (_) => LogInPage1());
+        //   }
+        // },
       ),
-      
     );
   }
 }
-
 
 // class HomePage extends StatelessWidget {
 //   @override
@@ -164,7 +163,5 @@ void initState() {
     // TODO: Implement your storage logic here
   }
 }
-void gotochoose()
-{
-  
-}
+
+void gotochoose() {}

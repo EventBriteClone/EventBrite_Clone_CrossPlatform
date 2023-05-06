@@ -28,10 +28,10 @@ class _SideMenuState extends State<SideMenu> {
                   profession: "organizer",
                 ),
                 ListTile(
-                    leading: SizedBox(
-                  height: 34,
-                  width: 34,
-                  //child: RiveAnimation.asset("assets/RiveAssets/home.riv", artboard: "HOME",
+                  leading: SizedBox(
+                    height: 34,
+                    width: 34,
+                    //child: RiveAnimation.asset("assets/RiveAssets/home.riv", artboard: "HOME",
                   ),
                 )
               ],

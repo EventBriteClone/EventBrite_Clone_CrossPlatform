@@ -76,6 +76,7 @@ flutter:
   assets:
     - assets/images/EventusLogoSVG.svg
     - assets/images/EventusLogoSVG.svg
+    - assets/images/EventusLogoSVG.svg
     - assets/images/Eventbrite_logo.png
     - assets/images/Circle.jpeg
     - assets/images/Circle.jpeg
