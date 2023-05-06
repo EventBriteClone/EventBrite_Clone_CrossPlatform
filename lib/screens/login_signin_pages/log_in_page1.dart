@@ -1,5 +1,6 @@
 import 'package:event_brite_app/constants.dart';
 import 'package:event_brite_app/screens/home_page/home_screen.dart';
+import 'package:event_brite_app/screens/login_signin_pages/gmail.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../reusable_widgets/log_in_button.dart';

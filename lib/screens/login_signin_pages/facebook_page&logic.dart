@@ -95,7 +95,7 @@ class _MyFaceAppState extends State<MyFaceApp> {
       email = email + '1';
       print(email);
       final response = await get(
-          Uri.parse('https://event-us.me:8000/user/emailcheck/$email'));
+          Uri.parse('https://event-us.me:8000/user/emailcheck/$email/'));
 
       if (response.statusCode == 200) {
         print('youssef200');
@@ -276,9 +276,11 @@ class _MyFaceAppState extends State<MyFaceApp> {
                               child: _isLoading
                                   ? SizedBox(
                                       width: 10,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        color: primaryColor,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: primaryColor,
+                                        ),
                                       ))
                                   : Center(
                                       child: Text(

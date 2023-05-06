@@ -1,11 +1,13 @@
+
+
 import '../constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, this.onTap, required this.child});
+  CustomButton({super.key, this.onTap, required this.child});
   final VoidCallback? onTap;
-
+  // final authTokenProvider = Provider.of<AuthTokenProvider>(context);
   //final String text;
   final Widget child;
   @override
@@ -19,7 +21,7 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 60,
+        height: 50,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
@@ -40,7 +42,7 @@ class CustomButton extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              secondaryColor!,
+              secondaryColor,
               Colors.orange[700]!,
             ],
           ),

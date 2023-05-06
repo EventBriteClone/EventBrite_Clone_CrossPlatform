@@ -50,6 +50,12 @@ dependencies:
   provider: ^6.0.5
   image_picker: ^0.8.7+2
   path: ^1.8.2
+  go_router: ^7.0.0
+  uni_links: ^0.5.1
+  url_launcher: ^6.1.10
+  # flutter_deep_links: ^0.0.2
+  get: ^4.6.5
+  lottie: ^2.3.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -82,6 +88,9 @@ flutter:
     - assets/images/eventimage.png
     - assets/images/mediaex.png
     - assets/images/uploadimage.png
+    - assets/animations/dlf10_K5ZqzbCY6R.json
+    - assets/animations/dlf10_U3zDvQCEfY.json
+    - assets/animations/Deals_IN.lottie
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

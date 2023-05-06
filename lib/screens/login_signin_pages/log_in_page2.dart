@@ -1,6 +1,5 @@
 import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
 import 'package:event_brite_app/screens/login_signin_pages/logIn.dart';
-import 'package:event_brite_app/screens/login_signin_pages/sign_up_page.dart';
 import 'package:event_brite_app/screens/login_signin_pages/signUp.dart';
 
 import '../../reusable_widgets/log_in_button.dart';
@@ -56,6 +55,7 @@ class  LogInPage2 extends StatelessWidget {
               ),),
               SizedBox(height: 170,),
               CustomButton(
+                key:ValueKey("login Button cont. with email"),
                 onTap: ()
                       {
                         Navigator.push(context,MaterialPageRoute(builder:(context){
@@ -74,6 +74,7 @@ class  LogInPage2 extends StatelessWidget {
                   
               //    ),),
                LogOutButton(
+                key:ValueKey("logout Button cont with facebook"),
                 onTap: ()
                         {
                         
@@ -88,6 +89,7 @@ class  LogInPage2 extends StatelessWidget {
               ),
                SizedBox(height: 15,),         
                          LogOutButton(
+                          key:ValueKey("logout Button conrt with google"),
                           onTap: signIn,
                 containerColor: primaryColor,
                 text: 'Continue with Google',
