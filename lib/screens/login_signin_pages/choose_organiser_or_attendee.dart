@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../providers/token_provider.dart';
+import '../creator/events_page/events.dart';
 import '../home_page/home_screen.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {

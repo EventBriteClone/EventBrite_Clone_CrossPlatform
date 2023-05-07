@@ -23,9 +23,9 @@ class EventItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          /*Image.network(
-            'https://event-us.me:8000$imageURL',*/
-            Image.asset('assets/images/Eventbrite_logo.png',
+          Image.network(
+            'https://event-us.me:8000$imageURL',
+            /*Image.asset('assets/images/Eventbrite_logo.png',*/
             width: MediaQuery.of(context).size.width * 0.22,
             height: MediaQuery.of(context).size.width * 0.22,
           ),
