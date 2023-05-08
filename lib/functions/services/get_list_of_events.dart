@@ -4,7 +4,7 @@ import 'package:event_brite_app/models/event_model.dart';
 class Events {
   Future<List<EventModel>> getAllEvents() async {
     Map<String,dynamic> dataUnFiltered = await Api().get(
-        url: 'https://event-us.me:8000/events/ALL/',
+        url: 'https://event-us.me:8000/events/ALL/?page=1',
         token: 'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b');
         //print(dataUnFiltered['results']);
        List<dynamic> data = (dataUnFiltered['results']);

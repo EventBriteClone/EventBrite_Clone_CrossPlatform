@@ -1,4 +1,5 @@
 import 'package:event_brite_app/providers/token_provider.dart';
+import 'package:event_brite_app/screens/home_page/home_screen.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
@@ -112,7 +113,7 @@ class MyApp extends StatelessWidget {
         //home:LogInPage1(),
         navigatorKey: navigatorKey,
         routes: {
-          '/': (context) => LogInPage2(),
+          '/': (context) => HomeScreen(selectedIndex: 0),
           '/user/signup/null/': (context) => NewPasswordPage(),
         },
         //     initialRoute: '/',

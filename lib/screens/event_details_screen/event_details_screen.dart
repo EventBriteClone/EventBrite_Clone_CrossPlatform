@@ -50,6 +50,7 @@ class EventDetailsScreen extends StatelessWidget {
           if (snapshot.hasData) {
             EventModel eventDetails = snapshot.data!;
             String? title = eventDetails.title;
+            int? eventId = eventDetails.ID;
             String? description = eventDetails.summery;
             String? stDate = eventDetails.stDate;
             String? stTime = eventDetails.stTime;
@@ -116,11 +117,6 @@ class EventDetailsScreen extends StatelessWidget {
                           icon: Icons.access_time,
                           dataNotRequired: '',
                         ),
-                        EventDetailsRow(
-                          data: ticketPrice.toString(),
-                          icon: Icons.confirmation_num_outlined,
-                          dataNotRequired: 'on Eventbrite',
-                        ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
@@ -150,7 +146,10 @@ class EventDetailsScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const TicketsScreen();
+                              return TicketsScreen(
+                                eventId: eventId,
+                                eventName: title,
+                              );
                             },
                           ),
                         );

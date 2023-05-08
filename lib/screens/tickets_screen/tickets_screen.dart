@@ -1,31 +1,46 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:event_brite_app/constants.dart';
 import 'package:event_brite_app/functions/services/tickets_requests.dart';
+import 'package:event_brite_app/models/ticket_model.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
-import 'package:event_brite_app/screens/tickets_screen/ticket_class_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class TicketsScreen extends StatefulWidget {
-  const TicketsScreen({super.key});
-
+  TicketsScreen({
+    super.key,
+    this.eventId,
+    required this.eventName,
+  });
+  final int? eventId;
+  final String? className = 'Anything';
+  final double? price = 100;
+  late double? totalPrice = 0.00;
+  final String eventName;
   @override
   State<TicketsScreen> createState() => _TicketsScreenState();
 }
 
 class _TicketsScreenState extends State<TicketsScreen> {
   final myController = TextEditingController();
+  Future<List<TicketModel>>? ticketList;
+  @override
+  void initState() {
+    super.initState();
+    ticketList = Tickets().getTicketClasses();
+  }
+
+  late double? totalPrice = 0.00;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        ///centerTitle: true,
         elevation: 0,
         backgroundColor: primaryColor,
         title: Center(
           child: Text(
-            'Career Fair: Exclusive Tech Hirirng',
-            style: TextStyle(
+            widget.eventName,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.black,
@@ -47,51 +62,170 @@ class _TicketsScreenState extends State<TicketsScreen> {
         ],
       ),
       body: FutureBuilder(
-        future: Tickets().getTicketClasses(),
+        future: ticketList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            List<TicketModel>? tickets = snapshot.data;
             return SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   children: [
                     Expanded(
-                      child: ListView(
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05,
-                          ),
-                          TicketClassItem(),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.1,
-                          ),
-                          Stack(
-                            alignment: Alignment.centerRight,
-                            children: [
-                              TextField(
-                                controller: myController,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(width: 1),
+                      child: ListView.builder(
+                          itemCount: tickets?.length,
+                          itemBuilder: (context, index) {
+                            String? ticketClassName =
+                                tickets!.elementAt(index).name;
+                            double? ticketPrice =
+                                tickets.elementAt(index).price;
+                            return Column(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 6,
                                   ),
-                                  hintText: 'Enter code',
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  'Apply',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.blue.shade700,
+                                      width: 2,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(3),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            ticketClassName!,
+                                            style: const TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Row(
+                                            children: [
+                                              IconButton(
+                                                onPressed: () {
+                                                  setState(
+                                                    () {
+                                                      if (tickets
+                                                              .elementAt(index)
+                                                              .ticketReservations !=
+                                                          0) {
+                                                        tickets
+                                                            .elementAt(index)
+                                                            .ticketReservations = tickets
+                                                                .elementAt(
+                                                                    index)
+                                                                .ticketReservations! -
+                                                            1;
+                                                        widget.totalPrice =
+                                                            widget.totalPrice! -
+                                                                ticketPrice!;
+                                                      } else {
+                                                        const snackBar =
+                                                            SnackBar(
+                                                          content: Text(
+                                                              'Tickets are already 0'),
+                                                        );
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                snackBar);
+                                                      }
+                                                    },
+                                                  );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.remove,
+                                                  size: 20,
+                                                ),
+                                              ),
+                                              Text(
+                                                tickets
+                                                    .elementAt(index)
+                                                    .ticketReservations
+                                                    .toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              IconButton(
+                                                onPressed: () {
+                                                  setState(
+                                                    () {
+                                                      tickets
+                                                          .elementAt(index)
+                                                          .ticketReservations = tickets
+                                                              .elementAt(index)
+                                                              .ticketReservations! +
+                                                          1;
+                                                      widget.totalPrice =
+                                                          widget.totalPrice! +
+                                                              ticketPrice!;
+                                                    },
+                                                  );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.add,
+                                                  size: 20,
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Text(
+                                        'Price: $ticketPrice',
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              )
-                            ],
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                ),
+                              ],
+                            );
+                          }),
+                    ),
+                    Stack(
+                      alignment: Alignment.centerRight,
+                      children: [
+                        TextField(
+                          controller: myController,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1),
+                            ),
+                            hintText: 'Enter code',
                           ),
-                        ],
-                      ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Apply',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Column(
                       children: [
@@ -106,7 +240,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                               ),
                             ),
                             Text(
-                              '0.00',
+                              '${widget.totalPrice}',
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -118,7 +252,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                           style: ElevatedButton.styleFrom(
                               elevation: 0, backgroundColor: secondaryColor),
                           onPressed: () {},
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Register',
                               style: TextStyle(
