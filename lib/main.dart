@@ -1,6 +1,5 @@
 import 'package:event_brite_app/providers/token_provider.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
-import 'package:event_brite_app/screens/tickets_screen/tickets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
 import 'dart:io';
@@ -113,7 +112,7 @@ class MyApp extends StatelessWidget {
         //home:LogInPage1(),
         navigatorKey: navigatorKey,
         routes: {
-          '/': (context) => TicketsScreen(),
+          '/': (context) => LogInPage2(),
           '/user/signup/null/': (context) => NewPasswordPage(),
         },
         //     initialRoute: '/',
