@@ -1,8 +1,8 @@
 import 'package:event_brite_app/providers/token_provider.dart';
 import 'package:event_brite_app/screens/login_signin_pages/Lsign_up.dart';
+import 'package:event_brite_app/screens/login_signin_pages/firstpage.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
-import 'package:event_brite_app/screens/login_signin_pages/gmail.dart';
-import 'package:event_brite_app/screens/login_signin_pages/log_in_page1.dart';
+//import 'package:event_brite_app/screens/tickets_screen/tickets_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:uni_links/uni_links.dart';
@@ -131,26 +131,25 @@ class MyApp extends StatelessWidget {
         //home: HomeScreen(selectedIndex: 0),
         debugShowCheckedModeBanner: false,
         //home:LogInPage1(),
-       navigatorKey: navigatorKey,      
-      routes: {
-        '/': (context) => LogInPage2(),
-        '/user/signup/null/': (context) => NewPasswordPage(),
-         
-      },
-  //     initialRoute: '/',
-  //     onGenerateRoute: (RouteSettings settings) {
-  //     switch (settings.name) {
-  //     case '/':
-  //     print('asdd');
-  //       return MaterialPageRoute(builder: (_) =>EmailValidationScreen());
-  //     case '/user/signup/':
-  //     print('asd');
-  //     Navigator.of(context).pushNamed('/user/signup/');
-  //       return MaterialPageRoute(builder: (_) => LogInPage1());
-  //     default:
-  //       return MaterialPageRoute(builder: (_) => LogInPage1());
-  //   }
-  // },
+        navigatorKey: navigatorKey,
+        routes: {
+          '/': (context) => FirstPage(),
+          '/user/signup/null/': (context) => NewPasswordPage(),
+        },
+        //     initialRoute: '/',
+        //     onGenerateRoute: (RouteSettings settings) {
+        //     switch (settings.name) {
+        //     case '/':
+        //     print('asdd');
+        //       return MaterialPageRoute(builder: (_) =>EmailValidationScreen());
+        //     case '/user/signup/':
+        //     print('asd');
+        //     Navigator.of(context).pushNamed('/user/signup/');
+        //       return MaterialPageRoute(builder: (_) => LogInPage1());
+        //     default:
+        //       return MaterialPageRoute(builder: (_) => LogInPage1());
+        //   }
+        // },
       ),
       
     );

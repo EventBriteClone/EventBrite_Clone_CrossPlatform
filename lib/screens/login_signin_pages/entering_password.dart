@@ -272,7 +272,7 @@ class _PasswordPageState extends State<PasswordPage> {
                             },
                             child:_isLoading
                       ? Center(child: CircularProgressIndicator())
-                      : Text('Sign Up',style: TextStyle(color: primaryColor),),
+                      : Center(child: Text('Login',style: TextStyle(color: primaryColor),)),
                 ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
