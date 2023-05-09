@@ -2,11 +2,12 @@
 
 import 'dart:convert';
 
-import 'package:event_brite_app/screens/login_signin_pages/counter.dart';
-import 'package:event_brite_app/screens/login_signin_pages/secondpage.dart';
+import 'package:event_brite_app/screens/login_signin_pages/add_attendee_page_2.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
+import '../../constants.dart';
 import '../../reusable_widgets/creator_custom_button.dart';
 
 class FirstPage extends StatefulWidget {
@@ -16,6 +17,8 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   int textFieldCount = 0;
+    bool _isLoading = false;
+  String _errorMessage = '';
 // Future<Map<int, String>> removeRedundancy(Map map) async{
   
 //   Map<int, String> result = {};
@@ -47,6 +50,10 @@ Future<Map<int, String>> removeRedundancy(Map map) async {
 }
 
 Future<Map<int, String>> fetchTicketTypes() async {
+       setState(() {
+_isLoading = true;
+      _errorMessage = '';
+    });
   final url = 'https://event-us.me:8000/events/ALLTickets/8244/'; // Replace with your API URL
   final headers = {
     'Content-Type': 'application/json',
@@ -66,9 +73,16 @@ Future<Map<int, String>> fetchTicketTypes() async {
 
       ticketMap[id] = ticketType;
     }
-
+            setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });
     return ticketMap;
   } else {
+           setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });
     throw Exception('Failed to fetch ticket types');
   }
 }
@@ -100,6 +114,7 @@ Future<Map<int, String>> fetchTicketTypes() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key:const Key('scaffold of the add attendee page') ,
       // appBar: AppBar(
       //   backgroundColor: Colors.white,
       //   shadowColor: Colors.grey,
@@ -139,21 +154,20 @@ Future<Map<int, String>> fetchTicketTypes() async {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CreatorCustomButton(
-                        onTap: () async {
+                        key:const ValueKey("button in manage attendee page 1"),
+                        onTap:_isLoading? () async {
                           //getTicketTypes() async {
                             //try {
+                              null;
+                        }:()async{
                               final ticketTypes = await fetchTicketTypes();
-                              //final ticketTypes = await fetchTicketTypes();
+                              
                               
                               // Do something with the ticket types
                               print(ticketTypes);
                               final tickettype= await removeRedundancy(ticketTypes);
                               print (tickettype); 
-                            //} catch (e) {
-                              //print('Error: $e');
-                            //}
-                          //}
-                          //final ticketType={81333106: "Free"};
+                          
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -163,12 +177,14 @@ Future<Map<int, String>> fetchTicketTypes() async {
                             ),
                           );
                         },
-                        child: Center(child: Text('Next', style: TextStyle(
-                  //decorationThickness: 500,
-                  fontSize: 15,
-                  fontFamily: 'Neue_Plak',
-                  color: Colors.white,
-                ),)),
+                       child: _isLoading
+                            ? SizedBox(
+                              width: 10,
+                              child: Center(
+                                child: CircularProgressIndicator(strokeWidth: 2,
+                                color:Colors.grey,),
+                              ))
+                            : Center(child: Text('Next',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight:FontWeight.bold),))
                       ),
                     ),
                   ],

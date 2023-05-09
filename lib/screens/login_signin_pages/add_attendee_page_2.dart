@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
+import '../../constants.dart';
 import '../../reusable_widgets/creator_custom_button.dart';
 
 class CounterList extends StatefulWidget {
@@ -20,7 +21,8 @@ class _CounterListState extends State<CounterList> {
   
   String? selectedOption;
   int? numOfTickets;
-  
+  bool _isLoading = false;
+  String _errorMessage = '';
  int findIdByTicketType( String ticketType) {
   Map<int, String> ticketMap=widget.TicketMap;
   for (MapEntry<int, String> entry in ticketMap.entries) {
@@ -32,7 +34,8 @@ class _CounterListState extends State<CounterList> {
 } 
  void AddAttendee( String FirstName, String LastName, String EmailAddress,int numberOfTickets,String? TicketType) async {
      setState(() {
-
+_isLoading = true;
+      _errorMessage = '';
     });
     
     //try{
@@ -84,10 +87,17 @@ print(id);
         //var data = jsonDecode(response.body.toString());
         //print("token"+data['token']);
         print('booked successfully');
-       
+       setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });
       
       }else {
         print('failed');
+               setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });
       }
     // }catch(e){
     //   print('ypussef');
@@ -112,6 +122,7 @@ print(id);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         backgroundColor: Colors.white,
         shadowColor: Colors.grey,
@@ -133,30 +144,33 @@ print(id);
               Padding(
                 padding: EdgeInsets.all(9.0),
                 child: TextField(
+                  key:const ValueKey("firstname for manage attendee"),
                   controller: firstNameController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'First Name',
+                    labelText: 'Add Attendee First Name',
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(9.0),
                 child: TextField(
+                  key:const ValueKey("lastname for manage attendee"),
                   controller: lastNameController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Last Name',
+                    labelText: 'Add Attendee Last Name',
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(9.0),
                 child: TextField(
+                  key:const ValueKey("email for manage attendee"),
                   controller: emailController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Email Address',
+                    labelText: 'Add Attendee Email Address',
                   ),
                 ),
               ),
@@ -195,6 +209,7 @@ print(id);
                   Text('Ticket Type'),
 
                   DropdownButton<String>(
+                    key:const ValueKey("dropdown for manage attendee"),
                     value: selectedOption,
                     hint: Text('Select an option'),
                     onChanged: (newValue) {
@@ -221,31 +236,37 @@ print(id);
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-
+              
                   padding: const EdgeInsets.all(8.0),
                   child: CreatorCustomButton(
-                    onTap: (){
+                    key:const ValueKey("button in manage attendee page 2"),
+                     onTap: _isLoading? (){ //:() {
+          null;
+          // Do something when the button is pressed
+        
+        }:(){
+                   String firstName = firstNameController.text;
+                String lastName = lastNameController.text;
+                String email = emailController.text;
+                int numberOfTickets = counters.reduce((value, element) => value + element);
+                String? ticketType = selectedOption;
+                AddAttendee(firstName, lastName, email, numberOfTickets, ticketType.toString());
                       
-                       String firstName = firstNameController.text;
-    String lastName = lastNameController.text;
-    String email = emailController.text;
-    int numberOfTickets = counters.reduce((value, element) => value + element);
-    String? ticketType = selectedOption;
-    AddAttendee(firstName, lastName, email, numberOfTickets, ticketType.toString());
-                      //AddAttendee(firstNameController.text.toString(), lastNameController.text.toString(),
-                       //emailController.text.toString(), counters[index],);
-                    },
+        },
+      
                     
-                    child: Center(child: Text('Next', style: TextStyle(
-              //decorationThickness: 500,
-              fontSize: 15,
-              fontFamily: 'Neue_Plak',
-              color: Colors.white,
-            ),)),
+              child: _isLoading
+                            ? SizedBox(
+                              width: 10,
+                              child: Center(
+                                child: CircularProgressIndicator(strokeWidth: 2,
+                                color:primaryColor,),
+                              ))
+                            : Center(child: Text('Add Attendee',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight:FontWeight.bold),))
                   ),
                 ),
               ],
-            ),
+                        ),
             ],
           ),
         ),
