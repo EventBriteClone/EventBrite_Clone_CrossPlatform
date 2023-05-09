@@ -52,8 +52,6 @@ class CreateEventService {
     String formattedEndTime = DateFormat('hh:mm:ss')
         .format(DateTime(1, 1, 1, endTime!.hour, endTime.minute));
 
-    print(
-        "https://127.0.0.1:8000/media/events/${eventImage!.path.split('/').last}");
 
     final response = await Api().postWithFile(
       url: 'https://event-us.me:8000/events/create/',

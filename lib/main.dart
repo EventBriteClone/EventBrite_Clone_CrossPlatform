@@ -1,9 +1,5 @@
 import 'package:event_brite_app/providers/token_provider.dart';
-import 'package:event_brite_app/screens/creator/basic_info/publish.dart';
-import 'package:event_brite_app/screens/login_signin_pages/Lsign_up.dart';
-import 'package:event_brite_app/screens/login_signin_pages/add_attendee_page_1.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
-import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
 //import 'package:event_brite_app/screens/tickets_screen/tickets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
@@ -14,7 +10,7 @@ import 'package:event_brite_app/providers/creator/date_selection_provider.dart';
 import 'package:event_brite_app/providers/creator/details_provider.dart';
 import 'package:event_brite_app/providers/creator/icon_state_provider.dart';
 import 'package:event_brite_app/providers/creator/side_menu_icon_state_provider.dart';
-import 'package:event_brite_app/screens/login_signin_pages/log_in_page2.dart';
+import 'package:event_brite_app/screens/login_signin_pages/log_in_page1.dart';
 import 'package:provider/provider.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -118,7 +114,7 @@ class MyApp extends StatelessWidget {
         //home:LogInPage1(),
         navigatorKey: navigatorKey,
         routes: {
-          '/': (context) => LogInPage1(),
+          '/': (context) => const LogInPage1(),
           '/user/signup/null': (context) => NewPasswordPage(),
         },
         //     initialRoute: '/',

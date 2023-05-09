@@ -13,7 +13,6 @@ import '../screens/creator/basic_info/manage_attendees.dart';
 import '../screens/creator/basic_info/publish.dart';
 import '../screens/creator/basic_info/tickets.dart';
 
-
 ///This is a function to build the drawer for the side menu that exists inside [BasicInfo] page
 ///It helps navigate between these pages=> [BasicInfo], [Publish], [Tickets], [Dashboard], [ManageAttendees]
 ///We use  [IconSideMenuWidget] to represent each item in the sidemenu and also uses [ItemSideMenuWidget]
@@ -54,7 +53,6 @@ Drawer buildDrawer(BuildContext context) {
                   .format(DateTime(1, 1, 1, startTime.hour, startTime.minute));
             }
 
-            
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -100,9 +98,9 @@ Drawer buildDrawer(BuildContext context) {
           page: Tickets(),
           itemTitle: 'Tickets',
         ),
-        const IconSideMenuWidget(
+        IconSideMenuWidget(
           itemNumber: '3',
-          page: Publish(),
+          page: DependentDropdownMenu(),
           itemTitle: 'Publish',
         ),
         const Divider(
@@ -113,11 +111,8 @@ Drawer buildDrawer(BuildContext context) {
         const SizedBox(height: 20),
         const ItemSideMenuWidget(itemTitle: 'Dashboard', page: Dashboard()),
         const SizedBox(height: 40),
-        const ItemSideMenuWidget(
-            itemTitle: 'Manage Attendees', page: ManageAttendees()),
+        ItemSideMenuWidget(itemTitle: 'Manage Attendees', page: FirstPage()),
       ],
     ),
   );
 }
-
-
