@@ -4,6 +4,7 @@ import 'package:event_brite_app/constants.dart';
 import 'package:event_brite_app/functions/services/tickets_requests.dart';
 import 'package:event_brite_app/models/ticket_model.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
+import 'package:event_brite_app/screens/order_summary/order_summary_screen.dart';
 import 'package:flutter/material.dart';
 
 class TicketsScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
   }
 
   late double? totalPrice = 0.00;
+  bool? promocodeCheckLocalVariable = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +81,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                                 tickets!.elementAt(index).name;
                             double? ticketPrice =
                                 tickets.elementAt(index).price;
+                            int? ticketClassId = tickets.elementAt(index).id;
                             return Column(
                               children: [
                                 Container(
@@ -212,7 +215,34 @@ class _TicketsScreenState extends State<TicketsScreen> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            if (myController.text.isEmpty) {
+                              const snackBar = SnackBar(
+                                content: Text('Please enter a promocode'),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            } else {
+                              bool promocodeCheck = await Tickets()
+                                  .checkPromocode(myController.text);
+                              if (promocodeCheck == true) {
+                                promocodeCheckLocalVariable = true;
+                                const snackBar = SnackBar(
+                                  content: Text('Promocode will be applied!'),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              } else {
+                                promocodeCheckLocalVariable = false;
+                                const snackBar = SnackBar(
+                                  content: Text('Invalid Promocode'),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                              print(promocodeCheck);
+                            }
+                          },
                           child: const Text(
                             'Apply',
                             style: TextStyle(
@@ -251,10 +281,49 @@ class _TicketsScreenState extends State<TicketsScreen> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               elevation: 0, backgroundColor: secondaryColor),
-                          onPressed: () {},
+                          onPressed: () {
+                            //Map<String, dynamic> body = {};
+                            List<Map<String, dynamic>> orderItems = [];
+                            for (int i = 0; i < tickets!.length; i++) {
+                              if (tickets.elementAt(i).ticketReservations !=
+                                  0) {
+                                Map<String, dynamic> orderFromEachClass = {
+                                  "ticket_class_id": tickets.elementAt(i).id,
+                                  "quantity":
+                                      tickets.elementAt(i).ticketReservations,
+                                };
+                                orderItems.add(orderFromEachClass);
+                              } else if (orderItems.isEmpty) {
+                                /// pass
+                                /// ignored order
+                              }
+                            }
+                            //body = {"order_items": orderItems};
+                            // if (promocodeCheckLocalVariable == true) {
+                            //   String promoCodeMap = myController.text;
+                            //   //.addAll(promoCodeMap);
+                            // } else {
+                            //   Map<String, dynamic> promoCodeMap = {
+                            //     'promocode': null
+                            //   };
+                            //   //body.addAll(promoCodeMap);
+                            // }
+                            print(orderItems);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return OrderSummaryScreen(
+                                    orderItems: orderItems,
+                                    promocode: myController.text,
+                                  );
+                                },
+                              ),
+                            );
+                          },
                           child: const Center(
                             child: Text(
-                              'Register',
+                              'Checkout',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -273,7 +342,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
               ),
             );
           }
-          return CustomLoadingIndicator();
+          return const CustomLoadingIndicator();
         },
       ),
     );

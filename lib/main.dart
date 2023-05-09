@@ -1,4 +1,5 @@
 import 'package:event_brite_app/providers/token_provider.dart';
+import 'package:event_brite_app/screens/dashboard/dashboard_screen.dart';
 import 'package:event_brite_app/screens/home_page/home_screen.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import 'package:event_brite_app/providers/creator/date_selection_provider.dart';
 import 'package:event_brite_app/providers/creator/details_provider.dart';
 import 'package:event_brite_app/providers/creator/icon_state_provider.dart';
 import 'package:event_brite_app/providers/creator/side_menu_icon_state_provider.dart';
-import 'package:event_brite_app/screens/login_signin_pages/log_in_page2.dart';
 import 'package:provider/provider.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
         //home:LogInPage1(),
         navigatorKey: navigatorKey,
         routes: {
-          '/': (context) => HomeScreen(selectedIndex: 0),
+          '/': (context) => HomeScreen(selectedIndex: 0) /*DashboardScreen()*/,
           '/user/signup/null/': (context) => NewPasswordPage(),
         },
         //     initialRoute: '/',

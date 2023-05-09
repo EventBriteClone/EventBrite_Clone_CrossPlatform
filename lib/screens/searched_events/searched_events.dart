@@ -24,7 +24,7 @@ class _SearchedEventsState extends State<SearchedEvents> {
     ///print(widget.searchString);
     return Scaffold(
       body: FutureBuilder(
-        future: Events().getEventByCategory(widget.searchString),
+        future: Events().getEventBySearch(widget.searchString),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<EventModel> events = snapshot.data!;
@@ -68,7 +68,9 @@ class _SearchedEventsState extends State<SearchedEvents> {
                           ),
                         ],
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.357,),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.357,
+                      ),
                       const Center(
                         child: Text(
                           'No Events found!',

@@ -77,10 +77,10 @@ class EventDetailsScreen extends StatelessWidget {
                   Expanded(
                     child: ListView(
                       children: [
-                        Image.asset(
-                          'assets/images/Eventbrite_logo.png',
-                          // Image.network(
-                          //   imageURl!,
+                        // Image.asset(
+                        //   'assets/images/Eventbrite_logo.png',
+                          Image.network(
+                            imageURl!,
                           width: double.infinity,
                           height: MediaQuery.of(context).size.height * 0.35,
                         ),

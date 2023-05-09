@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:event_brite_app/models/order_model.dart';
 import 'package:event_brite_app/models/ticket_model.dart';
 
 import '../../helper/api.dart';
@@ -13,5 +16,36 @@ class Tickets {
       tickets.add(TicketModel.fromJson(dataUnFiltered[i]));
     }
     return tickets;
+  }
+
+  Future<bool> checkPromocode(String promocode) async {
+    Map<String, dynamic> promocodeValidationUnjsoned = await Api().get(
+        url:
+            'https://event-us.me:8000/booking/events/4234/promocode/?promocode=$promocode',
+        token:
+            'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
+    bool promocodeValidation = promocodeValidationUnjsoned['is_promocode'];
+    return promocodeValidation;
+  }
+
+  Future<List<TicketModel>> postOrderRequest(
+      List<Map<String,dynamic>> order_items) async {
+   Map results = await Api().post(
+        url:
+            'https://event-us.me:8000/booking/event/4234/orders/?ticket_class_id',
+        body: {'order_items': order_items},
+        token:
+            'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
+    List<TicketModel> ret = (results["tickets"] as List).map((e){return TicketModel.fromJson(e);}).toList();
+    print("ord");
+    return ret;
+  }
+
+  Future<Map<String, dynamic>> getOrderDetails(int orderId) async {
+    Future<Map<String, dynamic>> orderSummary = await Api().get(
+        url: 'https://event-us.me:8000/booking/order$orderId/order_items/',
+        token:
+            'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
+    return orderSummary;
   }
 }

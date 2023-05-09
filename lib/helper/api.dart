@@ -57,26 +57,29 @@ class Api {
     }
   }
 
-  Future<dynamic> post(
+  Future<Map> post(
       {required String url,
-      @required dynamic body,
+      required Map<String, dynamic> body,
       File? file,
-      @required String? token}) async {
+      required String? token}) async {
     Map<String, String> headers = {};
 
     if (token != null) {
-      headers.addAll({'Authorization': '$token'});
+      headers.addAll(
+          {'Authorization': '$token', 'Content-Type': 'application/json'});
     }
 
-    http.Response response =
-        await http.post(Uri.parse(url), body: body, headers: headers);
+    var response = await http.post(Uri.parse(url),
+        body: jsonEncode(body), headers: headers);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> data = jsonDecode(response.body);
 
       return data;
     } else {
+      // return {"tickets": []};
       throw Exception(
+
           'there is a problem with status code ${response.statusCode} with body ${jsonDecode(response.body)}');
     }
   }
