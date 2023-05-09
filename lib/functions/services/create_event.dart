@@ -185,7 +185,6 @@ class CreateEventService {
   File? eventImage;
   String? singleOrRecurring;
   String? organizer;
-*/
 
  String? eventTitle;
   String? type;

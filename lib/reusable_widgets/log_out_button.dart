@@ -12,17 +12,6 @@ class LogOutButton extends StatelessWidget {
     @required this.size = 0,
   });
   VoidCallback? onTap;
-  LogOutButton({
-    super.key,
-    this.onTap,
-    this.onPressed,
-    this.containerColor,
-    required this.text,
-    @required this.icon,
-    @required this.sizedBoxWidth,
-    @required this.size = 0,
-  });
-  VoidCallback? onTap;
   final Color? containerColor;
   final String? text;
   final IconData? icon;
@@ -38,7 +27,7 @@ class LogOutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      key:key,
+      key: key,
       onTap: onTap,
       child: Container(
         height: MediaQuery.of(context).size.height * 0.06,
@@ -47,20 +36,16 @@ class LogOutButton extends StatelessWidget {
           border: Border.all(
             color: const Color.fromARGB(255, 120, 118, 118),
             width: 1.5,
-            width: 1.5,
           ),
-          borderRadius: BorderRadius.circular(6),
           borderRadius: BorderRadius.circular(6),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //image,
-            //image,
             Icon(
               icon,
               color: const Color.fromARGB(255, 42, 81, 239),
-              size: size,
               size: size,
             ),
             SizedBox(

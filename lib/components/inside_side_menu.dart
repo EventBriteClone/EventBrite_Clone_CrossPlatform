@@ -96,9 +96,9 @@ Drawer buildDrawer(BuildContext context) {
           page: Tickets(),
           itemTitle: 'Tickets',
         ),
-        const IconSideMenuWidget(
+        IconSideMenuWidget(
           itemNumber: '3',
-          page: Publish(),
+          page: DependentDropdownMenu(),
           itemTitle: 'Publish',
         ),
         const Divider(
@@ -109,8 +109,8 @@ Drawer buildDrawer(BuildContext context) {
         const SizedBox(height: 20),
         const ItemSideMenuWidget(itemTitle: 'Dashboard', page: Dashboard()),
         const SizedBox(height: 40),
-        const ItemSideMenuWidget(
-            itemTitle: 'Manage Attendees', page: ManageAttendees()),
+        ItemSideMenuWidget(
+            itemTitle: 'Manage Attendees', page: FirstPage()),
       ],
     ),
   );

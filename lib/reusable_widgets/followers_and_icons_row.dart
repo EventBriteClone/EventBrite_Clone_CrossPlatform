@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FollowersAndIconsRow extends StatelessWidget {
-  const FollowersAndIconsRow({key});
+  const FollowersAndIconsRow({key, required bool isLiked});
 
   @override
   Widget build(BuildContext context) {

@@ -14,9 +14,11 @@ import 'package:event_brite_app/providers/creator/ticket_provider.dart';
 import 'package:event_brite_app/providers/creator/updated_event_one_provider.dart';
 import 'package:event_brite_app/providers/creator/updated_event_two_provider.dart';
 import 'package:event_brite_app/providers/creator/updated_ticket_provider.dart';
+import 'package:event_brite_app/providers/token_provider.dart';
 import 'package:event_brite_app/screens/creator/basic_info/tickets/add_ticket.dart';
 import 'package:event_brite_app/screens/creator/events_page/events.dart';
 import 'package:event_brite_app/screens/home_page/home_screen.dart';
+import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
 import 'dart:io';
@@ -34,14 +36,6 @@ String? _token;
 String? param2Value;
 String? param1Value;
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-}
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -135,10 +129,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UpdatedDateSelectionModel()),
         ChangeNotifierProvider(create: (_) => UpdatedTicketProviderModel()),
         ChangeNotifierProvider(create: (_) => PromoCodeProviderModel()),
+         ChangeNotifierProvider<TokenModel>(create: (_) => TokenModel()),
       ],
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Neue Plak'),
-        home: const EventPage(),
+        //home: const LogInPage1(),
+        navigatorKey: navigatorKey,
+        routes: {
+          '/': (context) => const LogInPage1(),
+          '/user/signup/null': (context) => NewPasswordPage(),
+        },
         //home: Tickets(),
         //HomeScreen(selectedIndex: 0),
         debugShowCheckedModeBanner: false,
