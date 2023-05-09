@@ -39,11 +39,11 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
       print('eventstatus:'+Event_Status);
       print('pass:'+Audience_Password);
       print('keep:');
-      print(!Keep_Private);
+      print(Keep_Private);
 
 
 //Future<void> publish(int id, bool abas, String isPrivate) async {
-  final url = 'https://event-us.me:8000/eventmanagement/9085/publish/';
+  final url = 'https://event-us.me:8000/eventmanagement/8244/publish/';
   //final headers = {'Content-Type': 'application/json'};
   String email="youssefsaadlotfy73@gmail.com";
   String password="Youssef@33";
@@ -55,7 +55,7 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
   };
   final body = 
   { 
-    "Event_ID": "9085",
+    "Event_ID": "8244",
     "Event_Status": Event_Status,
     "Audience_Password":Audience_Password,
     "Keep_Private": Keep_Private,

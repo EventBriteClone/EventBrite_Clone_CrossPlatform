@@ -1,7 +1,9 @@
 import 'package:event_brite_app/providers/token_provider.dart';
+import 'package:event_brite_app/screens/creator/basic_info/publish.dart';
 import 'package:event_brite_app/screens/login_signin_pages/Lsign_up.dart';
 import 'package:event_brite_app/screens/login_signin_pages/firstpage.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
+import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
 //import 'package:event_brite_app/screens/tickets_screen/tickets_screen.dart';
 import 'package:flutter/material.dart';
 
