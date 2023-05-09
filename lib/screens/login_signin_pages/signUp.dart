@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 
 import '../../constants.dart';
 import 'choose_organiser_or_attendee.dart';
-
+///here is the sign up page where the user has to write his name,last name, email addrerss to sign up
 class SignupPagee extends StatefulWidget {
   final String text;
   SignupPagee({required this.text});
@@ -41,6 +41,7 @@ class _SignupPageeState extends State<SignupPagee> {
     _textController.addListener(_checkIfButtonEnabled);
     _emailController.addListener(_checkIfButtonEnabled);
   }
+  ///here is a login function to to login after signup process
   void login(String email , password) async {
     setState(() {
       _isLoading = true;
@@ -55,7 +56,7 @@ class _SignupPageeState extends State<SignupPagee> {
           'password' : password
         }
       );
-
+///if response =200 then the request is done
       if(response.statusCode == 200){
         
         var data = jsonDecode(response.body.toString());

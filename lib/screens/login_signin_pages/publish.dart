@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:event_brite_app/constants.dart';
 import 'package:event_brite_app/screens/creator/basic_info/publish.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 
+import '../../reusable_widgets/creator_custom_button.dart';
 import '../../reusable_widgets/neu.dart';
 
 class DependentDropdownMenu extends StatefulWidget {
@@ -39,11 +41,11 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
       print('eventstatus:'+Event_Status);
       print('pass:'+Audience_Password);
       print('keep:');
-      print(!Keep_Private);
+      print(Keep_Private);
 
 
 //Future<void> publish(int id, bool abas, String isPrivate) async {
-  final url = 'https://event-us.me:8000/eventmanagement/9085/publish/';
+  final url = 'https://event-us.me:8000/eventmanagement/8244/publish/';
   //final headers = {'Content-Type': 'application/json'};
   String email="youssefsaadlotfy73@gmail.com";
   String password="Youssef@33";
@@ -55,7 +57,7 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
   };
   final body = 
   { 
-    "Event_ID": "9085",
+    "Event_ID": "8244",
     "Event_Status": Event_Status,
     "Audience_Password":Audience_Password,
     "Keep_Private": Keep_Private,
@@ -132,12 +134,15 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
                       Divider(),
                       SizedBox(height: 20,),
                     Center(
-                      child: NeumorphicButton(
-                      onPressed: () {
-                        publish( 1, "Public", passwordController.text.toString(), _switchValue,_selectedDateTime.toString());
-                      },
-                      child: Center(child: Text('Publish',style: TextStyle(color:Color.fromRGBO(60, 0, 100, 1),fontSize: 19,
-                      fontWeight: FontWeight.w900),)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CreatorCustomButton(
+                        onTap: () {
+                          publish( 1, "Public", passwordController.text.toString(), _switchValue,_selectedDateTime.toString());
+                        },
+                        child: Center(child: Text('Publish',style: TextStyle(color:primaryColor,fontSize: 19,
+                        fontWeight: FontWeight.w900),)),
+                        ),
                       ),
                     )
 
@@ -188,6 +193,7 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
                 ),
                 if (_switchValue2)
                   ElevatedButton(
+                    key:const ValueKey("elevted button in publish"),
                     style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(60, 0, 100, 1)),
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
@@ -201,13 +207,16 @@ void publish( int Event_ID, String Event_Status, String Audience_Password,bool K
                   ),
                   Divider(),
                   SizedBox(height: 20,),
-                  NeumorphicButton(
-  onPressed: () {
-    publish( 2222, "Private", passwordController.text.toString(), !_switchValue2,formattedTime!);
-  },
-  child: Center(child: Text('Publish',style: TextStyle(color:Color.fromRGBO(60, 0, 100, 1),fontSize: 19,
-                    fontWeight: FontWeight.w900),)),
-)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CreatorCustomButton(
+                    onTap: () {
+                      publish( 2222, "Private", passwordController.text.toString(), !_switchValue2,formattedTime!);
+                    },
+                    child: Center(child: Text('Publish',style: TextStyle(color:primaryColor,fontSize: 19,
+                      fontWeight: FontWeight.w900),)),
+                  ),
+                  )
 
                       ],
                     ),

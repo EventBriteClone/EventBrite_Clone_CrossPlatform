@@ -1,5 +1,10 @@
 import 'package:event_brite_app/providers/token_provider.dart';
+import 'package:event_brite_app/screens/creator/basic_info/publish.dart';
+import 'package:event_brite_app/screens/login_signin_pages/Lsign_up.dart';
+import 'package:event_brite_app/screens/login_signin_pages/add_attendee_page_1.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
+import 'package:event_brite_app/screens/login_signin_pages/publish.dart';
+//import 'package:event_brite_app/screens/tickets_screen/tickets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
 import 'dart:io';
@@ -74,12 +79,13 @@ Future handleDeepLink(String? link) async {
   LogInPaffdge2ddd(param1Value);
 //return CchooseCustomerOrOrganiserPage();
 //LogInPage2ddd(param1Value);
-  //if(param2Value=='')  // 'value2'
-  print(param2Value);
-
+ //if(param2Value=='')  // 'value2'
+ print('param');
+ print(param2Value);
+   
   // Check if the URL matches the deep link pattern
   if (uri.pathSegments.contains('signup')) {
-    navigatorKey.currentState?.pushNamed('/user/signup/null/');
+     navigatorKey.currentState?.pushNamed( '/user/signup/null');
     //Navigator.of(c).pushNamed('/user/signup');
     // Retrieve the token from the deep link URL
     //_token = uri.queryParameters['token'];
@@ -112,8 +118,8 @@ class MyApp extends StatelessWidget {
         //home:LogInPage1(),
         navigatorKey: navigatorKey,
         routes: {
-          '/': (context) => LogInPage2(),
-          '/user/signup/null/': (context) => NewPasswordPage(),
+          '/': (context) => LogInPage1(),
+          '/user/signup/null': (context) => NewPasswordPage(),
         },
         //     initialRoute: '/',
         //     onGenerateRoute: (RouteSettings settings) {

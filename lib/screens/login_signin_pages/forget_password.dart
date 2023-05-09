@@ -43,7 +43,10 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
           //YoussscrossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Icon(Icons.circle_outlined),
                 Text(
                   'You Forgot Your Password...',
                   style: TextStyle(fontSize: 20.0),
@@ -57,8 +60,11 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
               ],
             ),
             Row(
+
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Icon(Icons.circle_outlined),
                 Text(
                   'No Problem',
                   style: TextStyle(fontSize: 20.0),

@@ -104,6 +104,8 @@ class _PasswordPageState extends State<PasswordPage> {
         print("token:" + data['token']);
         print('Login successfully');
         print('asdasd' + token);
+                                gotochooseAndOrg();
+
          setState(() {
       _isLoading = false;
       _errorMessage = '';
@@ -111,13 +113,14 @@ class _PasswordPageState extends State<PasswordPage> {
         return token;
       } else {
         print('failed');
+        _errorMessage='Password is not correct';
         //return ('sadasd');
       }
     } catch (e) {
       print('ypussef');
       print(e.toString());
     }
-    return null;
+    return "error";
   }
 
   @override
@@ -207,6 +210,7 @@ class _PasswordPageState extends State<PasswordPage> {
                 ),
               ),
             ),
+            
 //                     child:TextFormField(
 //   obscureText: _obscureText, // show/hide password based on state variable
 //   decoration: InputDecoration(
@@ -225,6 +229,10 @@ class _PasswordPageState extends State<PasswordPage> {
 //   ),
 // ),
           ),
+          Text(
+                  _errorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
           //SizedBox(height: 40,),
           Expanded(
             child: Container(
@@ -248,10 +256,11 @@ class _PasswordPageState extends State<PasswordPage> {
                             key:ValueKey("login Button"),
                             onTap: () async {
                               if (formKey.currentState!.validate()) {
-                                var token = login(displayText.toString(),
-                                    passwordController.text.toString());
-                                //String token = "your_token_value";
-                                await Future.delayed(
+                              var token;
+                                try {
+  var token = login(displayText.toString(),
+      passwordController.text.toString());
+      await Future.delayed(
                                     const Duration(seconds: 5));
 
                                 print('wwww');
@@ -259,20 +268,35 @@ class _PasswordPageState extends State<PasswordPage> {
                                 token.then((value) {
                                   String sad = value;
                                   print('token here: ' + value);
-            Provider.of<TokenModel>(context, listen: false).setToken(value);
+                                  if (value=='error')
+                                  {
+                                        setState(() {
+      _isLoading = false;
+      _errorMessage = 'Password is not correct';
+    });
+                                  
+                                    print('hey error');
+                                  }
+  Provider.of<TokenModel>(context, listen: false).setToken(value);
+  
 
                                   //authTokenProvider.setToken(AuthToken(sad));
                                   // prints "Hello, World!"
                                 });
+} catch (e) {
+  print(e.toString());
+  // TODO
+}
+                                //String token = "your_token_value";
+                                
 
                                 print('ada');
                                 print(token);
-                                gotochooseAndOrg();
                               } else {}
                             },
                             child:_isLoading
                       ? Center(child: CircularProgressIndicator())
-                      : Text('Sign Up',style: TextStyle(color: primaryColor),),
+                      : Center(child: Text('Login',style: TextStyle(color: primaryColor),)),
                 ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),

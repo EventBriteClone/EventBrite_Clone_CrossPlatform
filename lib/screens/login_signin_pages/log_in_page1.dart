@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../reusable_widgets/log_in_button.dart';
 import 'log_in_page2.dart';
-
+///this is a class for the starting page for the logon process
 class LogInPage1 extends StatelessWidget {
   const LogInPage1({super.key});
-  //VoidCallback? onTap;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,32 +49,11 @@ class LogInPage1 extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return HomeScreen(
-                            selectedIndex: 1,
-                          );
-                        },
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Explore events',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Color.fromRGBO(54, 89, 227, 1),
-                        fontWeight: FontWeight.bold),
-                  )),
-            ),
+            
             const SizedBox(
               height: 125,
             ),
+            ///stack widget to put the circle and inside it the heart icon 
             Stack(
               children: [
                 SizedBox(
@@ -91,7 +70,7 @@ class LogInPage1 extends StatelessWidget {
                     ],
                   ),
                 ),
-                //SizedBox(height: 200,),
+                
                 Column(
                   children: [
                     SizedBox(
@@ -111,7 +90,13 @@ class LogInPage1 extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
+                    
+                  ],
+                ),
+              ],
+            ),
+            ///padding inside it the the button to navigate to our second login page
+            Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomButton(
                         key: ValueKey("login Button"),
@@ -124,10 +109,6 @@ class LogInPage1 extends StatelessWidget {
                         child:Center(child: Text( 'Log in', style: TextStyle(fontWeight:FontWeight.bold,color: primaryColor,fontSize: 17 ),)),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
           ],
         ),
       ),
