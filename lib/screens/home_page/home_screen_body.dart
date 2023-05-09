@@ -7,6 +7,9 @@ import '../../reusable_widgets/event_item.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
 
 import '../event_details_screen/event_details_screen.dart';
+import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
+
+import '../event_details_screen/event_details_screen.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({key});

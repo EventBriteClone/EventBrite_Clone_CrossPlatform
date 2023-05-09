@@ -1,11 +1,20 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:event_brite_app/screens/event_details_screen/event_details_screen.dart';
+import 'package:event_brite_app/screens/event_details_screen/event_details_screen.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'followers_and_icons_row.dart';
 
 class EventItem extends StatelessWidget {
+  const EventItem({key, this.stDate, this.endDate, this.stTime, this.title, this.venue, this.ID, this.imageURL,});
+ final String? stDate;
+ final String? endDate;
+ final String? stTime;
+ final String? title;
+ final String? venue;
+ final int? ID;
+ final String? imageURL;
   const EventItem({key, this.stDate, this.endDate, this.stTime, this.title, this.venue, this.ID, this.imageURL,});
  final String? stDate;
  final String? endDate;
@@ -35,7 +44,10 @@ class EventItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+            children: [
               Text(
+                '$stDate - $endDate . $stTime',
+                style: const TextStyle(
                 '$stDate - $endDate . $stTime',
                 style: const TextStyle(
                   color: secondaryColor,
@@ -44,11 +56,16 @@ class EventItem extends StatelessWidget {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.0001,
+                height: MediaQuery.of(context).size.height * 0.0001,
               ),
               Text(
                 title!,
                 style: const TextStyle(
+                title!,
+                style: const TextStyle(
                   color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
                 ),
@@ -61,6 +78,8 @@ class EventItem extends StatelessWidget {
               Opacity(
                 opacity: .7,
                 child: Text(
+                  venue!,
+                  style: const TextStyle(
                   venue!,
                   style: const TextStyle(
                     fontSize: 12,

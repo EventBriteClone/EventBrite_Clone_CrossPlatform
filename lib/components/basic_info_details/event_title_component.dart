@@ -9,8 +9,8 @@ class EventTitle extends StatelessWidget {
   const EventTitle({
     super.key,
     required this.eventTitle,
-     this.summary,
-     this.desc,
+    this.summary,
+    this.desc,
     required this.formData,
   });
 
@@ -34,13 +34,17 @@ class EventTitle extends StatelessWidget {
                 width: MediaQuery.of(context).size.height * 0.1,
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
-              Text(
-                eventTitle,
-                style: const TextStyle(
-                    fontSize: 30,
-                    fontFamily: "Poppins",
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  eventTitle,
+                  softWrap: true,
+                  style: const TextStyle(
+                      fontSize: 25,
+                      fontFamily: "Poppins",
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
@@ -64,7 +68,7 @@ class EventTitle extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-           Padding(
+          Padding(
             padding: EdgeInsets.only(left: 70.0),
             child: Text(
               summary ?? '',
@@ -84,7 +88,7 @@ class EventTitle extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-           Padding(
+          Padding(
             padding: EdgeInsets.only(left: 70.0),
             child: Text(
               desc ?? '',

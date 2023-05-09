@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import '../../functions/services/get_draft_events.dart';
 import '../../models/basic_info_form.dart';
 import '../../models/event_model.dart';
+import '../../reusable_widgets/NoComponentWidget.dart';
 import '../draft_component.dart';
+
+/// A tab that displays a list of draft events. It fetches the data asynchronously using [AllDraftEventsServices]
+/// and shows a loading indicator while waiting for the data. If there are no drafts available, it displays a [NoComponentWidget]
+///  Otherwise, it shows a [ListView] with a [DraftComponent] for each draft event
 
 class DraftEventsTab extends StatelessWidget {
   const DraftEventsTab({super.key});
@@ -12,7 +17,7 @@ class DraftEventsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<EventModel>>(
+    return FutureBuilder<List<BasicInfoFormData>>(
       future: AllDraftEventsServices().getAllDraftEvents(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -23,48 +28,22 @@ class DraftEventsTab extends StatelessWidget {
         }
         final eventDraftsList = snapshot.data ?? [];
         final noDrafts = eventDraftsList.isEmpty;
-        print(noDrafts); //false
+        //print(noDrafts); //false
         return noDrafts!
-            ? Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(flex: 3),
-                  Container(
-                    width: 200.0,
-                    height: 200.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 2.0,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.calendar_today,
-                      size: 100.0,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const Spacer(flex: 1),
-                  Container(
-                      child: const Center(
-                          child: Text('You don\'t have any draft events',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(236, 77, 77, 77))))),
-                  const Spacer(flex: 3),
-                ],
-              )
+            ? const NoComponentWidget(
+                displayText: 'You don\'t have any draft events',
+                icon: Icons.calendar_today)
             : Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: ListView.builder(
                   itemCount: eventDraftsList.length,
                   itemBuilder: (context, index) {
-                    final EventModel event = eventDraftsList[index];
+                    //final EventModel event = eventDraftsList[index];
+                    final BasicInfoFormData event = eventDraftsList[index];
                     print(eventDraftsList[index]);
-                   // print(event.category);
-                    return DraftComponent(event: event);
+                    // print(event.category);
+                    return DraftComponent(
+                        key: ValueKey("draftcomponent"), event: event);
                   },
                 ),
               );

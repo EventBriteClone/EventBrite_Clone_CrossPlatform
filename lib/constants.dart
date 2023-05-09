@@ -19,6 +19,12 @@ List<AutocompletePrediction> placePredictions = [];
 
 final List<String> Organizer = ['organizer', 'Mahinour Alaa'];
 
+final List<String> ticketType = ['Regural', 'VIP'];
+
+final List<String> ticketLimitList = ['Unlimited', 'Limited'];
+
+final List<String> discountType = ['percentage', 'dollar'];
+
 ///SHOULD BE GOTTEN FROM BACKEND
 final List<String> type = [
   'Type',

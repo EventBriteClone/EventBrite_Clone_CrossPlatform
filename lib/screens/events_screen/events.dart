@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 import '../../components/side_menu.dart';
 import '../../components/tabs/draft_events.dart';
 import '../../components/tabs/live_events.dart';
 import '../../components/tabs/past_events.dart';
 import '../add_event/add_event.dart';
-
+import '../creator/create_event/add_event_p_one.dart';
 
 ///our event page (main page):
 
@@ -89,7 +88,7 @@ class _EventPageState extends State<EventPage> {
         ),
 
         ///drawer:  for the sidemenu
-        drawer: SideMenu(),
+        //drawer: SideMenu(),
 
         ///our body:
 

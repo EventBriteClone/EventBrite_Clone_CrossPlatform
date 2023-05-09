@@ -1,0 +1,2 @@
+In model => DateTime and TimeOfDay
+In provider => textediting controller "string" 

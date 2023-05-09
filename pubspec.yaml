@@ -29,12 +29,18 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   build_runner: ^2.3.3
+  build_runner: ^2.3.3
   cupertino_icons: ^1.0.2
+  dartdoc: ^6.2.1
+  email_validator: ^2.1.17
+  equatable: ^2.0.5
   dartdoc: ^6.2.1
   email_validator: ^2.1.17
   equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_facebook_auth: ^5.0.8
+  flutter_pw_validator: ^1.5.0
   flutter_facebook_auth: ^5.0.8
   flutter_pw_validator: ^1.5.0
   flutter_svg: ^2.0.4
@@ -106,6 +112,14 @@ flutter:
     - family: Neue Plak
       fonts:
         - asset: assets/fonts/Neue Plak Regular.ttf
+        # - asset: assets/fonts/Neue Plak Extended ExtraBlack.ttf
+        - asset: assets/fonts/Neue Plak Extended Light.ttf
+        - asset: assets/fonts/Neue Plak Extended SemiBold.ttf
+        - asset: assets/fonts/Neue Plak Text Bold.ttf
+        
+    - family: Neue_Plak
+      fonts:
+        - asset: assets/fonts/Neue_Plak Extended ExtraBlack.ttf
         # - asset: assets/fonts/Neue Plak Extended ExtraBlack.ttf
         - asset: assets/fonts/Neue Plak Extended Light.ttf
         - asset: assets/fonts/Neue Plak Extended SemiBold.ttf
