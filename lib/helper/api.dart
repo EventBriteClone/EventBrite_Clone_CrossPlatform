@@ -60,7 +60,7 @@ class Api {
   Future<dynamic> post(
       {required String url,
       @required dynamic body,
-      File? file,
+      //File? file,
       @required String? token}) async {
     Map<String, String> headers = {};
 
@@ -71,10 +71,15 @@ class Api {
     http.Response response =
         await http.post(Uri.parse(url), body: body, headers: headers);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       Map<String, dynamic> data = jsonDecode(response.body);
+      final responseJson = data;
+      final ID = responseJson['ID']; // access the id from the response
+      return {'ID': ID, 'response': responseJson};
 
-      return data;
+      /// Map<String, dynamic> data = jsonDecode(response.body);
+
+      //return data;
     } else {
       throw Exception(
           'there is a problem with status code ${response.statusCode} with body ${jsonDecode(response.body)}');
@@ -127,11 +132,36 @@ class Api {
 
     // If the response status code is 200, decode the response data as JSON and return it
     if (response.statusCode == 201) {
-      return jsonDecode(responseData);
+      final responseJson = jsonDecode(responseData);
+      final ID = responseJson['id']; // access the id from the response
+      return {'ID': ID, 'response': responseJson};
     } else {
       // If the response status code is not 200, throw an exception with details about the response
       throw Exception(
           'There was a problem with status code ${response.statusCode} with body $responseData');
+    }
+  }
+
+  Future<dynamic> putM(
+      {required String url,
+      @required dynamic body,
+      @required String? token}) async {
+    Map<String, String> headers = {};
+    // headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
+    if (token != null) {
+      headers.addAll({'Authorization': ' $token'});
+    }
+
+    // print('url = $url body = $body token = $token ');
+    http.Response response =
+        await http.put(Uri.parse(url), body: body, headers: headers);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      //print(data);
+      return data;
+    } else {
+      throw Exception(
+          'there is a problem with status code ${response.statusCode} with body ${jsonDecode(response.body)}');
     }
   }
 

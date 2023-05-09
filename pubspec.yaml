@@ -50,6 +50,8 @@ dependencies:
   provider: ^6.0.5
   image_picker: ^0.8.7+2
   path: ^1.8.2
+  file_picker: ^5.3.0
+
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -82,6 +84,11 @@ flutter:
     - assets/images/eventimage.png
     - assets/images/mediaex.png
     - assets/images/uploadimage.png
+    - assets/images/ticketspriceinfo.png
+    - assets/images/promocodes.png
+    - assets/images/ticketslisticon.png
+    - assets/images/dot.png
+    - assets/images/csv.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

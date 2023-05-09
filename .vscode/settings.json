@@ -34,5 +34,6 @@
     "**/.vscode",
     "**/.vscode/**"
   ],
-  "C_Cpp_Runner.useAddressSanitizer": false
+  "C_Cpp_Runner.useAddressSanitizer": false,
+  "cmake.sourceDirectory": "D:/MahyDolphin/College_Stuff/Senior1/2nd_sem/software/project/phase3/nw/EventBrite_Clone_CrossPlatform-development/linux"
 }

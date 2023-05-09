@@ -44,7 +44,9 @@ class EventVenue extends StatelessWidget {
               ),
               Text(
                 location,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 20, fontFamily: "Poppins"),
+                softWrap: true,
               ),
             ],
           ),

@@ -16,7 +16,9 @@ class Publish extends StatelessWidget {
       drawer: Drawer(
         child: buildDrawer(context),
       ),
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget(
+        appBarText: 'Publish',
+      ),
       // drawer: Drawer(),
       body: Container(),
     );

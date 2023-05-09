@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../constants.dart';
 import '../../models/basic_info_form.dart';
 
 ///This is a provider class for the basic info form data for state managment in order to be able to transfer data to another page
@@ -8,11 +11,197 @@ import '../../models/basic_info_form.dart';
 /// It will notify all listerners that data has changed using [notifyListeners] method
 
 class BasicInfoFormDataProvider extends ChangeNotifier {
+  BasicInfoFormData? _previousBasicInfo;
+  BasicInfoFormData? get previousEventData => _previousBasicInfo;
+  set previousEventData(BasicInfoFormData? value) {
+    _previousBasicInfo = value;
+    notifyListeners();
+  }
+
+  int? _eventId;
+  String? _organizer = Organizer[0];
+  String _type = type[0];
+  String _category = category[0];
+  String _selectedLocationInput = '';
+  String _selectedLocation = 'Venue';
+  String _status = 'Draft';
+  String _online = 'False';
+
+  final TextEditingController _eventNameController = TextEditingController();
+  final TextEditingController _eventLocationController =
+      TextEditingController();
+
+  int? get eventId => _eventId;
+  String get organizer => _organizer!;
+  String get typee => _type;
+  String get categoryy => _category;
+  String get status => _status;
+  String get online => _online;
+  String get selectedLocationInput => _selectedLocationInput;
+  String get selectedLocation => _selectedLocation;
+  TextEditingController get eventNameController => _eventNameController;
+  TextEditingController get eventLocationController => _eventLocationController;
+
+  set eventId(int? value) {
+    _eventId = value;
+    notifyListeners();
+  }
+
+  set organizer(String value) {
+    _organizer = value;
+    notifyListeners();
+  }
+
+  set online(String value) {
+    _online = value;
+    notifyListeners();
+  }
+
+  set status(String value) {
+    _status = value;
+    notifyListeners();
+  }
+
+  set selectedLocationInput(String value) {
+    _selectedLocationInput = value;
+    notifyListeners();
+  }
+
+  set selectedLocation(String value) {
+    _selectedLocation = value;
+    notifyListeners();
+  }
+
+  set eventName(String value) {
+    _eventNameController.text = value;
+    notifyListeners();
+  }
+
+  set eventLocation(String value) {
+    _eventLocationController.text = value;
+    notifyListeners();
+  }
+
+  set typee(String value) {
+    _type = value;
+    notifyListeners();
+  }
+
+  set categoryy(String value) {
+    _category = value;
+    notifyListeners();
+  }
+
   final BasicInfoFormData _formData = BasicInfoFormData();
 
   BasicInfoFormData get formData => _formData;
 
+  void saveTitle(
+    String eventTitle,
+  ) {
+    _formData.eventTitle = eventTitle;
+    notifyListeners();
+  }
+
+  void saveCategory(
+    String category,
+  ) {
+    _formData.category = category;
+    notifyListeners();
+  }
+
+  void saveType(
+    String type,
+  ) {
+    _formData.type = type;
+    notifyListeners();
+  }
+
+  void saveLocation(
+    String venueLocation,
+  ) {
+    _formData.venueLocation = venueLocation;
+    notifyListeners();
+  }
+
+  void saveOrganizer(
+    String organzier,
+  ) {
+    _formData.organizer = organzier;
+    notifyListeners();
+  }
+
+  void saveStatus(
+    String status,
+  ) {
+    _formData.status = status;
+    notifyListeners();
+  }
+
+  void saveOnline(
+    String online,
+  ) {
+    _formData.online = online;
+    notifyListeners();
+  }
+
+  void saveDateStart(
+    TextEditingController dateControllerStart,
+  ) {
+    if (dateControllerStart.text.isNotEmpty) {
+      _formData.eventStart = DateTime.parse(dateControllerStart.text);
+    }
+    notifyListeners();
+  }
+
+  void saveDateEnd(
+    TextEditingController dateControllerEnd,
+  ) {
+    if (dateControllerEnd.text.isNotEmpty) {
+      _formData.eventEnd = DateTime.parse(dateControllerEnd.text);
+    }
+    notifyListeners();
+  }
+
+  void saveTimeStart(
+    TextEditingController timeControllerStart,
+  ) {
+    if (timeControllerStart.text.isNotEmpty) {
+      _formData.startTime = TimeOfDay.fromDateTime(
+          DateFormat('h:mm a').parse(timeControllerStart.text));
+    }
+    notifyListeners();
+  }
+
+  void saveTimeEnd(
+    TextEditingController timeControllerEnd,
+  ) {
+    if (timeControllerEnd.text.isNotEmpty) {
+      _formData.endTime = TimeOfDay.fromDateTime(
+          DateFormat('h:mm a').parse(timeControllerEnd.text));
+    }
+    notifyListeners();
+  }
+
+
+final TextEditingController _eventSummaryController = TextEditingController();
+  final TextEditingController _eventDescController = TextEditingController();
+  File? _eventImage;
+  String? _imagePath;
+  
+  void saveSecData(
+    String? summary,
+    String? eventDesc,
+    File? eventImage,
+  ) {
+    _formData.summary = summary;
+    _formData.eventDesc = eventDesc;
+    _formData.eventImage = eventImage;
+    notifyListeners();
+  }
+
   void saveData(
+    //int eventID,
     String eventTitle,
     String category,
     String type,
@@ -24,7 +213,6 @@ class BasicInfoFormDataProvider extends ChangeNotifier {
     bool displayStartTimeSingle,
     bool displayEndTimeSingle,
     bool displayEndTimeRecurring,
-    // String singleOrRecurring,
     String organzier,
     String status,
     String online,
@@ -38,57 +226,24 @@ class BasicInfoFormDataProvider extends ChangeNotifier {
     _formData.organizer = organzier;
     if (dateControllerStart.text.isNotEmpty) {
       _formData.eventStart = DateTime.parse(dateControllerStart.text);
-    } else {
-      //_formData.eventStart = dateControllerStart as DateTime?;
     }
     if (dateControllerEnd.text.isNotEmpty) {
       _formData.eventEnd = DateTime.parse(dateControllerEnd.text);
-    } else {
-      // _formData.eventEnd = dateControllerEnd as DateTime?;
     }
 
     if (timeControllerStart.text.isNotEmpty) {
       _formData.startTime = TimeOfDay.fromDateTime(
           DateFormat('h:mm a').parse(timeControllerStart.text));
-    } else {
-      // _formData.startTime = timeControllerStart as TimeOfDay?;
     }
     if (timeControllerEnd.text.isNotEmpty) {
       _formData.endTime = TimeOfDay.fromDateTime(
           DateFormat('h:mm a').parse(timeControllerEnd.text));
-    } else {
-      // _formData.endTime = timeControllerEnd as TimeOfDay?;
     }
 
-    // _formData.eventStart = DateTime.parse(dateControllerStart.text);
-    // _formData.eventEnd = DateTime.parse(dateControllerEnd.text);
-    // _formData.startTime = TimeOfDay.fromDateTime(
-    //     DateFormat('h:mm a').parse(timeControllerStart.text));
-    // _formData.endTime = TimeOfDay.fromDateTime(
-    //     DateFormat('h:mm a').parse(timeControllerEnd.text));
     _formData.display_start_time_Single = displayStartTimeSingle;
     _formData.display_end_time_Single = displayEndTimeSingle;
     _formData.display_end_time_Recurring = displayEndTimeRecurring;
-    // _formData.singleOrRecurring = singleOrRecurring;
+
     notifyListeners();
   }
-
-  // void saveDataRecurring(String eventTitle, String category, String type,
-  //     String venueLocation, bool displayEndTimeRecurring) {
-  //   _formData.eventTitle = eventTitle;
-  //   _formData.category = category;
-  //   _formData.type = type;
-  //   _formData.venueLocation = venueLocation;
-  //   _formData.display_end_time_Recurring = displayEndTimeRecurring;
-
-  //   notifyListeners();
-  // }
 }
-
-
-
-//we have many cases:
-//1. user fills everything in single date
-//2. user chose recurring date and (date fields are now empty)
-//3, user leaves location or type empty
-//4. user choose online event or to be annonuced 

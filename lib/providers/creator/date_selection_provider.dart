@@ -27,10 +27,14 @@ class DateSelectionModel extends ChangeNotifier {
   bool _isChecked2 = false;
   bool _isChecked3 = false;
 
-  final TextEditingController _dateControllerStart = TextEditingController();
-  final TextEditingController _timeControllerStart = TextEditingController();
-  final TextEditingController _dateControllerEnd = TextEditingController();
-  final TextEditingController _timeControllerEnd = TextEditingController();
+  TextEditingController _dateControllerStart =
+      TextEditingController(text: '2023-05-12');
+  TextEditingController _timeControllerStart =
+      TextEditingController(text: '12:00 AM');
+  TextEditingController _dateControllerEnd =
+      TextEditingController(text: '2023-05-14');
+  TextEditingController _timeControllerEnd =
+      TextEditingController(text: '7:00 PM');
 
   set isChecked1(bool value) {
     _isChecked1 = value;
@@ -46,25 +50,46 @@ class DateSelectionModel extends ChangeNotifier {
     _isChecked3 = value;
     notifyListeners();
   }
+
   set dateStart(String value) {
     _dateControllerStart.text = value;
     notifyListeners();
-}
+  }
 
-set timeStart(String value) {
+  set timeStart(String value) {
     _timeControllerStart.text = value;
     notifyListeners();
-}
+  }
 
-set dateEnd(String value) {
+  set dateEnd(String value) {
     _dateControllerEnd.text = value;
     notifyListeners();
-}
+  }
 
-set timeEnd(String value) {
+  set timeEnd(String value) {
     _timeControllerEnd.text = value;
     notifyListeners();
-}
+  }
+
+  set timeStartController(TextEditingController value) {
+    _timeControllerStart = value;
+    notifyListeners();
+  }
+
+  set timeEndController(TextEditingController value) {
+    _timeControllerEnd = value;
+    notifyListeners();
+  }
+
+  set dateStartController(TextEditingController value) {
+    _dateControllerStart = value;
+    notifyListeners();
+  }
+
+  set dateEndController(TextEditingController value) {
+    _dateControllerEnd = value;
+    notifyListeners();
+  }
 
   bool get isChecked1 => _isChecked1;
   bool get isChecked2 => _isChecked2;
@@ -73,9 +98,6 @@ set timeEnd(String value) {
   TextEditingController get timeControllerStart => _timeControllerStart;
   TextEditingController get dateControllerEnd => _dateControllerEnd;
   TextEditingController get timeControllerEnd => _timeControllerEnd;
-
-
- 
 
   DateTime _dateTime = DateTime.now();
 

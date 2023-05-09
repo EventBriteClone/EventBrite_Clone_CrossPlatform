@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+  final String appBarText;
   const AppBarWidget({
     super.key,
+    required this.appBarText,
   });
 
   @override
@@ -16,7 +18,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       title: Text(
-        'Events',
+        appBarText,
         style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
       ), //our title
       backgroundColor: Color.fromARGB(255, 30, 10, 61),

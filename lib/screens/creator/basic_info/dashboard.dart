@@ -14,9 +14,9 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: buildDrawer(context),
+       // child: buildDrawer(context),
       ),
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget(appBarText: 'Dashboard',),
       // drawer: Drawer(),
       body: Container(),
     );

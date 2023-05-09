@@ -11,10 +11,10 @@ import '../screens/creator/basic_info/basic_info.dart';
 import '../screens/creator/basic_info/dashboard.dart';
 import '../screens/creator/basic_info/manage_attendees.dart';
 import '../screens/creator/basic_info/publish.dart';
-import '../screens/creator/basic_info/tickets.dart';
+import '../screens/creator/basic_info/tickets/add_ticket.dart';
 
-
-///This is a function to build the drawer for the side menu that exists inside [BasicInfo] page
+///This is a method called [buildDrawer] to build the drawer for the side menu that exists inside [BasicInfo] page
+///it returns a [Drawer] which is a flutter built in drawer widget with a [ListView] for all our components
 ///It helps navigate between these pages=> [BasicInfo], [Publish], [Tickets], [Dashboard], [ManageAttendees]
 ///We use  [IconSideMenuWidget] to represent each item in the sidemenu and also uses [ItemSideMenuWidget]
 ///The difference is that [ItemSideMenuWidget] doesnt have an icon beside it
@@ -37,24 +37,20 @@ Drawer buildDrawer(BuildContext context) {
               builder: (BuildContext context, data, Widget? child) {
             final formData = data.formData;
 
-            final singleorRecurring = formData.singleOrRecurring;
+            //final singleorRecurring = formData.singleOrRecurring;
 
             String formattedDateStart = '';
 
             String formattedStartTime = '';
 
-            if (singleorRecurring == 'Single') {
-              final eventStart = formData.eventStart!;
-              final startTime = formData.startTime!;
+            final eventStart = formData.eventStart!;
+            final startTime = formData.startTime!;
 
-              formattedDateStart = eventStart.toString().substring(0, 10);
-              formattedDateStart =
-                  DateFormat('E, d MMM yyyy').format(eventStart);
-              formattedStartTime = DateFormat.jm()
-                  .format(DateTime(1, 1, 1, startTime.hour, startTime.minute));
-            }
+            formattedDateStart = eventStart.toString().substring(0, 10);
+            formattedDateStart = DateFormat('E, d MMM yyyy').format(eventStart);
+            formattedStartTime = DateFormat.jm()
+                .format(DateTime(1, 1, 1, startTime.hour, startTime.minute));
 
-            
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -119,5 +115,3 @@ Drawer buildDrawer(BuildContext context) {
     ),
   );
 }
-
-

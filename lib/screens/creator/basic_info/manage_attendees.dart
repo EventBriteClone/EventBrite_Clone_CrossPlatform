@@ -14,9 +14,9 @@ class ManageAttendees extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: buildDrawer(context),
+        //child: buildDrawer(context),
       ),
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget(appBarText: 'Attendees',),
       // drawer: Drawer(),
       body: Container(),
     );

@@ -51,9 +51,11 @@ class _EventPageState extends State<EventPage> {
       child: Scaffold(
         //our app bar:  it contains title and 2 icons
 
-        appBar: AppBarWidget(),
+        appBar: AppBarWidget(
+          appBarText: 'Events',
+        ),
         //drawer:  for the sidemenu
-        drawer: SideMenu(),
+       // drawer: SideMenu(),
         //our body:
 
         body: Column(
@@ -122,7 +124,7 @@ class _EventPageState extends State<EventPage> {
                   },
                   tooltip: 'Export to CSV',
                   child: Icon(Icons.file_download),
-                  backgroundColor: Color.fromARGB(233, 255, 153, 0)),
+                  backgroundColor: Color.fromARGB(255, 210, 78, 42)),
               FloatingActionButton(
                 heroTag: 'eventPage',
                 onPressed: () {
@@ -133,7 +135,7 @@ class _EventPageState extends State<EventPage> {
                   );
                 },
                 child: Icon(Icons.add),
-                backgroundColor: Color.fromARGB(233, 255, 153, 0),
+                backgroundColor: Color.fromARGB(255, 210, 78, 42),
               ),
             ],
           ),
