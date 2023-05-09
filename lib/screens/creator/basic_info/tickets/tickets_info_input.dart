@@ -46,7 +46,7 @@ class _AddTicketsState extends State<AddTickets> {
   void initState() {
     super.initState();
     // Add a post-frame callback to run a function after the widgets are built and rendered.
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       // OUR OLDDDDDDDDDDDDDDD DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
       String ticketName = widget.previousTicketModel?.ticketName ?? '';

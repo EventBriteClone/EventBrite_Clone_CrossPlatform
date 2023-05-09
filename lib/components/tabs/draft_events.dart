@@ -18,7 +18,7 @@ class DraftEventsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<BasicInfoFormData>>(
-      future: AllDraftEventsServices().getAllDraftEvents(),
+      future: AllDraftEventsServices().getAllDraftEvents(context),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

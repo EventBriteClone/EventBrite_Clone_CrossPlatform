@@ -5,6 +5,10 @@ import 'package:event_brite_app/reusable_widgets/creator_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/creator/basic_info_provider.dart';
+
 class DependentDropdownMenu extends StatefulWidget {
   @override
   _DependentDropdownMenuState createState() => _DependentDropdownMenuState();
@@ -76,8 +80,12 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
   }
 
   ///
+  ///
   @override
   Widget build(BuildContext context) {
+    final eventModel =
+        Provider.of<BasicInfoFormDataProvider>(context, listen: false);
+    print(eventModel.eventId);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

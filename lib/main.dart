@@ -129,7 +129,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UpdatedDateSelectionModel()),
         ChangeNotifierProvider(create: (_) => UpdatedTicketProviderModel()),
         ChangeNotifierProvider(create: (_) => PromoCodeProviderModel()),
-         ChangeNotifierProvider<TokenModel>(create: (_) => TokenModel()),
+        ChangeNotifierProvider<TokenModel>(create: (_) => TokenModel()),
       ],
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Neue Plak'),

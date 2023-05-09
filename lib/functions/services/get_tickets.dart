@@ -20,6 +20,7 @@ class AllTicketsServices {
   Future<List<TicketsModel>> getAllTickets(BuildContext context) async {
     final eventModel =
         Provider.of<BasicInfoFormDataProvider>(context, listen: false);
+        
 
     print("inside cget ticket");
     int? id;

@@ -1,10 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 
 import '../../helper/api.dart';
 import '../../models/basic_info_form.dart';
 import '../../models/event_model.dart';
+import '../../providers/token_provider.dart';
 
 ///[AllDraftEventsServices] is a class related to draft events
 ///It consists of a m[Future] method of type [BasicInfoFormData] which is [getAllDraftEvents]
@@ -13,11 +17,17 @@ import '../../models/event_model.dart';
 ///The method returns a [List] at the end of all draft events
 
 class AllDraftEventsServices {
-  Future<List<BasicInfoFormData>> getAllDraftEvents() async {
+  Future<List<BasicInfoFormData>> getAllDraftEvents(
+      BuildContext context) async {
+    String? token = Provider.of<TokenModel>(context).token;
+    // String? token = Provider.of(context)
+
+    token.toString();
+    print('tttttc');
+    print(token);
     List<dynamic> data = await Api().getM(
         url: 'https://event-us.me:8000/events/drafte-events/',
-        token:
-            'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b');
+        token: 'CustomToken $token');
 
     //List<dynamic> data = (dataUnFiltered['results']);
 
