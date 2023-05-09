@@ -1,4 +1,5 @@
 import 'package:event_brite_app/models/order_model.dart';
+import 'package:event_brite_app/models/returned_order_model/returned_order_model.dart';
 import 'package:event_brite_app/models/ticket_model.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -16,28 +17,28 @@ class OrderSummaryScreen extends StatefulWidget {
 }
 
 class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
-  Future<List<TicketModel>>? orderList;
+  Future<List<ReturnedOrderModel>>? orderList;
   @override
-  void initState() {
-    super.initState();
-    //print(widget.promocode);
-    orderList = Tickets().postOrderRequest(widget.orderItems);
-    //print(orderList);
-  }
+  // void initState() {
+  //   super.initState();
+  //   //print(widget.promocode);
+    
+  //   //print(orderList);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-          future: orderList,
+          future:Tickets().postOrderRequest(widget.orderItems),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List? order = snapshot.data;
-              print(order);
               return Container(
                 color: Colors.green,
               );
             }
+            print(orderList);
             return Container(
               color: Colors.red,
             );
