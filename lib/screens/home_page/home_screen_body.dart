@@ -17,7 +17,7 @@ class HomeScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<EventModel>>(
-      future: Events().getAllEvents(context),
+      future: Events().getAllEventsBody(context),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<EventModel> events = snapshot.data!;
@@ -55,7 +55,8 @@ class HomeScreenBody extends StatelessWidget {
                             String? endDate = events.elementAt(index).endDate;
                             String? stTime = events.elementAt(index).stTime;
                             String? title = events.elementAt(index).title;
-                            String? venueName = events.elementAt(index).venueName;
+                            String? venueName =
+                                events.elementAt(index).venueName;
                             int? ID = events.elementAt(index).ID;
                             String? imageURL = events.elementAt(index).image;
                             return GestureDetector(
@@ -63,8 +64,9 @@ class HomeScreenBody extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        EventDetailsScreen(iD: ID,),
+                                    builder: (context) => EventDetailsScreen(
+                                      iD: ID,
+                                    ),
                                   ),
                                 );
                               },

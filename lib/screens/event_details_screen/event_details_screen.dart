@@ -59,6 +59,14 @@ class EventDetailsScreen extends StatelessWidget {
             String? venueName = eventDetails.venueName;
             String? imageURl = eventDetails.image;
             String? organizer = eventDetails.organizer;
+            String checkImg(imageURL) {
+              if (imageURL == null) {
+                return 'https://event-us.me:8000/events/mmmmmnmnmnmnmn_QoERGXn.jpg';
+              } else {
+                return imageURL;
+              }
+            }
+            String img = checkImg(imageURl);
             String CheckOnlineStatus() {
               if (online == 'False') {
                 return venueName!;
@@ -80,7 +88,7 @@ class EventDetailsScreen extends StatelessWidget {
                         // Image.asset(
                         //   'assets/images/Eventbrite_logo.png',
                           Image.network(
-                            imageURl!,
+                            img,
                           width: double.infinity,
                           height: MediaQuery.of(context).size.height * 0.35,
                         ),

@@ -6,14 +6,14 @@ import 'package:provider/provider.dart';
 import '../../providers/token_provider.dart';
 
 class Events {
-  Future<List<EventModel>> getAllEvents(BuildContext context) async {
+  Future<List<EventModel>> getAllEventsBody(BuildContext context) async {
     String? token = Provider.of<TokenModel>(context).token;
-    Map<String,dynamic> dataUnFiltered = await Api().get(
+    Map<String, dynamic> dataUnFiltered = await Api().get(
         url: 'https://event-us.me:8000/events/ALL/?page=1',
-        token: 'CustomToken $token');
-        //print(dataUnFiltered['results']);
-       List<dynamic> data = (dataUnFiltered['results']);
-  // print(data);
+        token: 'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b');
+    //print(dataUnFiltered['results']);
+    List<dynamic> data = (dataUnFiltered['results']);
+    // print(data);
     List<EventModel> allEventsList = [];
     for (int i = 0; i < data.length; i++) {
       allEventsList.add(EventModel.fromJson(data[i]));
@@ -21,7 +21,8 @@ class Events {
     return allEventsList;
   }
 
-  Future<List<EventModel>> getEventByCategory(String category, BuildContext context) async {
+  Future<List<EventModel>> getEventByCategory(
+      String category, BuildContext context) async {
     String? token = Provider.of<TokenModel>(context).token;
     List<dynamic> dataUnFiltered = await Api().get(
         url: 'https://event-us.me:8000/events/category/$category/',
@@ -36,7 +37,8 @@ class Events {
     return categorizedEvents;
   }
 
-  Future<List<EventModel>> getEventBySearch(String searchString, BuildContext context) async {
+  Future<List<EventModel>> getEventBySearch(
+      String searchString, BuildContext context) async {
     String? token = Provider.of<TokenModel>(context).token;
     List<dynamic> dataUnFiltered = await Api().get(
         url: 'https://event-us.me:8000/events/search/$searchString',

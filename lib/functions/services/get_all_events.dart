@@ -10,7 +10,7 @@ class Events {
     String? token = Provider.of<TokenModel>(context).token;
     Map<String,dynamic> dataUnFiltered = await Api().get(
         url: 'https://event-us.me:8000/events/ALL/',
-        token: 'Basic $token');
+        token: 'Basic a2FyZWVtc29iaGk1MEBnbWFpbC5jb206TmttbnJzMTIzIQ==');
         //print(dataUnFiltered['results']);
        List<dynamic> data = (dataUnFiltered['results']);
   // print(data);

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:event_brite_app/functions/services/geolocation.dart';
 import 'package:event_brite_app/screens/searched_events/searched_events.dart';
@@ -40,7 +42,143 @@ class _SearchScreenState extends State<SearchScreen> {
       body: FutureBuilder(
         future: getPosition(),
         builder: (context, snapshot) {
+          if (Platform.isAndroid){
           if (snapshot.hasData) {
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 9),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const FindEvents();
+                            },
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            position,
+                            style: const TextStyle(fontSize: 19),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                          ),
+                          const Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.007,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: myController,
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.zero,
+                              hintText: 'Start searching...',
+                              hintStyle: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            if
+                              (myController.text != ''){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return SearchedEvents(
+                                      searchString: myController.text);
+                                },
+                              ),
+                            );
+                            } else
+                            {
+                              const snackBar = SnackBar(content: Text('Please enter a valid value'),);
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.search,
+                            size: 28,
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.024,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          CategoryContainer(text: 'Food & Drink'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Health & Wellness'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Charity & Causes'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Family & Education'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Fashion & Beauty'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Music'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Home & Lifestyle'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Sports & Fitness'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Travel & Outdoor'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Other'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.085,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }} else if(Platform.isWindows){
             return SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 9),
