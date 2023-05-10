@@ -25,7 +25,7 @@ class EventTypeCategory extends StatelessWidget {
           Icon(
             Icons.discount_outlined,
             size: 45.0 * MediaQuery.of(context).textScaleFactor,
-            color: Color.fromARGB(255, 198, 198, 198),
+            color: const Color.fromARGB(255, 198, 198, 198),
           ),
           const SizedBox(
             width: 20,

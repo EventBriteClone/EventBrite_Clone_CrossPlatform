@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../functions/services/get_draft_events.dart';
 import '../../functions/services/get_live_events.dart';
-import '../../models/basic_info_form.dart';
 import '../../models/event_model.dart';
 import '../../reusable_widgets/NoComponentWidget.dart';
-import '../draft_component.dart';
 import '../live_component.dart';
 
 /// A tab that displays a list of live events. It fetches the data asynchronously using [AllLiveEventsServices]

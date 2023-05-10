@@ -48,15 +48,15 @@ class _EndSelectionWidgetState extends State<EndSelectionWidget> {
                 //_showDatePickerStart,
                 controller: model.dateControllerEnd,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.calendar_month_outlined),
+                    prefixIcon: const Icon(Icons.calendar_month_outlined),
                     labelText: widget.startDay,
                     // hintText: '05/02/2023',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       fontSize: 18,
                     ),
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                        const EdgeInsets.symmetric(vertical: 32, horizontal: 10),
                     suffixIcon: const Text(
                       '*',
                       style: TextStyle(color: Colors.red, fontSize: 24),
@@ -85,9 +85,9 @@ class _EndSelectionWidgetState extends State<EndSelectionWidget> {
                   labelStyle: const TextStyle(
                     fontSize: 18,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 32, horizontal: 10),
                   suffixIcon: const Text(
                     '*',
                     style: TextStyle(color: Colors.red, fontSize: 24),

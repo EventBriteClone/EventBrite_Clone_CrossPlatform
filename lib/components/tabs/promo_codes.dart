@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../tickets_info/Create_promo_code_component.dart';
 
 ///This widget is [PromoCodesTab] which just displays some [Text] and [Image]
@@ -65,7 +62,7 @@ class PromoCodesTab extends StatelessWidget {
                               width: 150,
                               height: 60,
                               child: ElevatedButton(
-                                key: ValueKey("createpromocode"),
+                                key: const ValueKey("createpromocode"),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -100,13 +97,13 @@ class PromoCodesTab extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color: Color.fromARGB(161, 0, 0, 0),
+                                    color: const Color.fromARGB(161, 0, 0, 0),
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: ElevatedButton(
-                                  key: ValueKey("uploadcsv"),
+                                  key: const ValueKey("uploadcsv"),
                                   onPressed: () {
                                     Navigator.push(
                                       context,

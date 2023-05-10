@@ -74,7 +74,7 @@ class LiveComponent extends StatelessWidget {
               children: [
                 Text(
                   event.title!,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 ),
                 const SizedBox(
@@ -84,7 +84,7 @@ class LiveComponent extends StatelessWidget {
                   //'$formattedDateStart , $formattedStartTime',
 
                   '$formattedeventStDate ,  $formattedStartTime',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 )
               ],

@@ -101,7 +101,7 @@ class _AddEventsState extends State<AddEvents> {
     super.initState();
 
     // Add a post-frame callback to run a function after the widgets are built and rendered.
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       // OUR OLDDDDDDDDDDDDDDD DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
       String eventName = widget.previousBasicInfoData?.eventTitle ?? '';
       String organizer = widget.previousBasicInfoData?.organizer ?? '';

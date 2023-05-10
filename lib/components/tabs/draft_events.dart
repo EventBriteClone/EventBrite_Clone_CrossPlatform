@@ -43,7 +43,7 @@ class DraftEventsTab extends StatelessWidget {
                     print(eventDraftsList[index]);
                     // print(event.category);
                     return DraftComponent(
-                        key: ValueKey("draftcomponent"), event: event);
+                        key: const ValueKey("draftcomponent"), event: event);
                   },
                 ),
               );
