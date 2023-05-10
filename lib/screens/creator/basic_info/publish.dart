@@ -11,6 +11,8 @@ import '../../../providers/creator/basic_info_provider.dart';
 import '../../../providers/token_provider.dart';
 
 class DependentDropdownMenu extends StatefulWidget {
+  DependentDropdownMenu();
+
   @override
   _DependentDropdownMenuState createState() => _DependentDropdownMenuState();
 }
@@ -27,9 +29,9 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
   String? formattedTime;
   TextEditingController passwordController = TextEditingController();
   int? event_ID;
-  String? token; 
+  String? token;
 /////here is the publish page where the user can publish his event after creating the event and the tickets for it
-///here we have publish function where we gave tp it the event id event status password of the event and the publication date if the user is going to change it from private to public 
+  ///here we have publish function where we gave tp it the event id event status password of the event and the publication date if the user is going to change it from private to public
   void publish(int Event_ID, String Event_Status, String Audience_Password,
       bool Keep_Private, String Publication_Date) async {
     setState(() {
@@ -57,8 +59,7 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     String password = "Youssef@33";
     final headers = {
       'Content-Type': 'application/json',
-      'Authorization':
-          'CustomToken $token'
+      'Authorization': 'CustomToken $token'
     };
     final body = {
       "Event_ID": Event_ID,
@@ -76,16 +77,17 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
       //var data = jsonDecode(response.body.toString());
       //print("token"+data['token']);
       print('Publish successfully');
-          setState(() {
-      _isLoading = false;
-      _errorMessage = 'Event Published Successfully';
-    });
+      setState(() {
+        _isLoading = false;
+        _errorMessage = 'Event Published Successfully';
+      });
     } else {
       print('failed');
-          setState(() {
-      _isLoading = false;
-      _errorMessage = 'There is an error while publishing your event Make sure that you created tickets first for your event or you may be already published it';
-    });
+      setState(() {
+        _isLoading = false;
+        _errorMessage =
+            'There is an error while publishing your event Make sure that you created tickets first for your event or you may be already published it';
+      });
     }
     // }catch(e){
     //   print('ypussef');
@@ -99,8 +101,8 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
   Widget build(BuildContext context) {
     final eventModel =
         Provider.of<BasicInfoFormDataProvider>(context, listen: false);
-    print(eventModel.eventId);
-    event_ID=eventModel.eventId;
+    print(eventModel.formData.eventID);
+    event_ID = eventModel.formData.eventID;
     token = Provider.of<TokenModel>(context).token;
 
     return Scaffold(
@@ -159,37 +161,43 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CreatorCustomButton(
-                              key:const ValueKey("button in publish page 1"),
-                        onTap:_isLoading? () async {
-                    
-                              null;
-                        }:()async{
-                              publish(
-                                  event_ID!,
-                                  "Public",
-                                  passwordController.text.toString(),
-                                  !_switchValue2,
-                                  formattedTime="");
-                          
-                    
-                        },
-                       child: _isLoading
-                            ? SizedBox(
-                              width: 10,
-                              child: Center(
-                                child: CircularProgressIndicator(strokeWidth: 2,
-                                color:Colors.grey,),
-                              ))
-                            : Center(child: Text('Next',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight:FontWeight.bold),))
-                            ),
+                                key: const ValueKey("button in publish page 1"),
+                                onTap: _isLoading
+                                    ? () async {
+                                        null;
+                                      }
+                                    : () async {
+                                        publish(
+                                            event_ID!,
+                                            "Public",
+                                            passwordController.text.toString(),
+                                            !_switchValue2,
+                                            formattedTime = "");
+                                      },
+                                child: _isLoading
+                                    ? SizedBox(
+                                        width: 10,
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: Colors.grey,
+                                          ),
+                                        ))
+                                    : Center(
+                                        child: Text(
+                                        'Next',
+                                        style: TextStyle(
+                                            color: primaryColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ))),
                           ),
                         )
                       ],
                     )
                   : Column(
                       children: [
-                        Text(
-                            'This event will not be listed on Eventus'),
+                        Text('This event will not be listed on Eventus'),
                         Divider(),
                         Divider(),
                         SwitchListTile(
@@ -250,39 +258,46 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CreatorCustomButton(
-                              key:const ValueKey("button in publish page 1"),
-                        onTap:_isLoading? () async {
-                    
-                              null;
-                        }:()async{
-                              publish(
-                                  event_ID!,
-                                  "Private",
-                                  passwordController.text.toString(),
-                                  !_switchValue2,
-                                  formattedTime!);
-                          
-                    
-                        },
-                       child: _isLoading
-                            ? SizedBox(
-                              width: 10,
-                              child: Center(
-                                child: CircularProgressIndicator(strokeWidth: 2,
-                                color:Colors.grey,),
-                              ))
-                            : Center(child: Text('Next',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight:FontWeight.bold),))
-                            ),
+                              key: const ValueKey("button in publish page 1"),
+                              onTap: _isLoading
+                                  ? () async {
+                                      null;
+                                    }
+                                  : () async {
+                                      publish(
+                                          event_ID!,
+                                          "Private",
+                                          passwordController.text.toString(),
+                                          !_switchValue2,
+                                          formattedTime!);
+                                    },
+                              child: _isLoading
+                                  ? SizedBox(
+                                      width: 10,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: Colors.grey,
+                                        ),
+                                      ))
+                                  : Center(
+                                      child: Text(
+                                      'Next',
+                                      style: TextStyle(
+                                          color: primaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ))),
                         )
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                                      _errorMessage,
-                                      style: TextStyle(color: Colors.red),
-                                    ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  _errorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
             ],
           ),
         ],
@@ -312,6 +327,18 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
             picked.day,
             timePicked.hour,
             timePicked.minute,
+          );
+          formattedTime = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+              .format(_selectedDateTime!);
+        });
+      } else {
+        setState(() {
+          _selectedDateTime = DateTime(
+            2022,
+            12,
+            12,
+            12,
+            12,
           );
           formattedTime = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
               .format(_selectedDateTime!);

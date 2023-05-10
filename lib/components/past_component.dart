@@ -1,3 +1,4 @@
+import 'package:event_brite_app/models/basic_info_form.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/event_model.dart';
@@ -5,34 +6,24 @@ import '../models/event_model.dart';
 ///It takes as input [event] object of type [EventModel] in order to display the Past events data from the model
 
 class PastComponent extends StatelessWidget {
-  final EventModel event;
+  final BasicInfoFormData event;
 
   const PastComponent({Key? key, required this.event}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String? eventStDate = event.stDate;
-    String? eventEndDate = event.endDate;
-    String? eventStTime = event.stTime;
-    String? eventEndTime = event.endTime;
-
-    final eventStDateD = DateTime.parse(eventStDate!);
-    final eventEndDateD = DateTime.parse(eventEndDate!);
-
-    final List<String> stTimeSplit = eventStTime!.split(':');
-    final List<String> endTimeSplit = eventEndTime!.split(':');
-    final TimeOfDay startTime = TimeOfDay(
-        hour: int.parse(stTimeSplit[0]), minute: int.parse(stTimeSplit[1]));
-    final TimeOfDay endTime = TimeOfDay(
-        hour: int.parse(endTimeSplit[0]), minute: int.parse(endTimeSplit[1]));
+    DateTime? eventStDate = event.eventStart;
+    DateTime? eventEndDate = event.eventEnd;
+    TimeOfDay? eventStTime = event.startTime;
+    TimeOfDay? eventEndTime = event.endTime;
 
     final formattedStartTime = DateFormat.jm()
-        .format(DateTime(1, 1, 1, startTime.hour, startTime.minute));
-    final formattedEndTime =
-        DateFormat.jm().format(DateTime(1, 1, 1, endTime.hour, endTime.minute));
+        .format(DateTime(1, 1, 1, eventStTime!.hour, eventStTime.minute));
+    final formattedEndTime = DateFormat.jm()
+        .format(DateTime(1, 1, 1, eventEndTime!.hour, eventEndTime.minute));
 
-    final formattedeventStDate = DateFormat('E, d MMM ').format(eventStDateD);
-    final formattedeventEndDate = DateFormat('E, d MMM ').format(eventEndDateD);
+    final formattedeventStDate = DateFormat('E, d MMM ').format(eventStDate!);
+    final formattedeventEndDate = DateFormat('E, d MMM ').format(eventEndDate!);
 
     return GestureDetector(
       onTap: () {
@@ -69,7 +60,7 @@ class PastComponent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  event.title!,
+                  event.eventTitle!,
                   style: const TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 ),

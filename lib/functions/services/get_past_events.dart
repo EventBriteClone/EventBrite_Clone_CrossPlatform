@@ -18,7 +18,7 @@ import '../../providers/token_provider.dart';
 ///The method returns a [List] at the end of all draft events
 
 class AllPastEventsServices {
-  Future<List<EventModel>> getAllPastEvents(BuildContext context) async {
+  Future<List<BasicInfoFormData>> getAllPastEvents(BuildContext context) async {
     String? token = Provider.of<TokenModel>(context).token;
     List<dynamic> data = await Api().getM(
         url: 'https://event-us.me:8000/eventmanagement/creatorPastEvents/',
@@ -27,10 +27,10 @@ class AllPastEventsServices {
 
     //List<dynamic> data = (dataUnFiltered['results']);
 
-    List<EventModel> eventPastList = [];
+    List<BasicInfoFormData> eventPastList = [];
     for (int i = 0; i < data.length; i++) {
       eventPastList.add(
-        EventModel.fromJson(data[i]),
+        BasicInfoFormData.fromJson(data[i]),
       );
     }
     return eventPastList;

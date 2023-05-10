@@ -1,3 +1,4 @@
+import 'package:event_brite_app/models/basic_info_form.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +37,8 @@ Drawer buildDrawer(BuildContext context) {
           child: Consumer<BasicInfoFormDataProvider>(
               builder: (BuildContext context, data, Widget? child) {
             final formData = data.formData;
+            print('inside side menu');
+            print(formData.eventID);
 
             //final singleorRecurring = formData.singleOrRecurring;
 

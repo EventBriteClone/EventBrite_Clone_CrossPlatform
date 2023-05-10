@@ -69,7 +69,7 @@ class _CounterListState extends State<CounterList> {
     };
     final body = {
       "order_items": [
-        {"ticket_class_id": 89528274, "quantity": numberOfTickets}
+        {"ticket_class_id": id, "quantity": numberOfTickets}
       ],
       //"promocode" : "sasfsf", // optional
       "first_name": FirstName,
@@ -120,8 +120,8 @@ class _CounterListState extends State<CounterList> {
   Widget build(BuildContext context) {
     final eventModel =
         Provider.of<BasicInfoFormDataProvider>(context, listen: false);
-    print(eventModel.eventId);
-    event_ID = eventModel.eventId;
+    print(eventModel.formData.eventID);
+    event_ID = eventModel.formData.eventID;
     token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       appBar: AppBar(

@@ -56,13 +56,13 @@ class _TicketsState extends State<Tickets> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
-             child: buildDrawer(context),
-            ),
+          child: buildDrawer(context),
+        ),
         appBar: const AppBarWidget(
           appBarText: 'Tickets',
         ),
         body: FutureBuilder<List<TicketsModel>>(
-          //future: AllTicketsServices().getAllTickets(context),
+          future: AllTicketsServices().getAllTickets(context),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
