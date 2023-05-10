@@ -2,12 +2,15 @@
 
 import 'dart:convert';
 
-import 'package:event_brite_app/screens/login_signin_pages/add_attendee_page_2.dart';
+import 'package:event_brite_app/screens/creator/basic_info/add_attendee_page_2.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
+import '../../../providers/creator/basic_info_provider.dart';
+import '../../../providers/token_provider.dart';
 import '../../../reusable_widgets/creator_custom_button.dart';
 
 class FirstPage extends StatefulWidget {
@@ -19,6 +22,8 @@ class _FirstPageState extends State<FirstPage> {
   int textFieldCount = 0;
   bool _isLoading = false;
   String _errorMessage = '';
+    int? event_ID;
+  String? token; 
 // Future<Map<int, String>> removeRedundancy(Map map) async{
 
 //   Map<int, String> result = {};
@@ -55,11 +60,11 @@ class _FirstPageState extends State<FirstPage> {
       _errorMessage = '';
     });
     final url =
-        'https://event-us.me:8000/events/ALLTickets/8244/'; // Replace with your API URL
+        'https://event-us.me:8000/events/ALLTickets/$event_ID/'; // Replace with your API URL
     final headers = {
       'Content-Type': 'application/json',
       'Authorization':
-          'CustomToken 65e1180796caf66355282edfae231cf52353ee8591a6efa8aa98d6ef76856a0c'
+          'CustomToken $token'
     };
 
     final response = await get(Uri.parse(url), headers: headers);
@@ -114,6 +119,11 @@ class _FirstPageState extends State<FirstPage> {
 
   @override
   Widget build(BuildContext context) {
+        final eventModel =
+        Provider.of<BasicInfoFormDataProvider>(context, listen: false);
+    print(eventModel.eventId);
+    event_ID=eventModel.eventId;
+    token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       key: const Key('scaffold of the add attendee page'),
       // appBar: AppBar(

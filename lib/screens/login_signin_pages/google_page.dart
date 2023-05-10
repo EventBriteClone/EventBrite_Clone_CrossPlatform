@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../providers/token_provider.dart';
 import '../../reusable_widgets/final_button.dart';
 import 'choose_organiser_or_attendee.dart';
 import 'google_logic.dart';
@@ -25,7 +27,16 @@ class LoggedInPage extends StatefulWidget {
 class _LoggedInPageState extends State<LoggedInPage> {
   bool _isLoading = false;
   String _errorMessage = '';
-  void login(String email, password) async {
+    void gotochooseAndOrg() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return CchooseCustomerOrOrganiserPage();
+    }));
+  }
+  Future login(String email, password) async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
     try {
       //email='joe@gmail.com';
       Response response = await post(
@@ -34,11 +45,18 @@ class _LoggedInPageState extends State<LoggedInPage> {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
+        String token = data['token'].toString();
         print("token" + data['token']);
         print('Login successfully');
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return CchooseCustomerOrOrganiserPage();
-        }));
+        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //   return CchooseCustomerOrOrganiserPage();
+       // }));
+       gotochooseAndOrg();
+       setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });
+    return token;
       } else {
         print('failed');
       }
@@ -46,6 +64,7 @@ class _LoggedInPageState extends State<LoggedInPage> {
       print('ypussef');
       print(e.toString());
     }
+    return "error";
   }
 
   Future<void> _signup() async {
@@ -75,7 +94,26 @@ class _LoggedInPageState extends State<LoggedInPage> {
       //var data = jsonDecode(response.body.toString());
       //print("token"+data['token']);
       print('SignUp successfully');
-      login(widget.user.email.toString(), widget.user.email.toString());
+               var token= login(widget.user.email.toString(), widget.user.email.toString());
+         await Future.delayed(const Duration(seconds: 5));
+         token.then((value) {
+                                  String sad = value;
+                                  print('token here: ' + value);
+                                  if (value=='error')
+                                  {
+                                        setState(() {
+      _isLoading = false;
+      _errorMessage = 'Password is not correct';
+    });
+                                  
+                                    print('hey error');
+                                  }
+  Provider.of<TokenModel>(context, listen: false).setToken(value);
+  
+
+                                  //authTokenProvider.setToken(AuthToken(sad));
+                                  // prints "Hello, World!"
+                                });
     } else {
       setState(() {
         _errorMessage = 'Failed to sign up. Please try again.';
@@ -105,7 +143,27 @@ class _LoggedInPageState extends State<LoggedInPage> {
             _errorMessage = '';
           });
           print('mwgood');
-          login(widget.user.email.toString(), widget.user.email.toString());
+         var token= login(widget.user.email.toString(), widget.user.email.toString());
+         await Future.delayed(const Duration(seconds: 5));
+         token.then((value) {
+                                  String sad = value;
+                                  print('token here: ' + value);
+                                  if (value=='error')
+                                  {
+                                        setState(() {
+      _isLoading = false;
+      _errorMessage = 'Password is not correct';
+    });
+                                  
+                                    print('hey error');
+                                  }
+  Provider.of<TokenModel>(context, listen: false).setToken(value);
+  
+
+                                  //authTokenProvider.setToken(AuthToken(sad));
+                                  // prints "Hello, World!"
+                                });
+
         } else {
           setState(() {
             _isLoading = false;
