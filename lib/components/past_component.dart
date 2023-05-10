@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../models/basic_info_form.dart';
 import '../models/event_model.dart';
-import '../screens/creator/create_event/add_event_p_one.dart';
-
 ///This custom widget represents a [PastComponent] which is a [StatelessWidget] that is used for representing each past component in the past events page
 ///It takes as input [event] object of type [EventModel] in order to display the Past events data from the model
 
@@ -74,7 +70,7 @@ class PastComponent extends StatelessWidget {
               children: [
                 Text(
                   event.title!,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 ),
                 const SizedBox(
@@ -84,7 +80,7 @@ class PastComponent extends StatelessWidget {
                   //'$formattedDateStart , $formattedStartTime',
 
                   '$formattedeventStDate ,  $formattedStartTime',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 )
               ],

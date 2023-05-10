@@ -141,14 +141,21 @@ class PromoCodeProviderModel extends ChangeNotifier {
     String? ticketLimit,
     File? csvFile,
   ) {
+    if (revealHidden == true) {
+      _formData.revealHidden = "True";
+    } else {
+      _formData.revealHidden = "False";
+    }
+
     _formData.codeName = codeName;
-    _formData.discountAmount = discountAmountPerc as int?;
-    _formData.discountPrice = discountAmountPrice as double?;
-    _formData.revealHidden = revealHidden as String?;
+    print(discountAmountPerc);
+    _formData.discountAmount = int.parse(discountAmountPerc!);
+    _formData.discountPrice = double.parse(discountAmountPrice!);
+
     _formData.csvFile = csvFile;
-    _formData.limitAmount = limitAmount as int?;
+    _formData.limitAmount = int.parse(limitAmount!);
     _formData.limitedOrUn = ticketLimit;
-    _formData.quantityAvailable = limitAmount as int?;
+    _formData.quantityAvailable = int.parse(limitAmount);
 
     if (startsNow == true) {
       _formData.starts = "now";

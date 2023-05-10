@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/basic_info_form.dart';
-import '../models/event_model.dart';
 import '../screens/creator/create_event/add_event_p_one.dart';
 
 ///This is a [DraftComponent] widget that displays created events that are not yet published
@@ -71,7 +70,7 @@ class DraftComponent extends StatelessWidget {
               children: [
                 Text(
                   event.eventTitle!,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 ),
                 const SizedBox(
@@ -81,7 +80,7 @@ class DraftComponent extends StatelessWidget {
                   //'$formattedDateStart , $formattedStartTime',
 
                   '$formattedeventStDate ,  $formattedStartTime',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 )
               ],
@@ -101,8 +100,8 @@ class DraftComponent extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.edit),
-                title: Text('Edit'),
+                leading: const Icon(Icons.edit),
+                title: const Text('Edit'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -116,16 +115,16 @@ class DraftComponent extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.remove_circle_outline),
-                title: Text('Delete'),
+                leading: const Icon(Icons.remove_circle_outline),
+                title: const Text('Delete'),
                 onTap: () {
                   // Delete the event here
                   //Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.remove_red_eye),
-                title: Text('View'),
+                leading: const Icon(Icons.remove_red_eye),
+                title: const Text('View'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(

@@ -62,7 +62,7 @@ class _TicketsState extends State<Tickets> {
           appBarText: 'Tickets',
         ),
         body: FutureBuilder<List<TicketsModel>>(
-          future: AllTicketsServices().getAllTickets(context),
+          //future: AllTicketsServices().getAllTickets(context),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());

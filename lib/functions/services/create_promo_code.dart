@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../helper/api.dart';
 import '../../models/basic_info_form.dart';
+import '../../providers/creator/basic_info_provider.dart';
 
 /// class for [CreatePromoCodeService] to  [createPromoCode]
 ///
@@ -43,6 +45,7 @@ class CreatePromoCodeService {
     required TimeOfDay? endTime,
     required int? quantityAvailable,
     required File? csvFile,
+    required BuildContext context,
   }) async {
 // Format the start and end dates as dd/mm/yyyy
 
@@ -61,8 +64,15 @@ class CreatePromoCodeService {
     // print(
     //     "https://127.0.0.1:8000/media/events/${eventImage!.path.split('/').last}");
 
+    //NA2ESSSS PROVIDERS FOR CUSTOM TOKEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEENN
+
+    final eventModel =
+        Provider.of<BasicInfoFormDataProvider>(context, listen: false);
+
+    final eventid = eventModel.eventId;
+
     final response = await Api().postWithFile(
-      url: 'https://event-us.me:8000/events/create/',
+      url: 'https://event-us.me:8000/eventmanagement/${eventid}/promocode/',
       body: {
         'CODE': codeName,
         'Ticket_limit': limitedOrUn,
@@ -80,7 +90,7 @@ class CreatePromoCodeService {
       },
       file: csvFile,
       token:
-          'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b',
+          'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332',
     );
 
     final responseData = response['response'];

@@ -107,10 +107,10 @@ Drawer buildDrawer(BuildContext context) {
           height: 20,
         ),
         const SizedBox(height: 20),
-        const ItemSideMenuWidget(itemTitle: 'Dashboard', page: Dashboard()),
+        const ItemSideMenuWidget(
+            itemTitle: 'Dashboard', page: DashboardScreen()),
         const SizedBox(height: 40),
-        ItemSideMenuWidget(
-            itemTitle: 'Manage Attendees', page: FirstPage()),
+        ItemSideMenuWidget(itemTitle: 'Manage Attendees', page: FirstPage()),
       ],
     ),
   );

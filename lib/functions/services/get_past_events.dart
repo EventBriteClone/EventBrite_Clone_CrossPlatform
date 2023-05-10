@@ -14,21 +14,21 @@ import '../../models/event_model.dart';
 ///It iterates around [data['result']] in order to save all draft events in the list of [eventDraftsList]
 ///The method returns a [List] at the end of all draft events
 
-class AllLiveEventsServices {
-  Future<List<EventModel>> getAllLiveEvents() async {
+class AllPastEventsServices {
+  Future<List<EventModel>> getAllPastEvents() async {
     List<dynamic> data = await Api().getM(
-        url: 'https://event-us.me:8000/eventmanagement/creatorUpcomingEvents/',
+        url: 'https://event-us.me:8000/eventmanagement/creatorPastEvents/',
         token:
             'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b');
 
     //List<dynamic> data = (dataUnFiltered['results']);
 
-    List<EventModel> eventLiveList = [];
+    List<EventModel> eventPastList = [];
     for (int i = 0; i < data.length; i++) {
-      eventLiveList.add(
+      eventPastList.add(
         EventModel.fromJson(data[i]),
       );
     }
-    return eventLiveList;
+    return eventPastList;
   }
 }
