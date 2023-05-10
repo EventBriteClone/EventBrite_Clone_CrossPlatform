@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/creator/basic_info_provider.dart';
+import '../../../providers/token_provider.dart';
 
 class DependentDropdownMenu extends StatefulWidget {
   @override
@@ -25,7 +26,10 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
   String _errorMessage = '';
   String? formattedTime;
   TextEditingController passwordController = TextEditingController();
-/////
+  int? event_ID;
+  String? token; 
+/////here is the publish page where the user can publish his event after creating the event and the tickets for it
+///here we have publish function where we gave tp it the event id event status password of the event and the publication date if the user is going to change it from private to public 
   void publish(int Event_ID, String Event_Status, String Audience_Password,
       bool Keep_Private, String Publication_Date) async {
     setState(() {
@@ -34,10 +38,12 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     });
     //try{
     //email='joe@gmail.com';
-    Event_ID = 1936;
+    //Event_ID = 1936;
     String eva;
     eva = Event_ID.toString();
-    int eventID = 7406; // integer variable
+    //int eventID = 7406; // integer variable
+    print('event_id');
+    print(Event_ID);
     print("pubdate:" + Publication_Date);
     print('eventstatus:' + Event_Status);
     print('pass:' + Audience_Password);
@@ -45,17 +51,17 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     print(Keep_Private);
 
 //Future<void> publish(int id, bool abas, String isPrivate) async {
-    final url = 'https://event-us.me:8000/eventmanagement/8244/publish/';
+    final url = 'https://event-us.me:8000/eventmanagement/$Event_ID/publish/';
     //final headers = {'Content-Type': 'application/json'};
     String email = "youssefsaadlotfy73@gmail.com";
     String password = "Youssef@33";
     final headers = {
       'Content-Type': 'application/json',
       'Authorization':
-          'CustomToken 65e1180796caf66355282edfae231cf52353ee8591a6efa8aa98d6ef76856a0c'
+          'CustomToken $token'
     };
     final body = {
-      "Event_ID": "8244",
+      "Event_ID": Event_ID,
       "Event_Status": Event_Status,
       "Audience_Password": Audience_Password,
       "Keep_Private": Keep_Private,
@@ -70,8 +76,16 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
       //var data = jsonDecode(response.body.toString());
       //print("token"+data['token']);
       print('Publish successfully');
+          setState(() {
+      _isLoading = false;
+      _errorMessage = 'Event Published Successfully';
+    });
     } else {
       print('failed');
+          setState(() {
+      _isLoading = false;
+      _errorMessage = 'There is an error while publishing your event Make sure that you created tickets first for your event or you may be already published it';
+    });
     }
     // }catch(e){
     //   print('ypussef');
@@ -86,6 +100,9 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     final eventModel =
         Provider.of<BasicInfoFormDataProvider>(context, listen: false);
     print(eventModel.eventId);
+    event_ID=eventModel.eventId;
+    token = Provider.of<TokenModel>(context).token;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -142,22 +159,28 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CreatorCustomButton(
-                              onTap: () {
-                                publish(
-                                    1,
-                                    "Public",
-                                    passwordController.text.toString(),
-                                    _switchValue,
-                                    _selectedDateTime.toString());
-                              },
+                              key:const ValueKey("button in publish page 1"),
+                        onTap:_isLoading? () async {
+                    
+                              null;
+                        }:()async{
+                              publish(
+                                  event_ID!,
+                                  "Public",
+                                  passwordController.text.toString(),
+                                  !_switchValue2,
+                                  formattedTime="");
+                          
+                    
+                        },
+                       child: _isLoading
+                            ? SizedBox(
+                              width: 10,
                               child: Center(
-                                  child: Text(
-                                'Publish',
-                                style: TextStyle(
-                                    color: primaryColor,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w900),
-                              )),
+                                child: CircularProgressIndicator(strokeWidth: 2,
+                                color:Colors.grey,),
+                              ))
+                            : Center(child: Text('Next',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight:FontWeight.bold),))
                             ),
                           ),
                         )
@@ -227,25 +250,38 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CreatorCustomButton(
-                            onTap: () {
+                              key:const ValueKey("button in publish page 1"),
+                        onTap:_isLoading? () async {
+                    
+                              null;
+                        }:()async{
                               publish(
-                                  2222,
+                                  event_ID!,
                                   "Private",
                                   passwordController.text.toString(),
                                   !_switchValue2,
                                   formattedTime!);
-                            },
-                            child: Center(
-                                child: Text(
-                              'Publish',
-                              style: TextStyle(
-                                  color: primaryColor,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w900),
-                            )),
-                          ),
+                          
+                    
+                        },
+                       child: _isLoading
+                            ? SizedBox(
+                              width: 10,
+                              child: Center(
+                                child: CircularProgressIndicator(strokeWidth: 2,
+                                color:Colors.grey,),
+                              ))
+                            : Center(child: Text('Next',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight:FontWeight.bold),))
+                            ),
                         )
                       ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                                      _errorMessage,
+                                      style: TextStyle(color: Colors.red),
+                                    ),
                     ),
             ],
           ),

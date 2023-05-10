@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/token_provider.dart';
 import '../../reusable_widgets/neu.dart';
 import '../../reusable_widgets/neumorphic_button.dart';
 import 'choose_organiser_or_attendee.dart';
@@ -28,8 +30,18 @@ class _MyFaceAppState extends State<MyFaceApp> {
   ///
   bool _isLoading = false;
   String _errorMessage = '';
-  void login(String email, password) async {
+      void gotochooseAndOrg() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return CchooseCustomerOrOrganiserPage();
+    }));
+  }
+  Future login(String email, password) async {
+      setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
     try {
+
       //email='joe@gmail.com';
       Response response = await post(
           Uri.parse('https://event-us.me:8000/user/login/'),
@@ -37,11 +49,18 @@ class _MyFaceAppState extends State<MyFaceApp> {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
+        String token = data['token'].toString();
         print("token" + data['token']);
         print('Login successfully');
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return CchooseCustomerOrOrganiserPage();
-        }));
+        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //   return CchooseCustomerOrOrganiserPage();
+       // }));
+       gotochooseAndOrg();
+       setState(() {
+      _isLoading = false;
+      _errorMessage = '';
+    });
+    return token;
       } else {
         print('failed');
       }
@@ -49,6 +68,7 @@ class _MyFaceAppState extends State<MyFaceApp> {
       print('ypussef');
       print(e.toString());
     }
+      return "error";
   }
 
   Future<void> _signup() async {
@@ -78,7 +98,26 @@ class _MyFaceAppState extends State<MyFaceApp> {
       //var data = jsonDecode(response.body.toString());
       //print("token"+data['token']);
       print('SignUp successfully');
-      login(_userData!['email'].toString(), _userData!['email'].toString());
+      var token =login(_userData!['email'].toString(), _userData!['email'].toString());
+      await Future.delayed(const Duration(seconds: 5));
+         token.then((value) {
+                                  String sad = value;
+                                  print('token here: ' + value);
+                                  if (value=='error')
+                                  {
+                                        setState(() {
+      _isLoading = false;
+      _errorMessage = 'Password is not correct';
+    });
+                                  
+                                    print('hey error');
+                                  }
+  Provider.of<TokenModel>(context, listen: false).setToken(value);
+  
+
+                                  //authTokenProvider.setToken(AuthToken(sad));
+                                  // prints "Hello, World!"
+                                });
     } else {
       setState(() {
         _errorMessage = 'Failed to sign up. Please try again.';
@@ -109,7 +148,26 @@ class _MyFaceAppState extends State<MyFaceApp> {
             _errorMessage = '';
           });
           print('mwgood');
-          login(_userData!['email'].toString(), _userData!['email'].toString());
+          var token=login(_userData!['email'].toString(), _userData!['email'].toString());
+          await Future.delayed(const Duration(seconds: 7));
+         token.then((value) {
+                                  String sad = value;
+                                  print('token here: ' + value);
+                                  if (value=='error')
+                                  {
+                                        setState(() {
+      _isLoading = false;
+      _errorMessage = 'Password is not correct';
+    });
+                                  
+                                    print('hey error');
+                                  }
+  Provider.of<TokenModel>(context, listen: false).setToken(value);
+  
+
+                                  //authTokenProvider.setToken(AuthToken(sad));
+                                  // prints "Hello, World!"
+                                });
         } else {
           setState(() {
             _isLoading = false;

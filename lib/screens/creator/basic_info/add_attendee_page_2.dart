@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
-import '../../constants.dart';
-import '../../reusable_widgets/creator_custom_button.dart';
+import '../../../constants.dart';
+import '../../../providers/creator/basic_info_provider.dart';
+import '../../../providers/token_provider.dart';
+import '../../../reusable_widgets/creator_custom_button.dart';
 
 class CounterList extends StatefulWidget {
   final Map<int,String> TicketMap;
@@ -23,6 +26,8 @@ class _CounterListState extends State<CounterList> {
   int? numOfTickets;
   bool _isLoading = false;
   String _errorMessage = '';
+  int? event_ID;
+  String? token; 
  int findIdByTicketType( String ticketType) {
   Map<int, String> ticketMap=widget.TicketMap;
   for (MapEntry<int, String> entry in ticketMap.entries) {
@@ -52,12 +57,12 @@ _isLoading = true;
 print ('id');
 print(id);
 //Future<void> publish(int id, bool abas, String isPrivate) async {
-  final url = 'https://event-us.me:8000/eventmanagement/8244/add-attendee/';
+  final url = 'https://event-us.me:8000/eventmanagement/$event_ID/add-attendee/';
   //final headers = {'Content-Type': 'application/json'};
 
   final headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'CustomToken 65e1180796caf66355282edfae231cf52353ee8591a6efa8aa98d6ef76856a0c'
+    'Authorization': 'CustomToken $token'
 
 
   };
@@ -89,14 +94,14 @@ print(id);
         print('booked successfully');
        setState(() {
       _isLoading = false;
-      _errorMessage = '';
+      _errorMessage = 'An invitation is sent to this Attendee';
     });
       
       }else {
         print('failed');
                setState(() {
       _isLoading = false;
-      _errorMessage = '';
+      _errorMessage = 'May be there is no tickets available try create more tickets ';
     });
       }
     // }catch(e){
@@ -121,6 +126,11 @@ print(id);
 
   @override
   Widget build(BuildContext context) {
+        final eventModel =
+        Provider.of<BasicInfoFormDataProvider>(context, listen: false);
+    print(eventModel.eventId);
+    event_ID=eventModel.eventId;
+    token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       
       appBar: AppBar(
@@ -265,7 +275,15 @@ print(id);
                             : Center(child: Text('Add Attendee',style: TextStyle(color: primaryColor,fontSize: 20,fontWeight:FontWeight.bold),))
                   ),
                 ),
+                Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                                      _errorMessage,
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                    ),
               ],
+
                         ),
             ],
           ),
