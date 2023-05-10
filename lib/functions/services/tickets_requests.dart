@@ -29,7 +29,7 @@ class Tickets {
     return promocodeValidation;
   }
 
-  Future<List<ReturnedOrderModel>> postOrderRequest(
+  Future<Map<String, dynamic>> postOrderRequest(
       List<Map<String, dynamic>> order_items) async {
     Map results = await Api().post(
         url:
@@ -37,12 +37,12 @@ class Tickets {
         body: {'order_items': order_items},
         token:
             'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
-    List<ReturnedOrderModel> ret = (results["tickets"] as List).map((e) {
-      return ReturnedOrderModel.fromJson(e);
-    }).toList();
-    print("ord");
-    // await Future.delayed(const Duration(seconds: 5));
-    print(ret);
+    //print(results.toString());
+    Map<String, dynamic> ret = results['response'];
+    // List<ReturnedOrderModel> ret = (results["response"]['tickets'] as List).map((e) {
+    //   return ReturnedOrderModel.fromJson(e);
+    // }).toList();
+    // // await Future.delayed(const Duration(seconds: 5));
     return ret;
   }
 
