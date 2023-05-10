@@ -1,9 +1,13 @@
-
-
 import 'package:flutter/material.dart';
+
+import '../../functions/services/get_draft_events.dart';
 import '../../functions/services/get_live_events.dart';
+import '../../functions/services/get_past_events.dart';
+import '../../models/basic_info_form.dart';
 import '../../models/event_model.dart';
 import '../../reusable_widgets/NoComponentWidget.dart';
+import '../draft_component.dart';
+import '../live_component.dart';
 import '../past_component.dart';
 
 class PastEventsTab extends StatelessWidget {
@@ -14,7 +18,7 @@ class PastEventsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<EventModel>>(
-      future: AllLiveEventsServices().getAllLiveEvents(),
+      future: AllPastEventsServices().getAllPastEvents(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

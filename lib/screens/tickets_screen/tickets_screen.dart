@@ -33,6 +33,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
 
   late double? totalPrice = 0.00;
   bool? promocodeCheckLocalVariable = false;
+  Map<String, dynamic>? promocodeMap;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -227,6 +228,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                                   .checkPromocode(myController.text);
                               if (promocodeCheck == true) {
                                 promocodeCheckLocalVariable = true;
+                                print('yaaaaa');
                                 const snackBar = SnackBar(
                                   content: Text('Promocode will be applied!'),
                                 );
@@ -283,6 +285,11 @@ class _TicketsScreenState extends State<TicketsScreen> {
                               elevation: 0, backgroundColor: secondaryColor),
                           onPressed: () {
                             //Map<String, dynamic> body = {};
+                            if (promocodeCheckLocalVariable == true) {
+                              promocodeMap = {'promocode': myController.text};
+                            } else {
+                              promocodeMap = {'promocode': myController.text};
+                            }
                             List<Map<String, dynamic>> orderItems = [];
                             for (int i = 0; i < tickets!.length; i++) {
                               if (tickets.elementAt(i).ticketReservations !=
@@ -293,21 +300,12 @@ class _TicketsScreenState extends State<TicketsScreen> {
                                       tickets.elementAt(i).ticketReservations,
                                 };
                                 orderItems.add(orderFromEachClass);
+                                print(orderItems);
                               } else if (orderItems.isEmpty) {
                                 /// pass
                                 /// ignored order
                               }
                             }
-                            //body = {"order_items": orderItems};
-                            // if (promocodeCheckLocalVariable == true) {
-                            //   String promoCodeMap = myController.text;
-                            //   //.addAll(promoCodeMap);
-                            // } else {
-                            //   Map<String, dynamic> promoCodeMap = {
-                            //     'promocode': null
-                            //   };
-                            //   //body.addAll(promoCodeMap);
-                            // }
                             print(orderItems);
                             Navigator.push(
                               context,
@@ -316,6 +314,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                                   return OrderSummaryScreen(
                                     orderItems: orderItems,
                                     promocode: myController.text,
+                                    eventId: widget.eventId!,
                                   );
                                 },
                               ),

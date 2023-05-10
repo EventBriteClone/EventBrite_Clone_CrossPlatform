@@ -4,14 +4,21 @@ import 'package:event_brite_app/models/returned_order_model/returned_order_model
 import 'package:event_brite_app/models/ticket_model.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:highlight_text/highlight_text.dart';
+import 'package:provider/provider.dart';
 
 import '../../functions/services/tickets_requests.dart';
+import '../../providers/token_provider.dart';
 
 class OrderSummaryScreen extends StatefulWidget {
   const OrderSummaryScreen(
-      {super.key, required this.orderItems, this.promocode});
+      {super.key,
+      required this.orderItems,
+      this.promocode,
+      required this.eventId});
   final List<Map<String, dynamic>> orderItems;
   final dynamic promocode;
+  final int eventId;
 
   @override
   State<OrderSummaryScreen> createState() => _OrderSummaryScreenState();
@@ -20,10 +27,12 @@ class OrderSummaryScreen extends StatefulWidget {
 class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
   @override
   Widget build(BuildContext context) {
+    String? token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
-            future: Tickets().postOrderRequest(widget.orderItems),
+            future: Tickets().postOrderRequest(
+                widget.orderItems, widget.promocode, widget.eventId, token),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 Map<String, dynamic>? order = snapshot.data;
@@ -49,9 +58,9 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                             return Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 14, vertical: 14),
-                              height: MediaQuery.of(context).size.height * 0.2,
+                              height: MediaQuery.of(context).size.height * 0.28,
                               decoration: BoxDecoration(
-                                  border: Border.all(),
+                                  border: Border.all(width: 8),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20))),
                               child: Column(
@@ -63,13 +72,13 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                                       Text(
                                         'Ticket Class-Id: $ticketClassId',
                                         style: const TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         "Quatity: $ticketClassQuatity",
                                         style: const TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       )
                                     ],
@@ -78,26 +87,34 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                                     height: MediaQuery.of(context).size.height *
                                         0.03,
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  Column(
                                     children: [
                                       Text(
                                         'Order-Id: $orderId',
                                         style: const TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.005,
                                       ),
                                       Text(
                                         'Full price: \$ $fullPrice',
                                         style: const TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.005,
                                       ),
                                       Text(
                                         'Amount off:\$ $amountOff',
                                         style: const TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -109,11 +126,27 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        'Total: \$ $total',
-                                        style: const TextStyle(
+                                      Text.rich(
+                                        TextSpan(
+                                          text: 'Total: ',
+                                          style: TextStyle(
                                             fontSize: 20,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                            background: Paint()
+                                              ..color = Colors.yellow,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: '\$ $total',
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                background: Paint()
+                                                  ..color = Colors.yellow,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),

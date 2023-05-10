@@ -25,18 +25,20 @@ class Tickets {
             'https://event-us.me:8000/booking/events/4234/promocode/?promocode=$promocode',
         token:
             'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
-    bool promocodeValidation = promocodeValidationUnjsoned['is_promocode'];
+    bool promocodeValidation = promocodeValidationUnjsoned['is_valid_promocode'];
     return promocodeValidation;
   }
 
   Future<Map<String, dynamic>> postOrderRequest(
-      List<Map<String, dynamic>> order_items) async {
+      List<Map<String, dynamic>> order_items, String promocode, int eventId, token) async {
     Map results = await Api().post(
         url:
-            'https://event-us.me:8000/booking/event/4234/orders/?ticket_class_id',
-        body: {'order_items': order_items},
+            'https://event-us.me:8000/booking/event/$eventId/orders/?ticket_class_id',
+        body: {'order_items': order_items,
+                'promocode': promocode,
+        },
         token:
-            'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
+            'CustomToken $token');
     //print(results.toString());
     Map<String, dynamic> ret = results['response'];
     // List<ReturnedOrderModel> ret = (results["response"]['tickets'] as List).map((e) {
