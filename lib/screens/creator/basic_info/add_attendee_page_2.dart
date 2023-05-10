@@ -7,7 +7,7 @@ import '../../../constants.dart';
 import '../../../providers/creator/basic_info_provider.dart';
 import '../../../providers/token_provider.dart';
 import '../../../reusable_widgets/creator_custom_button.dart';
-
+///in this page the creator adds the attendee by entering his name and email address 
 class CounterList extends StatefulWidget {
   final Map<int, String> TicketMap;
   CounterList({required this.TicketMap});
@@ -58,6 +58,9 @@ class _CounterListState extends State<CounterList> {
     print(TicketType);
     print('id');
     print(id);
+    print('Eventid');
+    print(Event_ID);
+
 //Future<void> publish(int id, bool abas, String isPrivate) async {
     final url =
         'https://event-us.me:8000/eventmanagement/$Event_ID/add-attendee/';
