@@ -1,7 +1,10 @@
 import 'package:event_brite_app/models/basic_info_form.dart';
+import 'package:event_brite_app/screens/creator/basic_info/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/event_model.dart';
+import '../screens/creator/basic_info/basic_info.dart';
+
 ///This custom widget represents a [PastComponent] which is a [StatelessWidget] that is used for representing each past component in the past events page
 ///It takes as input [event] object of type [EventModel] in order to display the Past events data from the model
 
@@ -25,9 +28,10 @@ class PastComponent extends StatelessWidget {
     final formattedeventStDate = DateFormat('E, d MMM ').format(eventStDate!);
     final formattedeventEndDate = DateFormat('E, d MMM ').format(eventEndDate!);
 
-    return GestureDetector(
+    return InkWell(
+      key: key,
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (_) => AddEvents()));
+        editDeleteView(context);
       },
       child: Expanded(
         child: Container(
@@ -79,6 +83,34 @@ class PastComponent extends StatelessWidget {
           ]),
         ),
       ),
+    );
+  }
+
+  Future<dynamic> editDeleteView(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.1,
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(Icons.remove_red_eye),
+                title: const Text('View'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => DashboardScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
