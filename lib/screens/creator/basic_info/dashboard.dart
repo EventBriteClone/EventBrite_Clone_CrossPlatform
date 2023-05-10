@@ -88,8 +88,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              MyOrdersInHomeBody(
-                                            eventId: ID!,
+                                              EventDashboardDetailsScreen(
+                                            ID:ID!
                                           ),
                                         ),
                                       );

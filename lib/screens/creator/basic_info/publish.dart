@@ -32,6 +32,7 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
   String? token;
 /////here is the publish page where the user can publish his event after creating the event and the tickets for it
   ///here we have publish function where we gave tp it the event id event status password of the event and the publication date if the user is going to change it from private to public
+  
   void publish(int Event_ID, String Event_Status, String Audience_Password,
       bool Keep_Private, String Publication_Date) async {
     setState(() {
@@ -64,9 +65,71 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     final body = {
       "Event_ID": Event_ID,
       "Event_Status": Event_Status,
-      "Audience_Password": Audience_Password,
-      "Keep_Private": Keep_Private,
-      "Publication_Date": Publication_Date,
+       "Audience_Password": Audience_Password,
+       "Keep_Private": Keep_Private,
+       "Publication_Date": Publication_Date,
+      "error":"dfssdfsdfsuyu"
+    };
+
+    final response =
+        await post(Uri.parse(url), headers: headers, body: jsonEncode(body));
+
+    if (response.statusCode == 201) {
+      //var data = jsonDecode(response.body.toString());
+      //print("token"+data['token']);
+      print('Publish successfully');
+      setState(() {
+        _isLoading = false;
+        _errorMessage = 'Event Published Successfully';
+      });
+    } else {
+      print('failed');
+      setState(() {
+        _isLoading = false;
+        _errorMessage =
+            'There is an error while publishing your event Make sure that you created tickets first for your event or you may be already published it';
+      });
+    }
+    // }catch(e){
+    //   print('ypussef');
+    //   print(e.toString());
+    // }
+  }
+void publish2(int Event_ID, String Event_Status, String Audience_Password,
+      bool Keep_Private, String Publication_Date) async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+    //try{
+    //email='joe@gmail.com';
+    //Event_ID = 1936;
+    String eva;
+    eva = Event_ID.toString();
+    //int eventID = 7406; // integer variable
+    print('event_id');
+    print(Event_ID);
+    print("pubdate:" + Publication_Date);
+    print('eventstatus:' + Event_Status);
+    print('pass:' + Audience_Password);
+    print('keep:');
+    print(Keep_Private);
+
+//Future<void> publish(int id, bool abas, String isPrivate) async {
+    final url = 'https://event-us.me:8000/eventmanagement/$Event_ID/publish/';
+    //final headers = {'Content-Type': 'application/json'};
+    String email = "youssefsaadlotfy73@gmail.com";
+    String password = "Youssef@33";
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'CustomToken $token'
+    };
+    final body = {
+      //"Event_ID": Event_ID,
+      "Event_Status": Event_Status,
+      // "Audience_Password": Audience_Password,
+      // "Keep_Private": Keep_Private,
+      // "Publication_Date": Publication_Date,
       //"error":"dfssdfsdfsuyu"
     };
 
@@ -94,7 +157,6 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     //   print(e.toString());
     // }
   }
-
   ///
   ///
   @override
@@ -104,6 +166,7 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     print(eventModel.formData.eventID);
     event_ID = eventModel.formData.eventID;
     token = Provider.of<TokenModel>(context).token;
+    print(event_ID);
 
     return Scaffold(
       appBar: AppBar(
@@ -167,11 +230,11 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                                         null;
                                       }
                                     : () async {
-                                        publish(
+                                        publish2(
                                             event_ID!,
                                             "Public",
-                                            passwordController.text.toString(),
-                                            !_switchValue2,
+                                            "asdasda",
+                                            true,
                                             formattedTime = "");
                                       },
                                 child: _isLoading
