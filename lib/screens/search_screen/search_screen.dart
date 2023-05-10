@@ -171,42 +171,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.085,
                     ),
-                    // Expanded(
-                    //   child: ListView.builder(
-                    //     itemCount: listLength, // will be changed later
-                    //     itemBuilder: (context, index) {
-                    //       //print(ID);
-                    //       String? stDate = events.elementAt(index).stDate;
-                    //       String? endDate = events.elementAt(index).endDate;
-                    //       String? stTime = events.elementAt(index).stTime;
-                    //       String? title = events.elementAt(index).title;
-                    //       String? venueName = events.elementAt(index).venueName;
-                    //       int? ID = events.elementAt(index).ID;
-                    //       String? imageURL = events.elementAt(index).image;
-                    //       return GestureDetector(
-                    //         onTap: () {
-                    //           Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //               builder: (context) => EventDetailsScreen(
-                    //                 iD: ID,
-                    //               ),
-                    //             ),
-                    //           );
-                    //         },
-                    //         child: EventItem(
-                    //           stDate: stDate,
-                    //           endDate: endDate,
-                    //           stTime: stTime,
-                    //           title: title,
-                    //           venue: venueName,
-                    //           ID: ID,
-                    //           imageURL: imageURL,
-                    //         ),
-                    //       ); // custom widget
-                    //     },
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

@@ -6,24 +6,15 @@ import '../constants.dart';
 import 'followers_and_icons_row.dart';
 
 class EventItem extends StatelessWidget {
-  EventItem({
-    key,
-    this.stDate,
-    this.endDate,
-    this.stTime,
-    this.title,
-    this.venue,
-    this.ID,
-    this.imageURL,
-  });
-  final String? stDate;
-  final String? endDate;
-  final String? stTime;
-  final String? title;
-  final String? venue;
-  final int? ID;
-  final String? imageURL;
-  bool isLiked = false;
+  EventItem({key, this.stDate, this.endDate, this.stTime, this.title, this.venue, this.ID, this.imageURL,});
+ final String? stDate;
+ final String? endDate;
+ final String? stTime;
+ final String? title;
+ final String? venue;
+ final int? ID;
+ final String? imageURL;
+ bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +68,7 @@ class EventItem extends StatelessWidget {
                   ),
                 ),
               ),
-              FollowersAndIconsRow(
-                isLiked: isLiked,
-              ),
+              FollowersAndIconsRow(isLiked: isLiked,),
             ],
           )
         ],
