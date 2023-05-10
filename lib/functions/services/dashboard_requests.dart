@@ -1,3 +1,4 @@
+import 'package:event_brite_app/models/order_items_get_model.dart';
 import 'package:event_brite_app/models/sold_ticket_model.dart';
 import 'package:event_brite_app/screens/event_dashboard_details/event_dashboard_details.dart';
 
@@ -38,10 +39,11 @@ class Dashboard {
     return allEventsList;
   }
 
-
-  Future<List<EventDashboardDetails>> getEventDashboardDetails (int eventId)async{
+  Future<List<EventDashboardDetails>> getEventDashboardDetails(
+      int eventId) async {
     List<dynamic> data = await Api().get(
-        url: 'https://event-us.me:8000/dashboard/eventmanagement/sold-tickets/$eventId/ticket-classes/',
+        url:
+            'https://event-us.me:8000/dashboard/eventmanagement/sold-tickets/$eventId/ticket-classes/',
         token:
             'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
     //print(dataUnFiltered['results']);
@@ -50,6 +52,19 @@ class Dashboard {
     List<EventDashboardDetails> eventDasshboardDetails = [];
     for (int i = 0; i < data.length; i++) {
       eventDasshboardDetails.add(EventDashboardDetails.fromJson(data[i]));
+    }
+    return eventDasshboardDetails;
+  }
+
+  Future<List<OrderItemsGetModel>> getMyorders(eventId) async {
+    Map<String, dynamic> data = await Api().get(
+        url:
+            "https://event-us.me:8000/dashboard/eventmanagement/event/$eventId/order-items/",
+        token:
+            "CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332");
+    List<OrderItemsGetModel> eventDasshboardDetails = [];
+    for (int i = 0; i < data.length; i++) {
+      eventDasshboardDetails.add(OrderItemsGetModel.fromJson(data["data"][i]));
     }
     return eventDasshboardDetails;
   }
