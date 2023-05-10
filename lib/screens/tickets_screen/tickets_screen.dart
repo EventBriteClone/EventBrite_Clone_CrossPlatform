@@ -25,11 +25,10 @@ class TicketsScreen extends StatefulWidget {
 class _TicketsScreenState extends State<TicketsScreen> {
   final myController = TextEditingController();
   Future<List<TicketModel>>? ticketList;
-  @override
-  void initState() {
-    super.initState();
-    ticketList = Tickets().getTicketClasses();
-  }
+  // void initState() {
+  //   super.initState();
+  //   ticketList = Tickets().getTicketClasses(context);
+  // }
 
   late double? totalPrice = 0.00;
   bool? promocodeCheckLocalVariable = false;
@@ -65,7 +64,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
         ],
       ),
       body: FutureBuilder(
-        future: ticketList,
+        future: Tickets().getTicketClasses(context, widget.eventId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<TicketModel>? tickets = snapshot.data;
@@ -225,7 +224,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                                   .showSnackBar(snackBar);
                             } else {
                               bool promocodeCheck = await Tickets()
-                                  .checkPromocode(myController.text);
+                                  .checkPromocode(myController.text, context, widget.eventId);
                               if (promocodeCheck == true) {
                                 promocodeCheckLocalVariable = true;
                                 print('yaaaaa');

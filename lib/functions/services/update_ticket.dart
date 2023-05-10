@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../helper/api.dart';
 import '../../providers/creator/basic_info_provider.dart';
+import '../../providers/token_provider.dart';
 
 class UpdateTicketServices {
   Future<void> updateField({
@@ -14,6 +15,7 @@ class UpdateTicketServices {
     required String newValue,
     required BuildContext context,
   }) async {
+    String? token = Provider.of<TokenModel>(context).token;
     final TicketsModel =
         Provider.of<TicketProviderModel>(context, listen: false);
 
@@ -24,7 +26,7 @@ class UpdateTicketServices {
         fieldName: newValue,
       },
       token:
-          'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b',
+          'CustomToken $token',
     );
     // return BasicInfoFormData.fromJson(data);
   }

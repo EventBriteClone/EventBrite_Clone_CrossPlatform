@@ -3,10 +3,13 @@ import 'package:event_brite_app/models/event_model.dart';
 import 'package:event_brite_app/models/sold_ticket_model.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
 import 'package:event_brite_app/screens/event_dashboard_details/event_dashboard_details.dart';
+import 'package:event_brite_app/screens/my_orders_in_home_body/my_orders_in_home_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/token_provider.dart';
 import '../../../reusable_widgets/app_bar.dart';
 import '../../../reusable_widgets/event_item.dart';
 
@@ -20,19 +23,20 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   Future<List<EventModel>>? cretorEvents;
   @override
-  void initState() {
-    super.initState();
-    cretorEvents = Dashboard().getCreatorEvents();
-  }
+  // void initState() {
+  //   super.initState();
+  //   cretorEvents = Dashboard().getCreatorEvents();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    String? token = Provider.of<TokenModel>(context).token;
     return Scaffold(
         appBar: const AppBarWidget(
           appBarText: 'Dashboard',
         ),
         body: FutureBuilder(
-            future: cretorEvents,
+            future: Dashboard().getCreatorEvents(token),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<EventModel> events = snapshot.data!;
@@ -84,8 +88,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              EventDashboardDetailsScreen(
-                                            ID: ID!,
+                                              MyOrdersInHomeBody(
+                                            eventId: ID!,
                                           ),
                                         ),
                                       );

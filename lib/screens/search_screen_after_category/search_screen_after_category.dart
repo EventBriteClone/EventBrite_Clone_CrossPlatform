@@ -24,7 +24,7 @@ class _SearchScreenAfterCategoryState extends State<SearchScreenAfterCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: Events().getEventByCategory(widget.category),
+        future: Events().getEventByCategory(widget.category, context),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<EventModel> events = snapshot.data!;

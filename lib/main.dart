@@ -21,13 +21,6 @@ import 'package:event_brite_app/screens/home_page/home_screen.dart';
 import 'package:event_brite_app/screens/login_signin_pages/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
-import 'dart:io';
-import 'package:event_brite_app/providers/common_providers/dropd_down_state_provider.dart';
-import 'package:event_brite_app/providers/creator/basic_info_provider.dart';
-import 'package:event_brite_app/providers/creator/date_selection_provider.dart';
-import 'package:event_brite_app/providers/creator/details_provider.dart';
-import 'package:event_brite_app/providers/creator/icon_state_provider.dart';
-import 'package:event_brite_app/providers/creator/side_menu_icon_state_provider.dart';
 import 'package:event_brite_app/screens/login_signin_pages/log_in_page1.dart';
 import 'package:provider/provider.dart';
 

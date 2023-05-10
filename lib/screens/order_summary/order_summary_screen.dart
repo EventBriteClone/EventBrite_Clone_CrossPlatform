@@ -32,7 +32,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
       body: SafeArea(
         child: FutureBuilder(
             future: Tickets().postOrderRequest(
-                widget.orderItems, widget.promocode, widget.eventId, token),
+                widget.orderItems, widget.promocode, widget.eventId, context),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 Map<String, dynamic>? order = snapshot.data;

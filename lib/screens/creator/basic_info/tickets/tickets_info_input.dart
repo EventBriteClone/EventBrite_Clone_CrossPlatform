@@ -16,6 +16,7 @@ import '../../../../functions/utils/ticketpricing.dart';
 import '../../../../models/tickets_model.dart';
 import '../../../../providers/creator/date_selection_provider.dart';
 import '../../../../providers/creator/date_selection_updated.dart';
+import '../../../../providers/token_provider.dart';
 import '../../../../reusable_widgets/drop_down_list_widget.dart';
 import '../../../../reusable_widgets/pop_offline_pricing_details_widget.dart';
 import '../../../../reusable_widgets/pop_online_pricing_details_widget.dart';
@@ -121,6 +122,7 @@ class _AddTicketsState extends State<AddTickets> {
   //for dates: we are saving them in a [dateSelectionState] which is a [Provider] of [DateSelectionModel] where we use [Provider] in order to get the data user chose for the date, time and checklist
   @override
   Widget build(BuildContext context) {
+    String? token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       body: Consumer2<TicketProviderModel, UpdatedTicketProviderModel>(
           builder: (BuildContext context, model, oldmodel, Widget? child) {
@@ -442,6 +444,7 @@ class _AddTicketsState extends State<AddTickets> {
                             print("before create");
                             final createTicketResult =
                                 await createTicketService().CreateTicket(
+                                  token: token,
                               ticketName: ticketData.formData.ticketName,
                               ticketType: ticketData.formData.ticketType,
                               saleStart: ticketData.formData.salesStart,

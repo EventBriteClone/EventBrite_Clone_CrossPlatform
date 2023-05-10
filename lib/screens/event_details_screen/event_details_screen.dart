@@ -45,7 +45,7 @@ class EventDetailsScreen extends StatelessWidget {
         ],
       ),
       body: FutureBuilder<dynamic>(
-        future: EventDetails().getEventDetails(iD!),
+        future: EventDetails().getEventDetails(iD!, context),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             EventModel eventDetails = snapshot.data!;

@@ -31,6 +31,7 @@ class CreatePromoCodeService {
   /// [csvFile] is a CSV file containing the promo codes.
   /// Returns a [Map] with the promo code ID and the promo code response using [postWithFile] from [Api]
   Future<dynamic> createPromoCode({
+    required String? token,
     required String? codeName,
     required String? limitedOrUn,
     required int? limitAmount,
@@ -90,7 +91,7 @@ class CreatePromoCodeService {
       },
       file: csvFile,
       token:
-          'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332',
+          'CustomToken $token',
     );
 
     final responseData = response['response'];

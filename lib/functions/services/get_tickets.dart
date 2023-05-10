@@ -9,6 +9,7 @@ import '../../helper/api.dart';
 import '../../models/basic_info_form.dart';
 import '../../models/event_model.dart';
 import '../../providers/creator/basic_info_provider.dart';
+import '../../providers/token_provider.dart';
 
 ///[AllTicketsServices] is a class related to tickets
 ///It consists of a m[Future] method of type [TicketsModel] which is [getAllTickets]
@@ -20,6 +21,7 @@ class AllTicketsServices {
   Future<List<TicketsModel>> getAllTickets(BuildContext context) async {
     final eventModel =
         Provider.of<BasicInfoFormDataProvider>(context, listen: false);
+        String? token = Provider.of<TokenModel>(context).token;
         
 
     print("inside cget ticket");
@@ -35,7 +37,7 @@ class AllTicketsServices {
     List<dynamic> data = await Api().getM(
         url: 'https://event-us.me:8000/events/ALLTickets/$id/',
         token:
-            'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b');
+            'CustomToken $token');
 
     //List<dynamic> data = (dataUnFiltered['results']);
 

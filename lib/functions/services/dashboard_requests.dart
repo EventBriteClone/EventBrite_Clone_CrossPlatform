@@ -7,12 +7,12 @@ import '../../models/event_dashboard_details.dart';
 import '../../models/event_model.dart';
 
 class Dashboard {
-  Future<List<SoldTicketModel>> getSoldTicketClasses() async {
+  Future<List<SoldTicketModel>> getSoldTicketClasses(dynamic token) async {
     List<dynamic> dataUnFiltered = await Api().get(
         url:
             'https://event-us.me:8000/dashboard/eventmanagement/sold-tickets/4234/ticket-classes/',
         token:
-            'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
+            'CustomToken $token');
     //print(dataUnFiltered['results']);
     ///List<dynamic> data = (dataUnFiltered['results']);
     // print(data);
@@ -24,11 +24,11 @@ class Dashboard {
     return soldTicketClasses;
   }
 
-  Future<List<EventModel>> getCreatorEvents() async {
+  Future<List<EventModel>> getCreatorEvents(dynamic token) async {
     List<dynamic> data = await Api().get(
         url: 'https://event-us.me:8000/eventmanagement/creatorevents/',
         token:
-            'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
+            'CustomToken $token');
     //print(dataUnFiltered['results']);
     //List<dynamic> data = (dataUnFiltered['results']);
     // print(data);
@@ -40,12 +40,12 @@ class Dashboard {
   }
 
   Future<List<EventDashboardDetails>> getEventDashboardDetails(
-      int eventId) async {
+      int eventId, dynamic token) async {
     List<dynamic> data = await Api().get(
         url:
             'https://event-us.me:8000/dashboard/eventmanagement/sold-tickets/$eventId/ticket-classes/',
         token:
-            'CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332');
+            'CustomToken $token');
     //print(dataUnFiltered['results']);
     //List<dynamic> data = (dataUnFiltered['results']);
     // print(data);
@@ -56,12 +56,11 @@ class Dashboard {
     return eventDasshboardDetails;
   }
 
-  Future<List<OrderItemsGetModel>> getMyorders(eventId) async {
+  Future<List<OrderItemsGetModel>> getMyorders(eventId, dynamic token) async {
     Map<String, dynamic> data = await Api().get(
         url:
             "https://event-us.me:8000/dashboard/eventmanagement/event/$eventId/order-items/",
-        token:
-            "CustomToken 3743b5ecba1461fcbf9ba874653ea8dc6792bd1a58ef656133dc71321f148332");
+        token: "CustomToken $token");
     List<OrderItemsGetModel> eventDasshboardDetails = [];
     for (int i = 0; i < data.length; i++) {
       eventDasshboardDetails.add(OrderItemsGetModel.fromJson(data["data"][i]));

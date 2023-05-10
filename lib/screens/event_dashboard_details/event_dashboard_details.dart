@@ -4,6 +4,9 @@ import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/token_provider.dart';
 
 class EventDashboardDetailsScreen extends StatefulWidget {
   const EventDashboardDetailsScreen({super.key, required this.ID});
@@ -18,10 +21,11 @@ class _EventDashboardDetailsScreenState
     extends State<EventDashboardDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    String? token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
-            future: Dashboard().getEventDashboardDetails(widget.ID),
+            future: Dashboard().getEventDashboardDetails(widget.ID,token),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<EventDashboardDetails>? dataListed = snapshot.data;

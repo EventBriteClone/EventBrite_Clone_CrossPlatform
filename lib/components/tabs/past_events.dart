@@ -18,7 +18,7 @@ class PastEventsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<EventModel>>(
-      future: AllPastEventsServices().getAllPastEvents(),
+      future: AllPastEventsServices().getAllPastEvents(context),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

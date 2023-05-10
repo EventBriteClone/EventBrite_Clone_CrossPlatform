@@ -17,7 +17,7 @@ class HomeScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<EventModel>>(
-      future: Events().getAllEvents(),
+      future: Events().getAllEvents(context),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<EventModel> events = snapshot.data!;
