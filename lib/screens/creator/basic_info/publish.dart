@@ -189,7 +189,7 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
                   : Column(
                       children: [
                         Text(
-                            'This event will not be listed on Eventus or in search engines'),
+                            'This event will not be listed on Eventus'),
                         Divider(),
                         Divider(),
                         SwitchListTile(
