@@ -1,8 +1,10 @@
 import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:event_brite_app/functions/services/geolocation.dart';
+import 'package:event_brite_app/screens/searched_events/searched_events.dart';
 import 'package:flutter/material.dart';
 import '../../reusable_widgets/custom_loading_indicator.dart';
 import '../../reusable_widgets/event_item.dart';
+import '../event_details_screen/event_details_screen.dart';
 import 'category_container.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -16,9 +18,19 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late String position;
+
   Future<String> getPosition() async {
     position = await determineLocation();
     return position;
+  }
+
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
   }
 
   @override
@@ -67,15 +79,46 @@ class _SearchScreenState extends State<SearchScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.007,
                     ),
-                    const TextField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.zero,
-                        hintText: 'Start searching...',
-                        hintStyle: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w900,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: myController,
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.zero,
+                              hintText: 'Start searching...',
+                              hintStyle: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        IconButton(
+                          onPressed: () {
+                            if
+                              (myController.text != ''){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return SearchedEvents(
+                                      searchString: myController.text);
+                                },
+                              ),
+                            );
+                            } else
+                            {
+                              const snackBar = SnackBar(content: Text('Please enter a valid value'),);
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.search,
+                            size: 28,
+                          ),
+                        )
+                      ],
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.024,
@@ -85,23 +128,23 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
-                          CategoryContainer(text: 'All'),
+                          CategoryContainer(text: 'Food & Drink'),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.055,
                           ),
-                          CategoryContainer(text: 'Online'),
+                          CategoryContainer(text: 'Health & Wellness'),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.055,
                           ),
-                          CategoryContainer(text: 'Today'),
+                          CategoryContainer(text: 'Charity & Causes'),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.055,
                           ),
-                          CategoryContainer(text: 'This weekend'),
+                          CategoryContainer(text: 'Family & Education'),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.055,
                           ),
-                          CategoryContainer(text: 'Free'),
+                          CategoryContainer(text: 'Fashion & Beauty'),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.055,
                           ),
@@ -109,25 +152,25 @@ class _SearchScreenState extends State<SearchScreen> {
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.055,
                           ),
-                          CategoryContainer(text: 'Food & Drink'),
+                          CategoryContainer(text: 'Home & Lifestyle'),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.055,
                           ),
-                          CategoryContainer(text: 'Charity & Causes'),
+                          CategoryContainer(text: 'Sports & Fitness'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Travel & Outdoor'),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.055,
+                          ),
+                          CategoryContainer(text: 'Other'),
                         ],
                       ),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.085,
                     ),
-                    // Expanded(
-                    //   child: ListView.builder(
-                    //     itemCount: 5, // will be changed later
-                    //     itemBuilder: (context, index) {
-                    //       return const EventItem(); // custom widget
-                    //     },
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

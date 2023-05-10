@@ -1,3 +1,4 @@
+import 'package:event_brite_app/screens/search_screen_after_category/search_screen_after_category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryContainer extends StatefulWidget {
@@ -13,13 +14,21 @@ class _CategoryContainerState extends State<CategoryContainer> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(
-          () {
-            containerColor = containerColor == Colors.blue
-                ? const Color.fromARGB(255, 241, 237, 237)
-                : Colors.blue;
-          },
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return SearchScreenAfterCategory(category: widget.text!);
+            },
+          ),
         );
+        // setState(
+        //   () {
+        //     containerColor = containerColor == Colors.blue
+        //         ? const Color.fromARGB(255, 241, 237, 237)
+        //         : Colors.blue;
+        //   },
+        // );
       },
       child: Container(
         decoration: BoxDecoration(

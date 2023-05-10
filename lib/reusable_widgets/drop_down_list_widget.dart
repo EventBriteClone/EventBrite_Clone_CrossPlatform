@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 import '../functions/utils/build_drop_menu_items.dart';
 import '../providers/common_providers/dropd_down_state_provider.dart';
 
@@ -15,6 +14,11 @@ import '../providers/common_providers/dropd_down_state_provider.dart';
 ///
 /// The items in the dropdown list are generated from the `items` list provided to the widget.
 ///
+///we have: * [items] : A list of items to be displayed in the dropdown list.
+///         * [prefixIcon] : An optional icon to be displayed as a prefix in the input field.
+///         * [selectedValue] : the currently selected item in the dropdown list
+///         * [hinttext] :for hints
+///         * [onChanged] : A callback function that will be called whenever the selected item changes.
 
 class DropDownListWidget extends StatelessWidget {
   /// A list of items to be displayed in the dropdown list.
@@ -38,16 +42,20 @@ class DropDownListWidget extends StatelessWidget {
     Key? key,
     required this.items,
     this.prefixIcon,
-     this.selectedValue,
+    this.selectedValue,
     this.hinttext,
     this.onChanged,
   }) : super(key: key);
+
+  @override
+  Key? get key => super.key;
 
   @override
   Widget build(BuildContext context) {
     //print(items);
     print('Selected value: $selectedValue');
     return Consumer<DropdownState>(
+      key: key,
       builder: (BuildContext context, state, Widget? child) => Padding(
         padding: const EdgeInsets.all(11.0),
         child: DropdownButtonFormField<String>(
@@ -76,7 +84,7 @@ class DropDownListWidget extends StatelessWidget {
             int index = state.selectedIndex = items.indexOf(value!);
             print('Selected index: $index');
             int length = items.length;
-            print('Selected index: $length');
+            print('Selected index len: $length');
             // onChanged!(value);
             onChanged?.call(value);
           },

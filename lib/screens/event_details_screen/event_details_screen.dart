@@ -1,4 +1,5 @@
 import 'package:event_brite_app/functions/services/get_event_details.dart';
+import 'package:event_brite_app/screens/tickets_screen/tickets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -49,7 +50,8 @@ class EventDetailsScreen extends StatelessWidget {
           if (snapshot.hasData) {
             EventModel eventDetails = snapshot.data!;
             String? title = eventDetails.title;
-            String? description = eventDetails.description;
+            int? eventId = eventDetails.ID;
+            String? description = eventDetails.summery;
             String? stDate = eventDetails.stDate;
             String? stTime = eventDetails.stTime;
             String? online = eventDetails.online;
@@ -70,64 +72,100 @@ class EventDetailsScreen extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.05),
-              child: ListView(
+              child: Column(
                 children: [
-                  Image.network(
-                    imageURl!,
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        // Image.asset(
+                        //   'assets/images/Eventbrite_logo.png',
+                          Image.network(
+                            imageURl!,
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                        ),
+                        Text(
+                          title!,
+                          style: const TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Neue Plak'),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        Text(
+                          'Organized by: $organizer',
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03,
+                        ),
+                        EventDetailsRow(
+                          data: stDate,
+                          dataNotRequired: '',
+                          icon: Icons.calendar_today,
+                        ),
+                        EventDetailsRow(
+                          data: functionReturn,
+                          icon: Icons.slideshow,
+                          dataNotRequired: '',
+                        ),
+                        EventDetailsRow(
+                          data: 'Duration: $stTime',
+                          icon: Icons.access_time,
+                          dataNotRequired: '',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                        ),
+                        const Text(
+                          'About',
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        Text(
+                          description!,
+                          style: const TextStyle(fontSize: 20),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.35,
-                  ),
-                  Text(
-                    title!,
-                    style: const TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Neue Plak'),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  Text(
-                    'Organized by: $organizer',
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  EventDetailsRow(
-                    data: stDate,
-                    dataNotRequired: '',
-                    icon: Icons.calendar_today,
-                  ),
-                  EventDetailsRow(
-                    data: functionReturn,
-                    icon: Icons.slideshow,
-                    dataNotRequired: '',
-                  ),
-                  EventDetailsRow(
-                    data: 'Duration: $stTime',
-                    icon: Icons.access_time,
-                    dataNotRequired: '',
-                  ),
-                  EventDetailsRow(
-                    data: ticketPrice.toString(),
-                    icon: Icons.confirmation_num_outlined,
-                    dataNotRequired: 'on Eventbrite',
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: secondaryColor,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return TicketsScreen(
+                                eventId: eventId,
+                                eventName: title,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Tickets',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                    height: MediaQuery.of(context).size.height * 0.007,
                   ),
-                  const Text(
-                    'About',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  Text(
-                    description!,
-                    style: const TextStyle(fontSize: 20),
-                  )
                 ],
               ),
             );

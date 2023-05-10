@@ -1,3 +1,4 @@
+import 'package:event_brite_app/screens/creator/basic_info/basic_info.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -5,39 +6,38 @@ import '../models/basic_info_form.dart';
 import '../models/event_model.dart';
 import '../screens/creator/create_event/add_event_p_one.dart';
 
+///This is a [DraftComponent] widget that displays created events that are not yet published
+///It shows the event data using [BasicInfoFormData] object called [event] which represents the event model.
+///[event] is input parameter to the widget
+///we also have a [editDeleteView]. The [editDeleteView] function displays a modal bottom sheet that allows the user to edit or delete the event object, or to view its basic info
+
 class DraftComponent extends StatelessWidget {
-  final EventModel event;
+  final BasicInfoFormData event;
 
   const DraftComponent({Key? key, required this.event}) : super(key: key);
 
   @override
+  Key? get key => super.key;
+
+  @override
   Widget build(BuildContext context) {
-    String? eventStDate = event.stDate;
-    String? eventEndDate = event.endDate;
-    String? eventStTime = event.stTime;
-    String? eventEndTime = event.endTime;
-
-    final eventStDateD = DateTime.parse(eventStDate!);
-    final eventEndDateD = DateTime.parse(eventEndDate!);
-
-    final List<String> stTimeSplit = eventStTime!.split(':');
-    final List<String> endTimeSplit = eventEndTime!.split(':');
-    final TimeOfDay startTime = TimeOfDay(
-        hour: int.parse(stTimeSplit[0]), minute: int.parse(stTimeSplit[1]));
-    final TimeOfDay endTime = TimeOfDay(
-        hour: int.parse(endTimeSplit[0]), minute: int.parse(endTimeSplit[1]));
+    DateTime? eventStDate = event.eventStart;
+    DateTime? eventEndDate = event.eventEnd;
+    TimeOfDay? eventStTime = event.startTime;
+    TimeOfDay? eventEndTime = event.endTime;
 
     final formattedStartTime = DateFormat.jm()
-        .format(DateTime(1, 1, 1, startTime.hour, startTime.minute));
-    final formattedEndTime =
-        DateFormat.jm().format(DateTime(1, 1, 1, endTime.hour, endTime.minute));
+        .format(DateTime(1, 1, 1, eventStTime!.hour, eventStTime.minute));
+    final formattedEndTime = DateFormat.jm()
+        .format(DateTime(1, 1, 1, eventEndTime!.hour, eventEndTime.minute));
 
-    final formattedeventStDate = DateFormat('E, d MMM ').format(eventStDateD);
-    final formattedeventEndDate = DateFormat('E, d MMM ').format(eventEndDateD);
+    final formattedeventStDate = DateFormat('E, d MMM ').format(eventStDate!);
+    final formattedeventEndDate = DateFormat('E, d MMM ').format(eventEndDate!);
 
-    return GestureDetector(
+    return InkWell(
+      key: key,
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => AddEvents()));
+        editDeleteView(context);
       },
       child: Expanded(
         child: Container(
@@ -70,7 +70,7 @@ class DraftComponent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  event.title!,
+                  event.eventTitle!,
                   style: TextStyle(
                       fontSize: 18, fontFamily: "Poppins", color: Colors.black),
                 ),
@@ -89,6 +89,59 @@ class DraftComponent extends StatelessWidget {
           ]),
         ),
       ),
+    );
+  }
+
+  Future<dynamic> editDeleteView(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.25,
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.edit),
+                title: Text('Edit'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => AddEvents(
+                        previousBasicInfoData: event,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.remove_circle_outline),
+                title: Text('Delete'),
+                onTap: () {
+                  // Delete the event here
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.remove_red_eye),
+                title: Text('View'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => BasicInfo(
+                        previousBasicInfoData: event,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

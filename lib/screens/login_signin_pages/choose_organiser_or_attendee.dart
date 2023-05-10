@@ -1,11 +1,11 @@
 //import 'package:event_brite_app/constants.dart';
-import 'package:event_brite_app/screens/events_screen/events.dart';
 import 'package:event_brite_app/screens/find_events/find_events.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../providers/token_provider.dart';
+import '../creator/events_page/events.dart';
 import '../home_page/home_screen.dart';
 
 class CchooseCustomerOrOrganiserPage extends StatelessWidget {
@@ -70,7 +70,7 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: GestureDetector(
-                    key:const ValueKey("Organizer Container"),
+                    key: const ValueKey("Organizer Container"),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -142,7 +142,7 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
                   height: 150,
                   width: 150,
                   child: GestureDetector(
-                    key:ValueKey("Attendee Container"),
+                    key: ValueKey("Attendee Container"),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -187,7 +187,6 @@ class CchooseCustomerOrOrganiserPage extends StatelessWidget {
               ],
             ),
           ]),
-         
         ],
       ),
     );

@@ -1,10 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 
 import '../../helper/api.dart';
 import '../../models/basic_info_form.dart';
 import '../../models/event_model.dart';
+import '../../providers/token_provider.dart';
 
 ///[AllDraftEventsServices] is a class related to draft events
 ///It consists of a m[Future] method of type [BasicInfoFormData] which is [getAllDraftEvents]
@@ -13,17 +17,24 @@ import '../../models/event_model.dart';
 ///The method returns a [List] at the end of all draft events
 
 class AllDraftEventsServices {
-  Future<List<EventModel>> getAllDraftEvents() async {
-    Map<String, dynamic> dataUnFiltered = await Api().getM(
-        url: 'https://event-us.me:8000/events/ALL/?STATUS=Draft',
-        token: 'Basic a2FyZWVtc29iaGk1MEBnbWFpbC5jb206TmttbnJzMTIzIQ==');
+  Future<List<BasicInfoFormData>> getAllDraftEvents(
+      BuildContext context) async {
+    String? token = Provider.of<TokenModel>(context).token;
+    // String? token = Provider.of(context)
 
-    List<dynamic> data = (dataUnFiltered['results']);
+    token.toString();
+    print('tttttc');
+    print(token);
+    List<dynamic> data = await Api().getM(
+        url: 'https://event-us.me:8000/events/drafte-events/',
+        token: 'CustomToken $token');
 
-    List<EventModel> eventDraftsList = [];
+    //List<dynamic> data = (dataUnFiltered['results']);
+
+    List<BasicInfoFormData> eventDraftsList = [];
     for (int i = 0; i < data.length; i++) {
       eventDraftsList.add(
-        EventModel.fromJson(data[i]),
+        BasicInfoFormData.fromJson(data[i]),
       );
     }
     return eventDraftsList;
@@ -33,6 +44,7 @@ class AllDraftEventsServices {
 
 
 /*
+map of 
 {
   "count": 3,
   "next": null,

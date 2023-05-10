@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 ///This is a component widget where it consists of the UI of  [EventTickets] to show the data user has filled from teh form related to the tickets
 /// They are inside a [Column] widget
-///
 
 class EventTickets extends StatelessWidget {
   const EventTickets({
