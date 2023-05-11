@@ -50,90 +50,83 @@ class PromoCodesTab extends StatelessWidget {
                       const SizedBox(
                         height: 50,
                       ),
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        top: MediaQuery.of(context).size.height * 0.9,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 150,
-                              height: 60,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            width: 150,
+                            height: 60,
+                            child: ElevatedButton(
+                              key: const ValueKey("createpromocode"),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CreatePromoCodeComponnet(
+                                            csv: false,
+                                          )),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: const Color.fromARGB(255, 210, 78, 42),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                              child: const Text(
+                                'Create promo code',
+                                softWrap: true,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 150,
+                            height: 60,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: const Color.fromARGB(161, 0, 0, 0),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
                               child: ElevatedButton(
-                                key: const ValueKey("createpromocode"),
+                                key: const ValueKey("uploadcsv"),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             const CreatePromoCodeComponnet(
-                                              csv: false,
+                                              csv: true,
                                             )),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary:
-                                      const Color.fromARGB(255, 210, 78, 42),
+                                  primary: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5),
                                   ),
                                 ),
                                 child: const Text(
-                                  'Create promo code',
+                                  'Upload csv',
                                   softWrap: true,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontFamily: "Poppins",
-                                    fontSize: 20,
-                                  ),
+                                      fontFamily: "Poppins",
+                                      fontSize: 20,
+                                      color: Color.fromARGB(161, 0, 0, 0)),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: 150,
-                              height: 60,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: const Color.fromARGB(161, 0, 0, 0),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: ElevatedButton(
-                                  key: const ValueKey("uploadcsv"),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CreatePromoCodeComponnet(
-                                                csv: true,
-                                              )),
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    'Upload csv',
-                                    softWrap: true,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontFamily: "Poppins",
-                                        fontSize: 20,
-                                        color: Color.fromARGB(161, 0, 0, 0)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       const SizedBox(
                         height: 20,

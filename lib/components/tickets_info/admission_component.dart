@@ -105,157 +105,153 @@ class AdmissionComponent extends StatelessWidget {
       par = 1;
     }
 
-    return Expanded(
-      key: key,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
-        child: Container(
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              border: Border(
-                  bottom:
-                      BorderSide(color: Color.fromARGB(122, 158, 158, 158)))),
-          height: MediaQuery.of(context).size.height * 0.2,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Container(
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            border: Border(
+                bottom: BorderSide(color: Color.fromARGB(122, 158, 158, 158)))),
+        height: MediaQuery.of(context).size.height * 0.2,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset("assets/images/ticketslisticon.png"),
+                Text(
+                  ticketName ?? '',
+                  // event.title!,
+                  //  'General Admission',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 22,
+                      fontFamily: "Neue Plak Extended SemiBold",
+                      color: Color.fromARGB(255, 55, 55, 55)),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                GestureDetector(
+                  key: ValueKey("editdeleteviewticket"),
+                  onTap: () {
+                    editDeleteView(context, par, ticket);
+                  },
+                  child: Image.asset("assets/images/dot.png"),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Row(
                 children: [
-                  Image.asset("assets/images/ticketslisticon.png"),
+                  !ended
+                      ? Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            //color: Colors.green,
+                            color: onSale
+                                ? Colors.green
+                                : (soon
+                                    ? Colors.blue
+                                    : (scheduled
+                                        ? Colors.yellow
+                                        : Color.fromARGB(219, 77, 77, 77))),
+                          ),
+                        )
+                      : const SizedBox(
+                          height: 0,
+                        ),
+                  !ended
+                      ? const SizedBox(
+                          width: 2,
+                        )
+                      : const SizedBox(
+                          height: 0,
+                        ),
                   Text(
-                    ticketName ?? '',
-                    // event.title!,
-                    //  'General Admission',
+                    onSale
+                        ? 'On Sale '
+                        : (soon ? 'On Sale' : (scheduled ? 'Scheduled' : '')),
                     style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 22,
-                        fontFamily: "Neue Plak Extended SemiBold",
-                        color: Color.fromARGB(255, 55, 55, 55)),
+                      fontSize: 18,
+                      fontFamily: "Neue Plak Extended SemiBold",
+                      color: Color.fromARGB(219, 77, 77, 77),
+                    ),
                   ),
-                  SizedBox(
-                    width: 50,
+                  const SizedBox(
+                    width: 15,
                   ),
-                  GestureDetector(
-                    key: ValueKey("editdeleteviewticket"),
-                    onTap: () {
-                      editDeleteView(context, par, ticket);
-                    },
-                    child: Image.asset("assets/images/dot.png"),
-                  )
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromARGB(255, 92, 92, 92),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 2,
+                  ),
+                  Text(
+                    onSale
+                        ? 'Ends ${formattedEndDate} at ${formattedEndTime} '
+                        : (soon
+                            ? 'Ends ${formattedEndDate} at ${formattedEndTime}'
+                            : (scheduled
+                                ? 'Starts ${formattedStartDate} at ${formattedStartTime}'
+                                : 'Ended ${formattedEndDate} at ${formattedEndTime}')),
+                    // 'Ends ${formattedEndDate} at ${formattedEndTime}',
+                    //' Ends May 27, 2023 at 7:00 Am',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: "Neue Plak Extended SemiBold",
+                      color: Color.fromARGB(219, 77, 77, 77),
+                    ),
+                  ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(
-                  children: [
-                    !ended
-                        ? Container(
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              //color: Colors.green,
-                              color: onSale
-                                  ? Colors.green
-                                  : (soon
-                                      ? Colors.blue
-                                      : (scheduled
-                                          ? Colors.yellow
-                                          : Color.fromARGB(219, 77, 77, 77))),
-                            ),
-                          )
-                        : const SizedBox(
-                            height: 0,
-                          ),
-                    !ended
-                        ? const SizedBox(
-                            width: 2,
-                          )
-                        : const SizedBox(
-                            height: 0,
-                          ),
-                    Text(
-                      onSale
-                          ? 'On Sale '
-                          : (soon ? 'On Sale' : (scheduled ? 'Scheduled' : '')),
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: "Neue Plak Extended SemiBold",
-                        color: Color.fromARGB(219, 77, 77, 77),
-                      ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0, left: 80, top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "0/${capacity}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: "Neue Plak Extended SemiBold",
+                      color: Color.fromARGB(219, 77, 77, 77),
                     ),
-                    const SizedBox(
-                      width: 15,
+                  ),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  Text(
+                    "\$${price}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: "Neue Plak Extended SemiBold",
+                      color: Color.fromARGB(219, 77, 77, 77),
                     ),
-                    Container(
-                      width: 8,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromARGB(255, 92, 92, 92),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    Text(
-                      onSale
-                          ? 'Ends ${formattedEndDate} at ${formattedEndTime} '
-                          : (soon
-                              ? 'Ends ${formattedEndDate} at ${formattedEndTime}'
-                              : (scheduled
-                                  ? 'Starts ${formattedStartDate} at ${formattedStartTime}'
-                                  : 'Ended ${formattedEndDate} at ${formattedEndTime}')),
-                      // 'Ends ${formattedEndDate} at ${formattedEndTime}',
-                      //' Ends May 27, 2023 at 7:00 Am',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: "Neue Plak Extended SemiBold",
-                        color: Color.fromARGB(219, 77, 77, 77),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0, left: 80, top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "0/${capacity}",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: "Neue Plak Extended SemiBold",
-                        color: Color.fromARGB(219, 77, 77, 77),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 40,
-                    ),
-                    Text(
-                      "\$${price}",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: "Neue Plak Extended SemiBold",
-                        color: Color.fromARGB(219, 77, 77, 77),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -28,13 +28,13 @@ class UpdatedDateSelectionModel extends ChangeNotifier {
   bool _isChecked3 = false;
 
   final TextEditingController _dateControllerStart =
-      TextEditingController(text: '2023-05-12');
+      TextEditingController();
   final TextEditingController _timeControllerStart =
-      TextEditingController(text: '12:00 AM');
+      TextEditingController();
   final TextEditingController _dateControllerEnd =
-      TextEditingController(text: '2023-05-14');
+      TextEditingController();
   final TextEditingController _timeControllerEnd =
-      TextEditingController(text: '7:00 PM');
+      TextEditingController();
 
   set isChecked1(bool value) {
     _isChecked1 = value;

@@ -508,36 +508,36 @@ class _AddEventsState extends State<AddEvents> {
             //also we have to chek that if this was the first time user enters data then
             //old will not be equal to new  but we wont need to see update request and we will make old=new
 
-            print("newwwwwwwwwwww name: ${model.eventNameController.text}");
-            print("olddddddddd name: ${oldmodel.eventNameController.text}");
-            print("newwwwwwwwwwww id: ${model.eventId}");
-            print("newwwwwwwwww status: ${model.status}");
-            print("oldddddddd id: ${oldmodel.eventId}");
-            print("oldddddddddd status: ${oldmodel.status}");
-            print("Newwwwwwwww online: ${model.online}");
-            print("oldddddddd online: ${oldmodel.online}");
-            print('oldddddddddd Category: ${oldmodel.categoryy}');
-            print('newwwwwwwwwwww Category: ${model.categoryy}');
-            print('newwwwwwwwwwwwwwwwwwr: ${model.organizer}');
-            print('olddddddddddd: ${oldmodel.organizer}');
-            print('newwwwwwwwwwww type: ${model.typee}');
-            print('oldddddddddd type: ${oldmodel.typee}');
-            print('newwwwwww location: ${model.eventLocationController.text}');
-            print('mewwwwwwwwww location: ${model.selectedLocation}');
-            print(
-                'olddddddddddd location: ${oldmodel.eventLocationController.text}');
-            print('oldddddddddd location: ${oldmodel.selectedLocation}');
+            // print("newwwwwwwwwwww name: ${model.eventNameController.text}");
+            // print("olddddddddd name: ${oldmodel.eventNameController.text}");
+            // print("newwwwwwwwwwww id: ${model.eventId}");
+            // print("newwwwwwwwww status: ${model.status}");
+            // print("oldddddddd id: ${oldmodel.eventId}");
+            // print("oldddddddddd status: ${oldmodel.status}");
+            // print("Newwwwwwwww online: ${model.online}");
+            // print("oldddddddd online: ${oldmodel.online}");
+            // print('oldddddddddd Category: ${oldmodel.categoryy}');
+            // print('newwwwwwwwwwww Category: ${model.categoryy}');
+            // print('newwwwwwwwwwwwwwwwwwr: ${model.organizer}');
+            // print('olddddddddddd: ${oldmodel.organizer}');
+            // print('newwwwwwwwwwww type: ${model.typee}');
+            // print('oldddddddddd type: ${oldmodel.typee}');
+            // print('newwwwwww location: ${model.eventLocationController.text}');
+            // print('mewwwwwwwwww location: ${model.selectedLocation}');
+            // print(
+            //     'olddddddddddd location: ${oldmodel.eventLocationController.text}');
+            // print('oldddddddddd location: ${oldmodel.selectedLocation}');
 
-            print('new startdate: ${dateSelectionState.dateControllerStart}');
-            print(dateSelectionState.dateControllerEnd);
-            print(dateSelectionState.timeControllerStart);
-            print(dateSelectionState.timeControllerEnd);
+            // print('new startdate: ${dateSelectionState.dateControllerStart}');
+            // print(dateSelectionState.dateControllerEnd);
+            // print(dateSelectionState.timeControllerStart);
+            // print(dateSelectionState.timeControllerEnd);
 
-            print(
-                'old startdate: ${olddateSelectionState.dateControllerStart}');
-            print(olddateSelectionState.dateControllerEnd);
-            print(olddateSelectionState.timeControllerStart);
-            print(olddateSelectionState.timeControllerEnd);
+            // print(
+            //     'old startdate: ${olddateSelectionState.dateControllerStart}');
+            // print(olddateSelectionState.dateControllerEnd);
+            // print(olddateSelectionState.timeControllerStart);
+            // print(olddateSelectionState.timeControllerEnd);
 
             //we either update or create
 
@@ -565,12 +565,12 @@ class _AddEventsState extends State<AddEvents> {
             );
 
             if (oldmodel.eventId == 0) {
-              print("inside create");
+              //print("inside create");
               //create
               update = false;
             } else {
               //check which fields needs updating:
-              print("inside update any field");
+              //print("inside update any field");
               if (model.eventNameController.text !=
                   oldmodel.eventNameController.text) {
                 // Provider.of<BasicInfoFormDataProvider>(context, listen: false)
@@ -683,22 +683,22 @@ class _AddEventsState extends State<AddEvents> {
                     context: context);
               }
 
-              print(model.formData.eventDesc);
-              print(model.formData.summary);
-              print(model.formData.eventImage);
+              // print(model.formData.eventDesc);
+              // print(model.formData.summary);
+              // print(model.formData.eventImage);
             }
-            print("outside for");
-            print(model.formData.eventTitle);
-            print(model.formData.category);
-            print(model.formData.type);
-            print(model.formData.online);
-            print(model.formData.organizer);
-            print(model.formData.venueLocation);
-            print(model.formData.status);
-            print(model.formData.eventStart);
-            print(model.formData.eventEnd);
-            print(model.formData.startTime);
-            print(model.formData.endTime);
+            // print("outside for");
+            // print(model.formData.eventTitle);
+            // print(model.formData.category);
+            // print(model.formData.type);
+            // print(model.formData.online);
+            // print(model.formData.organizer);
+            // print(model.formData.venueLocation);
+            // print(model.formData.status);
+            // print(model.formData.eventStart);
+            // print(model.formData.eventEnd);
+            // print(model.formData.startTime);
+            // print(model.formData.endTime);
 
             Navigator.push(
               context,

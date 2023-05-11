@@ -464,7 +464,7 @@ class _AddDetailsState extends State<AddDetails> {
                         print("before create");
                         final createEventResult =
                             await CreateEventService().createEvent(
-                              token: token,
+                          token: token,
                           eventTitle: basicInfoData.formData.eventTitle,
                           type: basicInfoData.formData.type,
                           category: basicInfoData.formData.category,

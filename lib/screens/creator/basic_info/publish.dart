@@ -32,7 +32,7 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
   String? token;
 /////here is the publish page where the user can publish his event after creating the event and the tickets for it
   ///here we have publish function where we gave tp it the event id event status password of the event and the publication date if the user is going to change it from private to public
-  
+
   void publish(int Event_ID, String Event_Status, String Audience_Password,
       bool Keep_Private, String Publication_Date) async {
     setState(() {
@@ -65,10 +65,10 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     final body = {
       "Event_ID": Event_ID,
       "Event_Status": Event_Status,
-       "Audience_Password": Audience_Password,
-       "Keep_Private": Keep_Private,
-       "Publication_Date": Publication_Date,
-      "error":"dfssdfsdfsuyu"
+      "Audience_Password": Audience_Password,
+      "Keep_Private": Keep_Private,
+      "Publication_Date": Publication_Date,
+      //"error":"dfssdfsdfsuyu"
     };
 
     final response =
@@ -95,7 +95,8 @@ class _DependentDropdownMenuState extends State<DependentDropdownMenu> {
     //   print(e.toString());
     // }
   }
-void publish2(int Event_ID, String Event_Status, String Audience_Password,
+
+  void publish2(int Event_ID, String Event_Status, String Audience_Password,
       bool Keep_Private, String Publication_Date) async {
     setState(() {
       _isLoading = true;
@@ -157,6 +158,7 @@ void publish2(int Event_ID, String Event_Status, String Audience_Password,
     //   print(e.toString());
     // }
   }
+
   ///
   ///
   @override
@@ -230,12 +232,8 @@ void publish2(int Event_ID, String Event_Status, String Audience_Password,
                                         null;
                                       }
                                     : () async {
-                                        publish2(
-                                            event_ID!,
-                                            "Public",
-                                            "asdasda",
-                                            true,
-                                            formattedTime = "");
+                                        publish2(event_ID!, "Public", "asdasda",
+                                            true, formattedTime = "");
                                       },
                                 child: _isLoading
                                     ? SizedBox(

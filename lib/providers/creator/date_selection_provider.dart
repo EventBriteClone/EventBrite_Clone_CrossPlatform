@@ -27,14 +27,10 @@ class DateSelectionModel extends ChangeNotifier {
   bool _isChecked2 = false;
   bool _isChecked3 = false;
 
-  TextEditingController _dateControllerStart =
-      TextEditingController(text: '2023-05-12');
-  TextEditingController _timeControllerStart =
-      TextEditingController(text: '12:00 AM');
-  TextEditingController _dateControllerEnd =
-      TextEditingController(text: '2023-05-14');
-  TextEditingController _timeControllerEnd =
-      TextEditingController(text: '7:00 PM');
+  TextEditingController _dateControllerStart = TextEditingController();
+  TextEditingController _timeControllerStart = TextEditingController();
+  TextEditingController _dateControllerEnd = TextEditingController();
+  TextEditingController _timeControllerEnd = TextEditingController();
 
   set isChecked1(bool value) {
     _isChecked1 = value;
