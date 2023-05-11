@@ -121,8 +121,8 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
         final eventModel =
         Provider.of<BasicInfoFormDataProvider>(context, listen: false);
-    print(eventModel.eventId);
-    event_ID=eventModel.eventId;
+    print(eventModel.formData.eventID);
+    event_ID=eventModel.formData.eventID;
     token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       key: const Key('scaffold of the add attendee page'),

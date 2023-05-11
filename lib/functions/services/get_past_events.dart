@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:event_brite_app/screens/creator/basic_info/basic_info.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
@@ -18,21 +17,22 @@ import '../../providers/token_provider.dart';
 ///It iterates around [data['result']] in order to save all draft events in the list of [eventDraftsList]
 ///The method returns a [List] at the end of all draft events
 
-class AllLiveEventsServices {
-  Future<List<BasicInfoFormData>> getAllLiveEvents(BuildContext context) async {
+class AllPastEventsServices {
+  Future<List<BasicInfoFormData>> getAllPastEvents(BuildContext context) async {
     String? token = Provider.of<TokenModel>(context).token;
     List<dynamic> data = await Api().getM(
-        url: 'https://event-us.me:8000/eventmanagement/creatorUpcomingEvents/',
-        token: 'CustomToken $token');
+        url: 'https://event-us.me:8000/eventmanagement/creatorPastEvents/',
+        token:
+            'CustomToken $token');
 
     //List<dynamic> data = (dataUnFiltered['results']);
 
-    List<BasicInfoFormData> eventLiveList = [];
+    List<BasicInfoFormData> eventPastList = [];
     for (int i = 0; i < data.length; i++) {
-      eventLiveList.add(
+      eventPastList.add(
         BasicInfoFormData.fromJson(data[i]),
       );
     }
-    return eventLiveList;
+    return eventPastList;
   }
 }

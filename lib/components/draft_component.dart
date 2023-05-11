@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/basic_info_form.dart';
-import '../models/event_model.dart';
 import '../screens/creator/create_event/add_event_p_one.dart';
 
 ///This is a [DraftComponent] widget that displays created events that are not yet published
@@ -39,55 +38,53 @@ class DraftComponent extends StatelessWidget {
       onTap: () {
         editDeleteView(context);
       },
-      child: Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-              border:
-                  Border.all(color: const Color.fromARGB(122, 158, 158, 158))),
-          height: MediaQuery.of(context).size.height * 0.15,
-          width: MediaQuery.of(context).size.width,
-          child: Row(mainAxisSize: MainAxisSize.max, children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          style: BorderStyle.solid, color: Colors.grey)),
-                  child: const Icon(
-                    Icons.mode_edit_outline,
-                    color: Colors.grey,
-                    size: 50,
-                  )),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  event.eventTitle!,
-                  style: TextStyle(
-                      fontSize: 18, fontFamily: "Poppins", color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  //'$formattedDateStart , $formattedStartTime',
+      child: Container(
+        decoration: BoxDecoration(
+            border:
+                Border.all(color: const Color.fromARGB(122, 158, 158, 158))),
+        height: MediaQuery.of(context).size.height * 0.15,
+        width: MediaQuery.of(context).size.width,
+        child: Row(mainAxisSize: MainAxisSize.max, children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width * 0.2,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        style: BorderStyle.solid, color: Colors.grey)),
+                child: const Icon(
+                  Icons.mode_edit_outline,
+                  color: Colors.grey,
+                  size: 50,
+                )),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                event.eventTitle!,
+                style: const TextStyle(
+                    fontSize: 18, fontFamily: "Poppins", color: Colors.black),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                //'$formattedDateStart , $formattedStartTime',
 
-                  '$formattedeventStDate ,  $formattedStartTime',
-                  style: TextStyle(
-                      fontSize: 18, fontFamily: "Poppins", color: Colors.black),
-                )
-              ],
-            ),
-          ]),
-        ),
+                '$formattedeventStDate ,  $formattedStartTime',
+                style: const TextStyle(
+                    fontSize: 18, fontFamily: "Poppins", color: Colors.black),
+              )
+            ],
+          ),
+        ]),
       ),
     );
   }
@@ -101,8 +98,8 @@ class DraftComponent extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.edit),
-                title: Text('Edit'),
+                leading: const Icon(Icons.edit),
+                title: const Text('Edit'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -116,16 +113,16 @@ class DraftComponent extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.remove_circle_outline),
-                title: Text('Delete'),
+                leading: const Icon(Icons.remove_circle_outline),
+                title: const Text('Delete'),
                 onTap: () {
                   // Delete the event here
                   //Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.remove_red_eye),
-                title: Text('View'),
+                leading: const Icon(Icons.remove_red_eye),
+                title: const Text('View'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(

@@ -19,8 +19,8 @@ class LiveEventsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<EventModel>>(
-      future: AllLiveEventsServices().getAllLiveEvents(),
+    return FutureBuilder<List<BasicInfoFormData>>(
+      future: AllLiveEventsServices().getAllLiveEvents(context),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -40,7 +40,7 @@ class LiveEventsTab extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: eventLiveList.length,
                   itemBuilder: (context, index) {
-                    final EventModel event = eventLiveList[index];
+                    final BasicInfoFormData event = eventLiveList[index];
                     print(eventLiveList[index]);
                     // print(event.category);
                     return LiveComponent(event: event);

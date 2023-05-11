@@ -31,6 +31,7 @@ class createTicketService {
   /// Returns a [Map] with [ID] of the ticket and [response] containing ticket data
 
   Future<dynamic> CreateTicket({
+    required String? token,
     required String? ticketName,
     required String? ticketType,
     required DateTime? saleStart, //should be string
@@ -80,7 +81,7 @@ class createTicketService {
         'Absorb_fees': absorbFees,
       },
       token:
-          'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b',
+          'CustomToken $token',
     );
 
     final responseData = response['response'];

@@ -1,12 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../../helper/api.dart';
 import '../../models/event_model.dart';
+import '../../providers/token_provider.dart';
 
 class EventDetails {
-  Future<EventModel> getEventDetails(int eventID) async {
+  Future<EventModel> getEventDetails(int eventID, BuildContext context) async {
+    String? token = Provider.of<TokenModel>(context).token;
     List<dynamic> dataIntitail = await Api().get(
         url: 'https://event-us.me:8000/events/ID/$eventID/',
         token:
-            'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b');
+            'CustomToken $token');
     // Map<String, dynamic> ticketPriceUnFiltered = await Api().get(
     //     url: 'https://event-us.me:8000/events/TicketsPrice/$eventID/',
     //     token:

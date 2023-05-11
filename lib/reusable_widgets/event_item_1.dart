@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'followers_and_icons_row.dart';
 
-class EventItem extends StatelessWidget {
-  EventItem({
+class EventItem1 extends StatelessWidget {
+  EventItem1({
     key,
     this.stDate,
     this.endDate,
@@ -24,9 +24,17 @@ class EventItem extends StatelessWidget {
   final int? ID;
   final String? imageURL;
   bool isLiked = false;
+  String checkImg(imageURL) {
+    if (imageURL == null) {
+      return 'https://event-us.me:8000/events/mmmmmnmnmnmnmn_QoERGXn.jpg';
+    } else {
+      return imageURL;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    String img = checkImg(imageURL);
     return Container(
       decoration: const BoxDecoration(color: primaryColor),
       height: MediaQuery.of(context).size.height * .17,
@@ -34,7 +42,7 @@ class EventItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.network(
-            'https://event-us.me:8000$imageURL',
+            img,
             /*Image.asset(
             'assets/images/Eventbrite_logo.png',*/
             width: MediaQuery.of(context).size.width * 0.22,

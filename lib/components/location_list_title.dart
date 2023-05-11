@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 ///The widget [LocationListTitle] contains a [ListTile] with an icon, a text, and an [onTap] function that calls the [onSelect] function with the [location] string as an argument.
 
 class LocationListTitle extends StatelessWidget {

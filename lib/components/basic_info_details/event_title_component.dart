@@ -69,10 +69,10 @@ class EventTitle extends StatelessWidget {
             height: 12,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 70.0),
+            padding: const EdgeInsets.only(left: 70.0),
             child: Text(
               summary ?? '',
-              style: TextStyle(fontSize: 20, fontFamily: "Poppins"),
+              style: const TextStyle(fontSize: 20, fontFamily: "Poppins"),
             ),
           ),
           const Padding(
@@ -89,10 +89,10 @@ class EventTitle extends StatelessWidget {
             height: 12,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 70.0),
+            padding: const EdgeInsets.only(left: 70.0),
             child: Text(
               desc ?? '',
-              style: TextStyle(fontSize: 20, fontFamily: "Poppins"),
+              style: const TextStyle(fontSize: 20, fontFamily: "Poppins"),
             ),
           ),
         ],

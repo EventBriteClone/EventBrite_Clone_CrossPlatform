@@ -478,70 +478,107 @@ class _CreatePromoCodeComponnetState extends State<CreatePromoCodeComponnet> {
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
+                        final dateSelectionState =
+                            Provider.of<DateSelectionModel>(context,
+                                listen: false);
+
+                        print("codename:");
+                        print(model.codeNameController.text);
+                        print(model.discountAmountPercController.text);
+                        print(model.discountAmountPriceController.text);
+                        print(model.limitAmountController.text);
+                        print(dateSelectionState.dateControllerStart);
+                        print(dateSelectionState.dateControllerEnd);
+                        print(dateSelectionState.timeControllerStart);
+                        print(dateSelectionState.timeControllerEnd);
+                        print(model.revealHidden);
+                        print(model.endsSheduled);
+                        print(model.csvFile); //null
+                        print(model.ticketLimit);
+                        print(model.startsNow);
+                        print(model.endsNow);
+                        //print(model.startScheduled);
+                        //we can use model.startnow  (not)
+                        print("AAAAAAAAAAAAAAAAAAAAAAA");
+
+                        print("AAAAAAAAA");
+
                         // _formKey.currentState?.save();
 
-                        // if (_formKey.currentState!.validate()) {
-                        //   final dateSelectionState =
-                        //       Provider.of<DateSelectionModel>(context,
-                        //           listen: false);
+                        if (model.discountAmountPercController.text == '') {
+                          model.discountAmountPerc = '0';
+                        }
 
-                        //   Provider.of<PromoCodeProviderModel>(context,
-                        //           listen: false)
-                        //       .saveData(
-                        //     model.codeNameController.text,
-                        //     model.discountAmountPercController.text,
-                        //     model.discountAmountPriceController.text,
-                        //     model.limitAmountController.text,
-                        //     dateSelectionState.dateControllerStart,
-                        //     dateSelectionState.dateControllerEnd,
-                        //     dateSelectionState.timeControllerStart,
-                        //     dateSelectionState.timeControllerEnd,
-                        //     model.revealHidden,
-                        //     model.endsSheduled,
-                        //     model.startScheduled,
-                        //     model.endsNow,
-                        //     model.startsNow,
-                        //     model.ticketLimit,
-                        //     model.csvFile,
-                        //   );
+                        if (model.discountAmountPriceController.text == '') {
+                          model.discountAmountPrice = '0';
+                        }
 
-                        //   PromoCodeModel _formdata = model.formData;
+                        if (model.limitAmountController.text == '') {
+                          model.limitAmount = '0';
+                        }
 
-                        //   print(_formdata.codeName);
-                        //   print(_formdata.limitedOrUn);
-                        //   print(_formdata.limitAmount);
-                        //   print(_formdata.revealHidden);
-                        //   print(_formdata.discountPrice);
-                        //   print(_formdata.discountAmount);
-                        //   print(_formdata.starts);
-                        //   print(_formdata.ends);
-                        //   print(_formdata.codeStart);
-                        //   print(_formdata.codeEnd);
-                        //   print(_formdata.startTime);
-                        //   print(_formdata.endTime);
+                        if (_formKey.currentState!.validate()) {
+                          print("AAAAAAAAA");
 
-                        //   CreatePromoCodeService().createPromoCode(
-                        //       codeName: _formdata.codeName,
-                        //       limitedOrUn: _formdata.limitedOrUn,
-                        //       limitAmount: _formdata.limitAmount,
-                        //       revealHidden: _formdata.revealHidden,
-                        //       discountPrice: _formdata.discountPrice,
-                        //       discountAmount: _formdata.discountAmount,
-                        //       starts: _formdata.starts,
-                        //       ends: _formdata.ends,
-                        //       codeStart: _formdata.codeStart,
-                        //       codeEnd: _formdata.codeEnd,
-                        //       startTime: _formdata.startTime,
-                        //       endTime: _formdata.endTime,
-                        //       quantityAvailable: _formdata.quantityAvailable,
-                        //       csvFile: _formdata.csvFile);
+                          Provider.of<PromoCodeProviderModel>(context,
+                                  listen: false)
+                              .saveData(
+                            model.codeNameController.text,
+                            model.discountAmountPercController.text,
+                            model.discountAmountPriceController.text,
+                            model.limitAmountController.text,
+                            dateSelectionState.dateControllerStart,
+                            dateSelectionState.dateControllerEnd,
+                            dateSelectionState.timeControllerStart,
+                            dateSelectionState.timeControllerEnd,
+                            model.revealHidden,
+                            model.endsSheduled,
+                            !model.startsNow,
+                            model.endsNow,
+                            model.startsNow,
+                            model.ticketLimit,
+                            model.csvFile,
+                          );
+                          print("AAAAAAAA after provider A");
 
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const Tickets()),
-                        // );
-                        // }
+                          PromoCodeModel _formdata = model.formData;
+
+                          print(_formdata.codeName);
+                          print(_formdata.limitedOrUn);
+                          print(_formdata.limitAmount);
+                          print(_formdata.revealHidden);
+                          print(_formdata.discountPrice);
+                          print(_formdata.discountAmount);
+                          print(_formdata.starts);
+                          print(_formdata.ends);
+                          print(_formdata.codeStart);
+                          print(_formdata.codeEnd);
+                          print(_formdata.startTime);
+                          print(_formdata.endTime);
+
+                          // CreatePromoCodeService().createPromoCode(
+                          //     codeName: _formdata.codeName,
+                          //     limitedOrUn: _formdata.limitedOrUn,
+                          //     limitAmount: _formdata.limitAmount,
+                          //     revealHidden: _formdata.revealHidden,
+                          //     discountPrice: _formdata.discountPrice,
+                          //     discountAmount: _formdata.discountAmount,
+                          //     starts: _formdata.starts,
+                          //     ends: _formdata.ends,
+                          //     codeStart: _formdata.codeStart,
+                          //     codeEnd: _formdata.codeEnd,
+                          //     startTime: _formdata.startTime,
+                          //     endTime: _formdata.endTime,
+                          //     quantityAvailable: _formdata.quantityAvailable,
+                          //     csvFile: _formdata.csvFile,
+                          //     context: context);
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Tickets()),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         primary: const Color.fromARGB(255, 210, 78, 42),

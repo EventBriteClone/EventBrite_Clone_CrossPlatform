@@ -24,7 +24,7 @@ class _SearchedEventsState extends State<SearchedEvents> {
     ///print(widget.searchString);
     return Scaffold(
       body: FutureBuilder(
-        future: Events().getEventBySearch(widget.searchString),
+        future: Events().getEventBySearch(widget.searchString, context),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<EventModel> events = snapshot.data!;

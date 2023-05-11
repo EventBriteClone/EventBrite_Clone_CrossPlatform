@@ -56,8 +56,8 @@ class _TicketsState extends State<Tickets> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
-             child: buildDrawer(context),
-            ),
+          child: buildDrawer(context),
+        ),
         appBar: const AppBarWidget(
           appBarText: 'Tickets',
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/creator/date_selection_provider.dart';
@@ -47,15 +46,15 @@ class _StartSelectionWidgetState extends State<StartSelectionWidget> {
                 //_showDatePickerStart,
                 controller: model.dateControllerStart,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.calendar_month_outlined),
+                    prefixIcon: const Icon(Icons.calendar_month_outlined),
                     labelText: widget.startDay,
                     // hintText: '05/02/2023',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       fontSize: 18,
                     ),
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                        const EdgeInsets.symmetric(vertical: 32, horizontal: 10),
                     suffixIcon: const Text(
                       '*',
                       style: TextStyle(color: Colors.red, fontSize: 24),
@@ -84,9 +83,9 @@ class _StartSelectionWidgetState extends State<StartSelectionWidget> {
                   labelStyle: const TextStyle(
                     fontSize: 18,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 32, horizontal: 10),
                   suffixIcon: const Text(
                     '*',
                     style: TextStyle(color: Colors.red, fontSize: 24),

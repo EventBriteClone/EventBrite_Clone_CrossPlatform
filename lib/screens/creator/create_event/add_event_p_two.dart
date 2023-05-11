@@ -10,6 +10,7 @@ import '../../../models/basic_info_form.dart';
 import '../../../providers/creator/basic_info_provider.dart';
 import '../../../providers/creator/details_provider.dart';
 import '../../../providers/creator/updated_event_two_provider.dart';
+import '../../../providers/token_provider.dart';
 import '../../../reusable_widgets/app_bar.dart';
 import '../../../reusable_widgets/heading_description_widget.dart';
 import '../../../reusable_widgets/heading_widget.dart';
@@ -90,7 +91,7 @@ class _AddDetailsState extends State<AddDetails> {
   @override
   Widget build(BuildContext context) {
     final formData = context.watch<DetailsFormDataProvider>().formData;
-
+    String? token = Provider.of<TokenModel>(context).token;
     return Scaffold(
       appBar: const AppBarWidget(
         appBarText: 'Event Details',
@@ -463,6 +464,7 @@ class _AddDetailsState extends State<AddDetails> {
                         print("before create");
                         final createEventResult =
                             await CreateEventService().createEvent(
+                          token: token,
                           eventTitle: basicInfoData.formData.eventTitle,
                           type: basicInfoData.formData.type,
                           category: basicInfoData.formData.category,

@@ -44,22 +44,22 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
             child: SizedBox(
               //width: MediaQuery.of(context).size.width * 0.8,
               child: TextFormField(
-                key: ValueKey("DatePickerStart"),
+                key: const ValueKey("DatePickerStart"),
                 onTap: () {
                   model.showDatePickerStart(context);
                 },
                 //_showDatePickerStart,
                 controller: model.dateControllerStart,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.calendar_month_outlined),
+                    prefixIcon: const Icon(Icons.calendar_month_outlined),
                     labelText: widget.startDay,
                     // hintText: '05/02/2023',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       fontSize: 18,
                     ),
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                        const EdgeInsets.symmetric(vertical: 32, horizontal: 10),
                     suffixIcon: const Text(
                       '*',
                       style: TextStyle(color: Colors.red, fontSize: 24),
@@ -78,7 +78,7 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
             child: SizedBox(
               //width: MediaQuery.of(context).size.width * 0.45,
               child: TextFormField(
-                key: ValueKey("TimePickerStart"),
+                key: const ValueKey("TimePickerStart"),
                 onTap: () {
                   model.showTimePickerStart(context);
                 },
@@ -111,21 +111,21 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
             child: SizedBox(
               // width: MediaQuery.of(context).size.width * 0.45,
               child: TextFormField(
-                key: ValueKey("DatePickerEnd"),
+                key: const ValueKey("DatePickerEnd"),
                 onTap: () {
                   model.showDatePickerEnd(context);
                 },
                 controller: model.dateControllerEnd,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.calendar_month_outlined),
+                  prefixIcon: const Icon(Icons.calendar_month_outlined),
                   // hintText: '05/02/2023',
                   labelText: widget.endDay,
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     fontSize: 18,
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 32, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 32, horizontal: 10),
                   suffixIcon: const Text(
                     '*',
                     style: TextStyle(color: Colors.red, fontSize: 24),
@@ -145,7 +145,7 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
             child: SizedBox(
               //width: MediaQuery.of(context).size.width * 0.45,
               child: TextFormField(
-                key: ValueKey("TimePickerEnd"),
+                key: const ValueKey("TimePickerEnd"),
                 onTap: () {
                   model.showTimePickerEnd(context);
                 },
@@ -159,7 +159,7 @@ class _DateSelectionWidgetState extends State<DateSelectionWidget> {
                   border: OutlineInputBorder(),
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 32, horizontal: 10),
-                  suffixIcon: const Text(
+                  suffixIcon: Text(
                     '*',
                     style: TextStyle(color: Colors.red, fontSize: 24),
                   ),

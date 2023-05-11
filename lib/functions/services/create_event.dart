@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dartdoc/dartdoc.dart';
+import 'package:event_brite_app/providers/token_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -81,6 +83,7 @@ class CreateEventService {
     required String? sub_Category,
     required int? CAPACITY,
     // required String? PASSWORD,
+    required String? token
   }) async {
 // Format the start and end dates as dd/mm/yyyy
     print(eventStart);
@@ -123,7 +126,7 @@ class CreateEventService {
       },
       file: eventImage,
       token:
-          'CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b',
+          'CustomToken $token',
       //CustomToken af2ae025cdc6bb4f7424909e533be0bdac61655418beae85cd689a16ee2b614b
       //Basic a2FyZWVtc29iaGk1MEBnbWFpbC5jb206TmttbnJzMTIzIQ==
     );

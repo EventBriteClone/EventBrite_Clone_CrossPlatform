@@ -1,5 +1,6 @@
 import 'package:event_brite_app/functions/services/get_list_of_events.dart';
 import 'package:event_brite_app/reusable_widgets/custom_loading_indicator.dart';
+import 'package:event_brite_app/reusable_widgets/event_item_1.dart';
 import 'package:event_brite_app/screens/home_page/home_screen_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -24,7 +25,7 @@ class _SearchScreenAfterCategoryState extends State<SearchScreenAfterCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: Events().getEventByCategory(widget.category),
+        future: Events().getEventByCategory(widget.category, context),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<EventModel> events = snapshot.data!;
@@ -84,6 +85,7 @@ class _SearchScreenAfterCategoryState extends State<SearchScreenAfterCategory> {
                           int? ID = events.elementAt(index).ID;
                           String? imageURL =
                               events.elementAt(index).image?.substring(24);
+                          
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -95,7 +97,7 @@ class _SearchScreenAfterCategoryState extends State<SearchScreenAfterCategory> {
                                 ),
                               );
                             },
-                            child: EventItem(
+                            child: EventItem1(
                               stDate: stDate,
                               endDate: endDate,
                               stTime: stTime,
